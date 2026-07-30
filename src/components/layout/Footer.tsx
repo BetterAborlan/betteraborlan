@@ -51,6 +51,15 @@ export default function Footer() {
               >
                 <i className="bi bi-discord"></i>
               </a>
+              <a
+                href="https://linkedin.com/company/betteraborlan"
+                className="footer-social-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <i className="bi bi-linkedin"></i>
+              </a>
             </div>
             <div className="footer-partners">
               <a
