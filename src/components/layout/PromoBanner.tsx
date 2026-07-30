@@ -10,7 +10,7 @@ export default function PromoBanner() {
   return (
     <div className="promo-banner-wrap">
       <StripBanner
-        stripBannerTitle="Get Involved"
+        stripBannerTitle="Get Involved section"
         stripBanner={{
           id: 1,
           emoji: '🚀',

@@ -524,6 +524,12 @@
    global `* { padding: 0 }` reset above, which otherwise silently zeroes
    the button's padding. Scope the fix to this wrapper rather than every
    <a> site-wide. */
+.promo-banner-wrap h3 {
+  /* Kapwa's StripBanner always renders this h3 above the actual banner
+     (it's an internal Storybook-cataloging label, not user-facing
+     content) - hide it, the banner text itself already says what it is. */
+  display: none;
+}
 .promo-banner-wrap a {
   display: inline-flex;
   align-items: center;
