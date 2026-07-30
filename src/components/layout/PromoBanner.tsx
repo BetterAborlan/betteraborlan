@@ -8,22 +8,24 @@ import { StripBanner } from '@bettergov/kapwa/strip-banner';
 
 export default function PromoBanner() {
   return (
-    <StripBanner
-      stripBannerTitle="Get Involved"
-      stripBanner={{
-        id: 1,
-        emoji: '🚀',
-        mainText: 'Join the #CivicTech movement',
-        subText: 'Help build BetterAborlan.org',
-        primaryButton: {
-          text: 'Join Now',
-          href: 'https://github.com/BetterAborlan/betteraborlan',
-        },
-        secondaryLink: {
-          text: 'Contribute on GitHub',
-          href: 'https://github.com/BetterAborlan/betteraborlan',
-        },
-      }}
-    />
+    <div className="promo-banner-wrap">
+      <StripBanner
+        stripBannerTitle="Get Involved"
+        stripBanner={{
+          id: 1,
+          emoji: '🚀',
+          mainText: 'Join the #CivicTech movement',
+          subText: 'Help build BetterAborlan.org',
+          primaryButton: {
+            text: 'Join Now',
+            href: 'https://github.com/BetterAborlan/betteraborlan',
+          },
+          secondaryLink: {
+            text: 'Contribute on GitHub',
+            href: 'https://github.com/BetterAborlan/betteraborlan',
+          },
+        }}
+      />
+    </div>
   );
 }

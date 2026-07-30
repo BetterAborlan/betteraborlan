@@ -517,6 +517,27 @@
   font-style: italic;
 }
 
+/* Kapwa's CivicTechBanner/StripBanner ship Tailwind spacing utilities
+   (px-6, py-3, gap-4, ...) baked into their compiled JS. This stylesheet
+   is loaded unlayered (plain <link>, not through Tailwind's @layer
+   system), so it always wins over Tailwind's utilities regardless of
+   selector specificity — including the global `* { padding: 0 }` reset
+   above, which otherwise silently zeroes those buttons' padding. Scope
+   the fix to this wrapper rather than every <a> site-wide. */
+.civictech-banner-wrap a {
+  padding: 12px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.promo-banner-wrap a {
+  display: inline-flex;
+  align-items: center;
+}
+.promo-banner-wrap a:first-of-type {
+  padding: 6px 16px;
+}
+
 /* CTA banners */
 .cta-banner-dark {
   background: var(--color-kapwa-gray-950);

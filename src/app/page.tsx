@@ -116,7 +116,7 @@ export default function HomePage() {
 
       {/* Contribute CTA */}
       <section className="portal-section">
-        <div className="container">
+        <div className="container civictech-banner-wrap">
           <CivicTechBanner
             fullBannerTitle="Contribute"
             fullBanner={{
