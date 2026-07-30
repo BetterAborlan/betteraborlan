@@ -1,10 +1,11 @@
 name: Deploy Previews
 
-# PRs get an ephemeral Vercel preview. Pushes to `develop` deploy to Vercel's
-# "development" Custom Environment (Project Settings → Environments in the
-# Vercel dashboard) — create that environment once, link it to the `develop`
-# branch, and assign your dev domain to it there. Production deploys happen
-# in release.yml, gated behind semantic-release on `main`.
+# Both PRs and pushes to `develop` deploy as a standard Vercel Preview.
+# `develop` also gets Vercel's automatic persistent branch-alias URL
+# (https://betteraborlan-git-develop-<scope>.vercel.app) via the connected
+# GitHub integration — that's the "dev" URL, no custom environment needed.
+# Production deploys happen in release.yml, gated behind semantic-release
+# on `main`.
 on:
   pull_request:
     branches: [main]
@@ -32,31 +33,16 @@ jobs:
         run: npm install -g vercel@latest
 
       - name: Pull Vercel environment (preview)
-        if: github.event_name == 'pull_request'
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Pull Vercel environment (development)
-        if: github.event_name == 'push'
-        run: vercel pull --yes --environment=development --token=${{ secrets.VERCEL_TOKEN }}
-
       - name: Build (preview)
-        if: github.event_name == 'pull_request'
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Build (development)
-        if: github.event_name == 'push'
-        run: vercel build --target=development --token=${{ secrets.VERCEL_TOKEN }}
-
       - name: Deploy (preview)
-        if: github.event_name == 'pull_request'
         id: deploy-preview
         run: |
           url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
           echo "url=$url" >> "$GITHUB_OUTPUT"
-
-      - name: Deploy (development)
-        if: github.event_name == 'push'
-        run: vercel deploy --prebuilt --target=development --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Comment preview URL on PR
         if: github.event_name == 'pull_request'

@@ -46,10 +46,10 @@ Every push to `main` runs [semantic-release](https://semantic-release.gitbook.io
 ## Branches & environments
 
 - **`main`** → production. Every merge here triggers a release (see above) and a prod deploy.
-- **`develop`** → the development environment. Pushes here deploy to Vercel's `development` [Custom Environment](https://vercel.com/docs/deployments/environments#custom-environments), which is where a dev domain gets attached (see below).
-- Pull requests into either branch get an ephemeral Vercel preview URL, commented on the PR.
+- **`develop`** → deploys as a standard Vercel Preview on every push. Vercel's GitHub integration also gives it a persistent branch-alias URL that updates on every push: `https://betteraborlan-git-develop-<your-vercel-scope>.vercel.app` — that's the "dev site" URL, point a dev domain at it via Project → Settings → Domains → assign to the `develop` branch.
+- Pull requests into `main` get their own ephemeral Vercel preview URL, commented on the PR.
 
-Day to day: branch off `develop`, open a PR into `develop`, merge → deploys to dev. When it's ready for real users, PR `develop` into `main` → semantic-release cuts a version and ships it.
+Day to day: branch off `develop`, open a PR into `develop`, merge → deploys to the develop preview URL. When it's ready for real users, PR `develop` into `main` → semantic-release cuts a version and ships it.
 
 ## Data policy — no fabricated civic data
 
@@ -57,26 +57,26 @@ Day to day: branch off `develop`, open a PR into `develop`, merge → deploys to
 
 ## Deployment — Vercel + GitHub Actions
 
-1. `vercel link` locally once to create the project, or create it in the Vercel dashboard.
-2. In Vercel, create a **Custom Environment** named `development` (Project → Settings → Environments) and link it to the `develop` git branch — this is what `deploy.yml` targets on every push to `develop`. Production and Preview environments exist by default, no setup needed.
+1. `vercel link` locally once to create the project, or create it in the Vercel dashboard. Linking also connects Vercel's own GitHub integration, which is what gives `develop` its persistent branch-alias URL.
+2. **Turn off Vercel's automatic Git deployments** (Project → Settings → Git) so only the GitHub Actions below trigger deploys — otherwise every push deploys twice (once from Vercel's integration, once from `deploy.yml`/`release.yml`), and `main` risks deploying pre-version-bump code before `release.yml` finishes.
 3. In the GitHub repo, add these secrets (Settings → Secrets and variables → Actions):
    - `VERCEL_TOKEN` — personal/team token from Vercel account settings
    - `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` — from `.vercel/project.json` after `vercel link`
    - `GITHUB_TOKEN` is automatic, no setup needed — semantic-release uses the one GitHub Actions injects.
-4. Set the env vars from `.env.local.example` in Vercel (Project → Settings → Environment Variables), scoped per environment (Production / Preview / Development) as needed.
-5. Push to `develop` → deploys to the development environment. Merge `develop` into `main` → `release.yml` versions and deploys to production. PRs get an ephemeral preview.
+4. Set the env vars from `.env.local.example` in Vercel (Project → Settings → Environment Variables), scoped per environment (Production / Preview) as needed.
+5. Push to `develop` → deploys as a Preview. Merge `develop` into `main` → `release.yml` versions and deploys to production. PRs get an ephemeral preview.
 
 ## Domains (Hostinger)
 
 For each domain (prod and dev), once purchased on Hostinger:
 
-1. Add the domain in Vercel (Project → Settings → Domains) and assign it to the right environment — the apex/`www` domain to Production, a subdomain like `dev.betteraborlan.org` to the `development` Custom Environment.
+1. Add the domain in Vercel (Project → Settings → Domains) — the apex/`www` domain assigned to Production, a subdomain like `dev.betteraborlan.org` assigned to the `develop` branch (Vercel lets you pin a domain to a specific git branch under Preview).
 2. In Hostinger's DNS zone editor, point it at Vercel per what the Vercel domain screen instructs (`A`/`CNAME` records, or delegate nameservers).
 3. Update `NEXT_PUBLIC_SITE_URL` for that environment in Vercel to the matching domain.
 
 ## Coming-soon mode
 
-Production and the `development` environment run the exact same code — the only difference is `NEXT_PUBLIC_COMING_SOON`, set to `true` in Vercel's **Production** environment vars only. When set, the root layout (`src/app/layout.tsx`) skips the whole site shell and renders a standalone coming-soon page (`src/components/ComingSoon.tsx`) instead. The dev environment always shows the full site regardless of this flag, so it's safe to build in the open on `dev.betteraborlan.org` while the production domain shows coming-soon.
+Production and the `develop` preview run the exact same code — the only difference is `NEXT_PUBLIC_COMING_SOON`, set to `true` in Vercel's **Production** environment vars only. When set, the root layout (`src/app/layout.tsx`) skips the whole site shell and renders a standalone coming-soon page (`src/components/ComingSoon.tsx`) instead. `develop`/Preview always show the full site regardless of this flag, so it's safe to build in the open on the dev domain while production shows coming-soon.
 
 To launch for real: set `NEXT_PUBLIC_COMING_SOON` to `false` (or delete it) in Vercel's Production env vars and redeploy. No code or branch changes needed.
 

@@ -2,15 +2,12 @@ export default function ComingSoon() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-linear-to-br from-kapwa-brand-900 to-kapwa-brand-950 px-6 py-16 text-center text-[var(--color-kapwa-text-inverse)]">
       <img
-        src="/assets/images/logo/favicon.svg"
-        alt=""
-        width={64}
-        height={64}
-        className="mb-6"
+        src="/assets/images/logo/better-aborlan-logo-white.svg"
+        alt="BetterAborlan.org"
+        width={200}
+        height={80}
+        className="mb-8"
       />
-      <p className="mb-2 text-sm font-semibold tracking-wide text-kapwa-blue-200 uppercase">
-        BetterAborlan.org
-      </p>
       {/* Inline style, not a Tailwind class: Tailwind utilities live in a
           CSS @layer, so the plain (unlayered) h1 color rule in style.css
           always wins over them regardless of specificity. */}

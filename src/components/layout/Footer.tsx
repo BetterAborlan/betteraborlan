@@ -24,8 +24,12 @@ export default function Footer() {
         <div className="footer-v2-grid">
           <div>
             <div className="footer-v2-brand">
-              <img src="/assets/images/logo/favicon.svg" alt="" width={28} height={28} />
-              <span className="footer-v2-brand-text">BetterAborlan.org</span>
+              <img
+                src="/assets/images/logo/better-aborlan-logo-white.svg"
+                alt="BetterAborlan.org"
+                width={70}
+                height={28}
+              />
             </div>
             <p className="footer-v2-tagline">{t('footer-tagline')}</p>
           </div>

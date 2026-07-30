@@ -86,9 +86,13 @@ export default function Header() {
     <header className="site-header-v2">
       <div className="container header-inner-v2">
         <Link href="/" className="brand-v2">
-          <img src="/assets/images/logo/favicon.svg" alt="" width={34} height={34} />
+          <img
+            src="/assets/images/logo/better-aborlan-logo.svg"
+            alt="BetterAborlan.org"
+            width={85}
+            height={34}
+          />
           <span className="brand-v2-text">
-            <span className="brand-v2-title">BetterAborlan.ph</span>
             <span className="brand-v2-tagline">A community-run portal for Aborlan</span>
           </span>
         </Link>
