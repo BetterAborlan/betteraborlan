@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="48" viewBox="0 0 220 48" role="img" aria-label="BetterAborlan logo">
+  <rect x="0" y="8" width="32" height="32" rx="8" fill="#0032A0"/>
+  <path d="M9 24 L16 16 L23 24 L16 32 Z" fill="#ffffff"/>
+  <text x="40" y="31" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#0032A0">Better<tspan fill="#00A651">Aborlan</tspan></text>
+</svg>

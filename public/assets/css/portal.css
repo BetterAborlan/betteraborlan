@@ -1,0 +1,798 @@
+/*
+ * Layout matching bettergov.ph's homepage structure: top utility bar,
+ * header with mega-nav, info strip, hero + popular-services panel,
+ * bordered service-category grid, real-time data widgets, CTA banners,
+ * and a multi-column footer. Uses the Kapwa tokens from kapwa-tokens.css.
+ */
+
+/* Top utility bar */
+.topbar {
+  background: var(--color-kapwa-neutral-50);
+  border-bottom: 1px solid var(--color-kapwa-border-weak);
+  font-size: 0.8125rem;
+}
+.topbar-inner {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  padding: 7px 0;
+}
+.topbar a {
+  color: var(--color-kapwa-text-support);
+}
+.topbar a:hover {
+  color: var(--color-kapwa-text-link);
+  text-decoration: none;
+}
+.topbar-join {
+  color: var(--color-kapwa-red-600) !important;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.topbar-lang {
+  border: 1px solid var(--color-kapwa-border-weak);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 0.8125rem;
+  color: var(--color-kapwa-text-strong);
+  background: var(--color-kapwa-neutral-50);
+}
+
+/* Main header */
+.site-header-v2 {
+  background: var(--color-kapwa-neutral-50);
+  border-bottom: 1px solid var(--color-kapwa-border-weak);
+}
+.header-inner-v2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 0;
+}
+.brand-v2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.brand-v2 img {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+.brand-v2-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.brand-v2-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-kapwa-text-strong);
+}
+.brand-v2-tagline {
+  font-size: 0.75rem;
+  color: var(--color-kapwa-text-support);
+}
+.main-nav-v2 {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.main-nav-v2 > ul {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.main-nav-v2 > ul > li {
+  position: relative;
+}
+.main-nav-v2 > ul > li > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  color: var(--color-kapwa-gray-800);
+  padding: 8px 0;
+}
+.main-nav-v2 > ul > li > a:hover,
+.main-nav-v2 > ul > li > a.active {
+  color: var(--color-kapwa-brand-700);
+  text-decoration: none;
+}
+.main-nav-v2 .chevron {
+  font-size: 0.7em;
+  transition: transform var(--duration-kapwa-200) var(--ease-kapwa-out);
+}
+.main-nav-v2 li.dropdown-open .chevron {
+  transform: rotate(180deg);
+}
+.main-nav-v2 .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: var(--color-kapwa-neutral-50);
+  border: 1px solid var(--color-kapwa-border-weak);
+  border-radius: 10px;
+  box-shadow: var(--shadow-kapwa-lg);
+  padding: 8px;
+  list-style: none;
+  margin: 8px 0 0;
+  z-index: 40;
+}
+.main-nav-v2 li.dropdown-open .dropdown-menu,
+.main-nav-v2 > ul > li:hover .dropdown-menu {
+  display: block;
+}
+.main-nav-v2 .dropdown-menu li a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: var(--color-kapwa-gray-800);
+  font-size: 0.9rem;
+}
+.main-nav-v2 .dropdown-menu li a:hover {
+  background: var(--color-kapwa-bg-surface-raised);
+  text-decoration: none;
+}
+.header-search-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  font-weight: 600;
+  color: var(--color-kapwa-gray-800);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.header-search-btn:hover {
+  color: var(--color-kapwa-brand-700);
+}
+.header-mobile-toggle {
+  display: none;
+}
+
+/* Info strip */
+.info-strip-v2 {
+  background: var(--color-kapwa-brand-950);
+  color: var(--color-kapwa-neutral-50);
+  font-size: 0.8125rem;
+}
+.info-strip-v2-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  padding: 9px 0;
+}
+.info-strip-v2-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.info-strip-v2-item i {
+  opacity: 0.85;
+}
+
+/* Promo banner */
+.promo-banner {
+  background: linear-gradient(90deg, var(--color-kapwa-red-600), var(--color-kapwa-purple-700));
+  color: var(--color-kapwa-neutral-50);
+}
+.promo-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  flex-wrap: wrap;
+}
+.promo-banner-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+.promo-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.promo-banner-btn {
+  background: var(--color-kapwa-neutral-50);
+  color: var(--color-kapwa-red-700);
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.promo-banner-btn:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+.promo-banner-actions a.promo-banner-link {
+  color: var(--color-kapwa-neutral-50);
+  font-weight: 600;
+}
+
+/* Hero */
+.portal-hero {
+  background: linear-gradient(160deg, var(--color-kapwa-brand-900), var(--color-kapwa-brand-950));
+  color: var(--color-kapwa-neutral-50);
+  padding: 56px 0 72px;
+}
+.portal-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 48px;
+  align-items: start;
+}
+.portal-hero-text h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 16px;
+  line-height: 1.15;
+  color: var(--color-kapwa-neutral-50);
+}
+.portal-hero-text p {
+  font-size: 1.0625rem;
+  color: var(--color-kapwa-blue-100);
+  max-width: 560px;
+  margin: 0 0 28px;
+}
+.portal-hero-search {
+  display: flex;
+  gap: 10px;
+  max-width: 560px;
+  margin-bottom: 16px;
+}
+.portal-hero-search .search-autocomplete-wrapper {
+  flex: 1;
+}
+.portal-hero-search input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+}
+.portal-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--color-kapwa-blue-100);
+}
+.portal-hero-tags a {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-kapwa-neutral-50);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.portal-hero-tags a:hover {
+  background: rgba(255, 255, 255, 0.22);
+  text-decoration: none;
+}
+
+/* Popular services panel (hero right column) */
+.popular-panel {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(4px);
+}
+.popular-panel h2 {
+  font-size: 1.125rem;
+  margin: 0 0 16px;
+}
+.popular-panel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.popular-panel-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 18px 12px;
+  text-align: center;
+  color: var(--color-kapwa-neutral-50);
+}
+.popular-panel-card:hover {
+  background: rgba(255, 255, 255, 0.14);
+  text-decoration: none;
+}
+.popular-panel-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-kapwa-brand-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  font-size: 1.15rem;
+}
+.popular-panel-card span {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+.popular-panel-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: var(--color-kapwa-neutral-50);
+  color: var(--color-kapwa-brand-800);
+  font-weight: 700;
+  padding: 12px;
+  border-radius: 10px;
+}
+.popular-panel-btn:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+/* Generic section */
+.portal-section {
+  padding: 64px 0;
+}
+.portal-section--alt {
+  background: var(--color-kapwa-bg-surface-raised);
+}
+.portal-section-header {
+  max-width: 640px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+.portal-section-header h2 {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: var(--color-kapwa-text-strong);
+  margin: 0 0 10px;
+}
+.portal-section-header p {
+  color: var(--color-kapwa-text-support);
+  margin: 0;
+}
+
+/* Service category grid */
+.service-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.service-cat-card {
+  /* border/radius/background come from Kapwa's <Card> wrapper now */
+  padding: 22px;
+  transition:
+    box-shadow var(--duration-kapwa-200) var(--ease-kapwa-out),
+    border-color var(--duration-kapwa-200) var(--ease-kapwa-out);
+  display: flex;
+  flex-direction: column;
+}
+.service-cat-card:hover {
+  box-shadow: var(--shadow-kapwa-md);
+  border-color: var(--color-kapwa-brand-600);
+}
+.service-cat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--color-kapwa-blue-100);
+  color: var(--color-kapwa-blue-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+}
+.service-cat-card h3 {
+  font-size: 1.0625rem;
+  margin: 0 0 10px;
+  color: var(--color-kapwa-text-strong);
+}
+.service-cat-card ul {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  flex: 1;
+}
+.service-cat-card ul li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 0.875rem;
+  color: var(--color-kapwa-text-support);
+  margin-bottom: 6px;
+}
+.service-cat-card ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-kapwa-gray-400);
+}
+.service-cat-card > a {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-kapwa-brand-700);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: auto;
+}
+.service-cat-card > a:hover {
+  text-decoration: none;
+  gap: 8px;
+}
+.portal-section-cta {
+  text-align: center;
+}
+
+/* Real-time data section */
+.realtime-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.realtime-card {
+  /* border/radius/background come from Kapwa's <Card> wrapper now */
+  padding: 22px;
+}
+.realtime-card h3 {
+  font-size: 1rem;
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-kapwa-text-strong);
+}
+.realtime-weather-current {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  background: var(--color-kapwa-bg-surface-raised);
+  border-radius: 10px;
+}
+.realtime-weather-current i {
+  font-size: 2rem;
+  color: var(--color-kapwa-orange-500);
+}
+.realtime-weather-temp {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.realtime-currency-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.realtime-currency-table th {
+  text-align: left;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-kapwa-gray-500);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-kapwa-border-weak);
+}
+.realtime-currency-table td {
+  padding: 7px 0;
+  border-bottom: 1px solid var(--color-kapwa-border-weak);
+}
+.realtime-currency-table td:last-child {
+  text-align: right;
+  font-weight: 600;
+}
+.realtime-hotlines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.realtime-hotlines li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-kapwa-border-weak);
+  font-size: 0.875rem;
+}
+.realtime-hotlines li:last-child {
+  border-bottom: none;
+}
+.realtime-hotlines a {
+  font-weight: 600;
+  color: var(--color-kapwa-brand-700);
+}
+.realtime-hotlines .pending {
+  color: var(--color-kapwa-gray-500);
+  font-style: italic;
+}
+
+/* CTA banners */
+.cta-banner-dark {
+  background: var(--color-kapwa-gray-950);
+  color: var(--color-kapwa-neutral-50);
+  padding: 20px 0;
+}
+.cta-banner-dark-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.cta-banner-dark-tags {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  color: var(--color-kapwa-gray-400);
+  font-size: 0.875rem;
+}
+.cta-banner-dark a.cta-banner-link {
+  color: var(--color-kapwa-neutral-50);
+  font-weight: 600;
+}
+
+.cta-banner-accent {
+  background: linear-gradient(90deg, var(--color-kapwa-orange-600), var(--color-kapwa-orange-500));
+  color: var(--color-kapwa-neutral-50);
+  padding: 36px 0;
+}
+.cta-banner-accent-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.cta-banner-accent h2 {
+  font-size: 1.5rem;
+  margin: 0 0 8px;
+}
+.cta-banner-accent p {
+  margin: 0;
+  max-width: 640px;
+  color: rgba(255, 255, 255, 0.9);
+}
+.cta-banner-accent-btn {
+  background: var(--color-kapwa-neutral-50);
+  color: var(--color-kapwa-orange-700);
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.cta-banner-accent-btn:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+/* Government branches */
+.gov-branch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.gov-branch-card {
+  /* border/radius/background come from Kapwa's <Card> wrapper now */
+  padding: 28px 24px;
+  text-align: center;
+}
+.gov-branch-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-kapwa-blue-50);
+  color: var(--color-kapwa-blue-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin: 0 auto 14px;
+}
+.gov-branch-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.0625rem;
+}
+.gov-branch-card p {
+  color: var(--color-kapwa-text-support);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Directory banner */
+.directory-banner {
+  background: var(--color-kapwa-bg-surface-raised);
+  border-top: 1px solid var(--color-kapwa-border-weak);
+  border-bottom: 1px solid var(--color-kapwa-border-weak);
+  padding: 24px 0;
+}
+.directory-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.directory-banner-inner h2 {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+}
+.directory-banner-inner p {
+  margin: 0;
+  color: var(--color-kapwa-text-support);
+  font-size: 0.9375rem;
+}
+.directory-banner-btn {
+  background: var(--color-kapwa-brand-600);
+  color: var(--color-kapwa-neutral-50);
+  font-weight: 700;
+  padding: 12px 22px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.directory-banner-btn:hover {
+  background: var(--color-kapwa-brand-700);
+  text-decoration: none;
+}
+
+/* Footer v2 */
+.footer-v2 {
+  background: var(--color-kapwa-gray-950);
+  color: var(--color-kapwa-gray-300);
+  padding: 48px 0 0;
+}
+.footer-v2-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 32px;
+  padding-bottom: 40px;
+}
+.footer-v2-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.footer-v2-brand img {
+  height: 28px;
+}
+.footer-v2-brand-text {
+  font-weight: 700;
+  color: var(--color-kapwa-neutral-50);
+}
+.footer-v2-tagline {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-kapwa-gray-400);
+  max-width: 320px;
+}
+.footer-v2 h4 {
+  color: var(--color-kapwa-neutral-50);
+  font-size: 0.9375rem;
+  margin: 0 0 14px;
+}
+.footer-v2 ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-v2 ul li {
+  margin-bottom: 10px;
+  font-size: 0.875rem;
+}
+.footer-v2 a {
+  color: var(--color-kapwa-gray-300);
+}
+.footer-v2 a:hover {
+  color: var(--color-kapwa-neutral-50);
+  text-decoration: none;
+}
+.footer-v2-bottom {
+  border-top: 1px solid var(--color-kapwa-gray-800);
+  padding: 18px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: var(--color-kapwa-gray-500);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .portal-hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .service-cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .realtime-grid {
+    grid-template-columns: 1fr;
+  }
+  .gov-branch-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-v2-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .main-nav-v2 {
+    display: none;
+  }
+  .main-nav-v2.mobile-open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-kapwa-neutral-50);
+    border-bottom: 1px solid var(--color-kapwa-border-weak);
+    box-shadow: var(--shadow-kapwa-md);
+    padding: 12px 0;
+    z-index: 50;
+  }
+  .main-nav-v2.mobile-open > ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 0 20px;
+  }
+  .main-nav-v2.mobile-open .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    padding: 0 0 0 12px;
+    margin: 0;
+    display: none;
+  }
+  .main-nav-v2.mobile-open li.dropdown-open .dropdown-menu {
+    display: block;
+  }
+  .header-mobile-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: var(--color-kapwa-gray-800);
+  }
+  .site-header-v2 {
+    position: relative;
+  }
+}
+@media (max-width: 640px) {
+  .service-cat-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-v2-grid {
+    grid-template-columns: 1fr;
+  }
+  .portal-hero-text h1 {
+    font-size: 1.875rem;
+  }
+}

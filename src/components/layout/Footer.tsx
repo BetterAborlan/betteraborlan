@@ -1,0 +1,122 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { serviceCategories } from '@/data/serviceCategories';
+
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
+  const [version, setVersion] = useState('');
+
+  useEffect(() => {
+    fetch('/version.json')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data?.version) setVersion(data.version);
+      })
+      .catch(() => {});
+  }, []);
+
+  return (
+    <footer className="footer-v2">
+      <div className="container">
+        <div className="footer-v2-grid">
+          <div>
+            <div className="footer-v2-brand">
+              <img src="/assets/images/logo/favicon.svg" alt="" width={28} height={28} />
+              <span className="footer-v2-brand-text">BetterAborlan.org</span>
+            </div>
+            <p className="footer-v2-tagline">{t('footer-tagline')}</p>
+          </div>
+
+          <div>
+            <h4>{t('footer-quick-links')}</h4>
+            <ul>
+              <li>
+                <a href="/about">About</a>
+              </li>
+              <li>
+                <a href="/sitemap-page">{t('footer-sitemap')}</a>
+              </li>
+              <li>
+                <a href="/terms">{t('footer-terms')}</a>
+              </li>
+              <li>
+                <a href="/privacy">{t('footer-privacy')}</a>
+              </li>
+              <li>
+                <a href="/accessibility">{t('footer-accessibility')}</a>
+              </li>
+              <li>
+                <a href="/faq">{t('footer-faq')}</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>{t('nav-services')}</h4>
+            <ul>
+              {serviceCategories.slice(0, 5).map((cat) => (
+                <li key={cat.id}>
+                  <a href={cat.href}>{cat.title}</a>
+                </li>
+              ))}
+              <li>
+                <a href="/services">All Services</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>{t('footer-resources')}</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://github.com/BetterAborlan/betteraborlan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('footer-contribute')}
+                </a>
+              </li>
+              <li>
+                <a href="https://discord.gg/Fsgdh7cJvw" target="_blank" rel="noopener noreferrer">
+                  Discord
+                </a>
+              </li>
+              <li>
+                <a href="https://data.gov.ph" target="_blank" rel="noopener noreferrer">
+                  {t('footer-open-data')}
+                </a>
+              </li>
+              <li>
+                <a href="https://www.foi.gov.ph/" target="_blank" rel="noopener noreferrer">
+                  {t('footer-foi')}
+                </a>
+              </li>
+              <li>
+                <a href="https://blgf.gov.ph/" target="_blank" rel="noopener noreferrer">
+                  {t('footer-blgf')}
+                </a>
+              </li>
+              <li>
+                <a href="https://bettergov.ph" target="_blank" rel="noopener noreferrer">
+                  BetterGov.ph
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="footer-v2-bottom">
+          <span>
+            &copy; {currentYear} {t('footer-copyright-text')} · MIT | CC BY 4.0
+          </span>
+          <span>{t('footer-copyright-disclaimer')}</span>
+          <span>{version ? `Ver. ${version}` : ''}</span>
+        </div>
+      </div>
+    </footer>
+  );
+}

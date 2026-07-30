@@ -1,0 +1,29 @@
+{
+  "name": "BetterAborlan.org - LGU Aborlan Portal",
+  "short_name": "BetterAborlan",
+  "description": "Access government services, information, and resources for Aborlan, Palawan.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#0032A0",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["government", "utilities"],
+  "icons": [
+    {
+      "src": "/assets/images/logo/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/logo/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "prefer_related_applications": false
+}

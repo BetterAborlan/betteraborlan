@@ -1,0 +1,9 @@
+{
+  "_status": "unverified",
+  "_note": "No official names populated yet. Fill only from the COMELEC proclamation, the Aborlan Sangguniang Bayan's own published roster, or another primary source — never guess or infer from search snippets.",
+  "mayor": { "name": null, "title": "Municipal Mayor", "image": null },
+  "vice_mayor": { "name": null, "title": "Municipal Vice Mayor", "image": null },
+  "councilors": [],
+  "sk_federation_president": { "name": null, "title": "SK Federation President", "image": null },
+  "ipmr": { "name": null, "title": "IPMR (Indigenous Peoples Mandatory Representative)", "image": null }
+}

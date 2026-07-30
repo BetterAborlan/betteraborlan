@@ -1,0 +1,166 @@
+{
+  "_status": "scaffold",
+  "_note": "Service types are standard nationwide LGU offerings, safe as directory scaffolding. fee/processingTime/office are left null — fill only from the official Aborlan LGU or its Citizen's Charter, never guessed.",
+  "services": [
+    {
+      "id": "birth-certificate",
+      "title": "Birth Certificate",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "Request a copy of a birth certificate (local civil registry or PSA copy).",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "marriage-certificate",
+      "title": "Marriage Certificate",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "Request a copy of a marriage certificate.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "death-certificate",
+      "title": "Death Certificate",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "Request a copy of a death certificate.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "business-permit-new",
+      "title": "Business Permit (New)",
+      "category": "Business & Trade",
+      "categoryId": "business",
+      "description": "Apply for a new mayor's permit for a business operating in Aborlan.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "business-permit-renewal",
+      "title": "Business Permit Renewal",
+      "category": "Business & Trade",
+      "categoryId": "business",
+      "description": "Renew an existing annual business permit.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "real-property-tax",
+      "title": "Real Property Tax",
+      "category": "Taxation & Payments",
+      "categoryId": "tax-payments",
+      "description": "Pay annual real property tax on land and improvements.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "cedula",
+      "title": "Cedula (Community Tax Certificate)",
+      "category": "Taxation & Payments",
+      "categoryId": "tax-payments",
+      "description": "Community tax certificate for individuals and businesses.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "senior-citizen-id",
+      "title": "Senior Citizen ID",
+      "category": "Social Services",
+      "categoryId": "social-services",
+      "description": "ID for residents 60 years old and above.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "pwd-id",
+      "title": "PWD ID",
+      "category": "Social Services",
+      "categoryId": "social-services",
+      "description": "Identification for persons with disabilities.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "medical-financial-assistance",
+      "title": "Medical / Financial Assistance",
+      "category": "Social Services",
+      "categoryId": "social-services",
+      "description": "Emergency financial aid for medical, burial, or educational needs.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "medical-consultation",
+      "title": "Medical Consultation",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Consultation at Rural Health Units / Municipal Health Office.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "building-permit",
+      "title": "Building Permit",
+      "category": "Infrastructure",
+      "categoryId": "infrastructure",
+      "description": "Permit for new construction or renovation.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "seedling-distribution",
+      "title": "Seedling / Farm Input Distribution",
+      "category": "Agriculture",
+      "categoryId": "agriculture",
+      "description": "Distribution of seeds, seedlings, and farm inputs to registered farmers (RSBSA).",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "scholarship-program",
+      "title": "Scholarship Program",
+      "category": "Education",
+      "categoryId": "education",
+      "description": "Local scholarship and educational assistance for qualified students.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "disaster-preparedness",
+      "title": "Disaster Preparedness & Response",
+      "category": "Public Safety",
+      "categoryId": "public-safety",
+      "description": "MDRRMO emergency response, evacuation, and disaster-readiness programs.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    },
+    {
+      "id": "waste-collection-schedule",
+      "title": "Waste Collection Schedule",
+      "category": "Environment",
+      "categoryId": "environment",
+      "description": "Garbage collection schedule and waste segregation guidelines by barangay.",
+      "fee": null,
+      "processingTime": null,
+      "office": null
+    }
+  ]
+}
