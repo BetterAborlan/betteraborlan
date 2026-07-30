@@ -1,9 +1,16 @@
 name: Deploy Previews
 
 # Both PRs and pushes to `develop` deploy as a standard Vercel Preview.
-# `develop` also gets Vercel's automatic persistent branch-alias URL
-# (https://betteraborlan-git-develop-<scope>.vercel.app) via the connected
-# GitHub integration — that's the "dev" URL, no custom environment needed.
+#
+# The dev site lives at a fixed alias — https://betteraborlan-dev.vercel.app
+# — that this workflow re-points to the fresh deployment on every push to
+# `develop`. This is NOT Vercel's automatic "-git-<branch>-" alias: that one
+# is only maintained by Vercel's own git-integration-triggered builds, which
+# we disabled (Ignored Build Step) so only this workflow's CLI-driven
+# deploys run. A CLI deploy from a checked-out repo doesn't carry the git
+# metadata needed for Vercel to update that alias on its own, so we set our
+# own fixed alias explicitly instead.
+#
 # Production deploys happen in release.yml, gated behind semantic-release
 # on `main`.
 on:
@@ -43,6 +50,10 @@ jobs:
         run: |
           url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
           echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Alias to fixed dev URL
+        if: github.event_name == 'push'
+        run: vercel alias set ${{ steps.deploy-preview.outputs.url }} betteraborlan-dev.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Comment preview URL on PR
         if: github.event_name == 'pull_request'
