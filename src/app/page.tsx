@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { CivicTechBanner } from '@bettergov/kapwa/civic-tech-banner';
 import { Card } from '@bettergov/kapwa/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import SearchAutocomplete from '@/components/SearchAutocomplete';
@@ -111,30 +110,6 @@ export default function HomePage() {
             <p>{t('weather-map-title')}</p>
           </div>
           <RealTimeData />
-        </div>
-      </section>
-
-      {/* Contribute CTA */}
-      <section className="portal-section">
-        <div className="container civictech-banner-wrap">
-          <CivicTechBanner
-            fullBannerTitle="Contribute"
-            fullBanner={{
-              title: 'Join the',
-              highlightedWord: '#CivicTech',
-              description:
-                'Help build transparent, accessible digital government services for Aborlan — code, design, content, or data. All skill levels welcome. ',
-              highlightedPhrase: 'Join the movement.',
-              primaryButton: {
-                text: 'Contribute on GitHub',
-                href: 'https://github.com/BetterAborlan/betteraborlan',
-              },
-              secondaryButton: {
-                text: 'Join BetterGov.ph Discord',
-                href: 'https://discord.gg/CTtjDCUgca',
-              },
-            }}
-          />
         </div>
       </section>
 

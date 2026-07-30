@@ -51,14 +51,22 @@ export default function Footer() {
               >
                 <i className="bi bi-discord"></i>
               </a>
+            </div>
+            <div className="footer-partners">
               <a
                 href="https://bettergov.ph"
-                className="footer-social-btn"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="BetterGov.ph"
               >
-                <i className="bi bi-box-arrow-up-right"></i>
+                <img
+                  src="/assets/images/logo/bettergov-footer.svg"
+                  alt="BetterGov.ph"
+                  className="footer-partner-logo"
+                  width={120}
+                  height={28}
+                  loading="lazy"
+                />
               </a>
             </div>
           </div>

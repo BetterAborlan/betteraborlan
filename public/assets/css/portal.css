@@ -517,19 +517,13 @@
   font-style: italic;
 }
 
-/* Kapwa's CivicTechBanner/StripBanner ship Tailwind spacing utilities
-   (px-6, py-3, gap-4, ...) baked into their compiled JS. This stylesheet
-   is loaded unlayered (plain <link>, not through Tailwind's @layer
-   system), so it always wins over Tailwind's utilities regardless of
-   selector specificity — including the global `* { padding: 0 }` reset
-   above, which otherwise silently zeroes those buttons' padding. Scope
-   the fix to this wrapper rather than every <a> site-wide. */
-.civictech-banner-wrap a {
-  padding: 12px 24px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
+/* Kapwa's StripBanner ships Tailwind spacing utilities (px-4, py-1.5, ...)
+   baked into its compiled JS. This stylesheet is loaded unlayered (plain
+   <link>, not through Tailwind's @layer system), so it always wins over
+   Tailwind's utilities regardless of selector specificity — including the
+   global `* { padding: 0 }` reset above, which otherwise silently zeroes
+   the button's padding. Scope the fix to this wrapper rather than every
+   <a> site-wide. */
 .promo-banner-wrap a {
   display: inline-flex;
   align-items: center;
@@ -713,6 +707,25 @@
   color: var(--color-kapwa-neutral-50);
   transform: translateY(-2px);
   text-decoration: none;
+}
+.footer-partners {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+.footer-partners a {
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+.footer-partners a:hover {
+  opacity: 1;
+}
+.footer-partner-logo {
+  height: 28px;
+  width: auto;
+  display: block;
 }
 .footer-v2-tagline {
   font-size: 0.875rem;
