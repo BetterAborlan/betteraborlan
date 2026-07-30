@@ -1,3 +1,5 @@
+## [0.2.0](https://github.com/BetterAborlan/betteraborlan/compare/v0.1.0...v0.2.0) (2026-07-30)
+
 # Changelog
 
 All notable changes to this project are documented here, generated automatically by [semantic-release](https://github.com/semantic-release/semantic-release) from [Conventional Commits](https://www.conventionalcommits.org/) on every release to `main`.
