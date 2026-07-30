@@ -34,7 +34,14 @@ export const metadata: Metadata = {
     description: 'Empowering the people of Aborlan with transparent access to services.',
   },
   twitter: { card: 'summary_large_image' },
-  icons: { icon: '/assets/images/logo/favicon.svg' },
+  icons: {
+    icon: [
+      { url: '/assets/images/logo/favicon.svg', type: 'image/svg+xml' },
+      { url: '/assets/images/logo/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+    ],
+    shortcut: '/assets/images/logo/favicon.ico',
+    apple: '/assets/images/logo/apple-touch-icon.png',
+  },
   manifest: '/manifest.webmanifest',
   appleWebApp: {
     capable: true,
