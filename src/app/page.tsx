@@ -24,10 +24,8 @@ export default function HomePage() {
             <div className="portal-hero-tags">
               <span>{t('hero-popular')}</span>
               <Link href="/service-details/birth-certificate">{t('hero-birth-certificate')}</Link>
-              <Link href="/service-details/business-permits-licensing">
-                {t('hero-business-permit')}
-              </Link>
-              <Link href="/service-details/municipal-treasurer">{t('hero-real-property-tax')}</Link>
+              <Link href="/service-details/business-permit-new">{t('hero-business-permit')}</Link>
+              <Link href="/service-details/real-property-tax">{t('hero-real-property-tax')}</Link>
             </div>
           </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { serviceCategories } from '@/data/serviceCategories';
 
@@ -84,22 +85,22 @@ export default function Footer() {
             <h4>{t('footer-quick-links')}</h4>
             <ul>
               <li>
-                <a href="/about">About</a>
+                <Link href="/about">About</Link>
               </li>
               <li>
-                <a href="/sitemap-page">{t('footer-sitemap')}</a>
+                <Link href="/sitemap-page">{t('footer-sitemap')}</Link>
               </li>
               <li>
-                <a href="/terms">{t('footer-terms')}</a>
+                <Link href="/terms">{t('footer-terms')}</Link>
               </li>
               <li>
-                <a href="/privacy">{t('footer-privacy')}</a>
+                <Link href="/privacy">{t('footer-privacy')}</Link>
               </li>
               <li>
-                <a href="/accessibility">{t('footer-accessibility')}</a>
+                <Link href="/accessibility">{t('footer-accessibility')}</Link>
               </li>
               <li>
-                <a href="/faq">{t('footer-faq')}</a>
+                <Link href="/faq">{t('footer-faq')}</Link>
               </li>
             </ul>
           </div>
@@ -109,11 +110,11 @@ export default function Footer() {
             <ul>
               {serviceCategories.slice(0, 5).map((cat) => (
                 <li key={cat.id}>
-                  <a href={cat.href}>{cat.title}</a>
+                  <Link href={cat.href}>{cat.title}</Link>
                 </li>
               ))}
               <li>
-                <a href="/services">All Services</a>
+                <Link href="/services">All Services</Link>
               </li>
             </ul>
           </div>

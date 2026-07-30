@@ -3,22 +3,12 @@
 import { useEffect, useState } from 'react';
 import { Card } from '@bettergov/kapwa/card';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { hotlines } from '@/data/hotlines';
 
 const ABORLAN_LAT = 9.4167;
 const ABORLAN_LON = 118.5167;
 
 const CURRENCIES = ['USD', 'JPY', 'GBP', 'SGD', 'AUD', 'EUR'] as const;
-
-// Only 911 is a verified nationwide hotline. Municipal-specific numbers
-// (police, fire, MDRRMO, hospital) must be filled from official Aborlan
-// LGU sources before shipping — never fabricate a phone number here.
-const hotlines: { label: string; number: string | null; tel: string | null }[] = [
-  { label: 'National Emergency Hotline', number: '911', tel: '911' },
-  { label: 'Police', number: null, tel: null },
-  { label: 'Fire', number: null, tel: null },
-  { label: 'MDRRMO', number: null, tel: null },
-  { label: 'Municipal Hospital / RHU', number: null, tel: null },
-];
 
 export default function RealTimeData() {
   const { t } = useLanguage();
@@ -93,7 +83,18 @@ export default function RealTimeData() {
           {hotlines.map((h) => (
             <li key={h.label}>
               <span>{h.label}</span>
-              {h.tel ? <a href={`tel:${h.tel}`}>{h.number}</a> : <span className="pending">TBD</span>}
+              {h.numbers ? (
+                <span className="realtime-hotline-numbers">
+                  {h.numbers.map((n, i) => (
+                    <span key={n}>
+                      {i > 0 && ' / '}
+                      <a href={`tel:${n.replace(/-/g, '')}`}>{n}</a>
+                    </span>
+                  ))}
+                </span>
+              ) : (
+                <span className="pending">TBD</span>
+              )}
             </li>
           ))}
         </ul>

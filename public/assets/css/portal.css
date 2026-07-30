@@ -5,6 +5,46 @@
  * and a multi-column footer. Uses the Kapwa tokens from kapwa-tokens.css.
  */
 
+/* Plain-CSS stand-in for Kapwa's <Card>. Kapwa's dist bundles ship their
+   own jsx-runtime copy, which crashes Next's dev-mode Server Component
+   rendering — so any file rendering <Card> needs 'use client', which
+   conflicts with the static `metadata` export most content pages want.
+   Content pages use this class on a plain <div> instead; it reproduces
+   Card's own Tailwind classes (border-[--color-kapwa-border-weak],
+   bg-[--color-kapwa-bg-surface], rounded-lg, shadow-xs) as real CSS. */
+.surface-card {
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--color-kapwa-border-weak);
+  background: var(--color-kapwa-bg-surface);
+  box-shadow: var(--shadow-kapwa-xs);
+}
+.surface-card--hoverable {
+  transition:
+    box-shadow var(--duration-kapwa-200) var(--ease-kapwa-out),
+    transform var(--duration-kapwa-200) var(--ease-kapwa-out);
+}
+.surface-card--hoverable:hover {
+  box-shadow: var(--shadow-kapwa-md);
+  transform: translateY(-2px);
+}
+
+.doc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.doc-list li {
+  padding: 16px 20px;
+}
+
+.pending {
+  color: var(--color-kapwa-text-weak);
+  font-size: 0.875rem;
+}
+
 /* Top utility bar */
 .topbar {
   background: var(--color-kapwa-neutral-50);
