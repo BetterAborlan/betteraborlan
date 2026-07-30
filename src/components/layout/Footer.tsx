@@ -32,6 +32,35 @@ export default function Footer() {
               />
             </div>
             <p className="footer-v2-tagline">{t('footer-tagline')}</p>
+            <div className="footer-social-new">
+              <a
+                href="https://github.com/BetterAborlan/betteraborlan"
+                className="footer-social-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <i className="bi bi-github"></i>
+              </a>
+              <a
+                href="https://discord.gg/Fsgdh7cJvw"
+                className="footer-social-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Discord"
+              >
+                <i className="bi bi-discord"></i>
+              </a>
+              <a
+                href="https://bettergov.ph"
+                className="footer-social-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="BetterGov.ph"
+              >
+                <i className="bi bi-box-arrow-up-right"></i>
+              </a>
+            </div>
           </div>
 
           <div>
@@ -76,20 +105,6 @@ export default function Footer() {
             <h4>{t('footer-resources')}</h4>
             <ul>
               <li>
-                <a
-                  href="https://github.com/BetterAborlan/betteraborlan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t('footer-contribute')}
-                </a>
-              </li>
-              <li>
-                <a href="https://discord.gg/Fsgdh7cJvw" target="_blank" rel="noopener noreferrer">
-                  Discord
-                </a>
-              </li>
-              <li>
                 <a href="https://data.gov.ph" target="_blank" rel="noopener noreferrer">
                   {t('footer-open-data')}
                 </a>
@@ -102,11 +117,6 @@ export default function Footer() {
               <li>
                 <a href="https://blgf.gov.ph/" target="_blank" rel="noopener noreferrer">
                   {t('footer-blgf')}
-                </a>
-              </li>
-              <li>
-                <a href="https://bettergov.ph" target="_blank" rel="noopener noreferrer">
-                  BetterGov.ph
                 </a>
               </li>
             </ul>

@@ -41,13 +41,17 @@ body {
 }
 
 a {
-  color: var(--color-primary);
+  /* No default color here on purpose: this is a plain (unlayered)
+     stylesheet, so any color set here would beat Tailwind's utility
+     classes regardless of specificity (Tailwind utilities live in a
+     lower-priority @layer). Every link that needs a specific color sets
+     it explicitly in portal.css or inline; this just keeps a sane
+     underline-free default. */
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--color-primary-dark);
   text-decoration: underline;
 }
 
@@ -67,10 +71,10 @@ h3,
 h4,
 h5,
 h6 {
+  /* No default color here on purpose — see the `a` rule above for why. */
   font-weight: 700;
   line-height: var(--line-height-heading);
   margin-bottom: var(--spacing-sm);
-  color: var(--color-primary);
 }
 
 h1 {
@@ -79,12 +83,10 @@ h1 {
 
 h2 {
   font-size: 2rem;
-  color: var(--color-text);
 }
 
 h3 {
   font-size: 1.5rem;
-  color: var(--color-text);
 }
 
 h4 {

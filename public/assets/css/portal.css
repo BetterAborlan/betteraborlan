@@ -60,23 +60,9 @@
   flex-shrink: 0;
 }
 .brand-v2 img {
-  height: 34px;
+  height: 52px;
   width: auto;
   display: block;
-}
-.brand-v2-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-.brand-v2-title {
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--color-kapwa-text-strong);
-}
-.brand-v2-tagline {
-  font-size: 0.75rem;
-  color: var(--color-kapwa-text-support);
 }
 .main-nav-v2 {
   flex: 1;
@@ -683,6 +669,29 @@
 .footer-v2-brand-text {
   font-weight: 700;
   color: var(--color-kapwa-neutral-50);
+}
+.footer-social-new {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+.footer-social-btn {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.125rem;
+  transition: all 0.2s ease;
+}
+.footer-social-btn:hover {
+  background: var(--color-kapwa-brand-600);
+  color: var(--color-kapwa-neutral-50);
+  transform: translateY(-2px);
+  text-decoration: none;
 }
 .footer-v2-tagline {
   font-size: 0.875rem;

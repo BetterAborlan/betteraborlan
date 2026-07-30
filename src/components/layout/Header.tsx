@@ -89,12 +89,9 @@ export default function Header() {
           <img
             src="/assets/images/logo/better-aborlan-logo.svg"
             alt="BetterAborlan.org"
-            width={85}
-            height={34}
+            width={130}
+            height={52}
           />
-          <span className="brand-v2-text">
-            <span className="brand-v2-tagline">A community-run portal for Aborlan</span>
-          </span>
         </Link>
 
         <nav

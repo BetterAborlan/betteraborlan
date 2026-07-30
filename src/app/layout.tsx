@@ -6,6 +6,7 @@ import InfoBar from '@/components/layout/InfoBar';
 import PromoBanner from '@/components/layout/PromoBanner';
 import Footer from '@/components/layout/Footer';
 import PWAManager from '@/components/PWAManager';
+import VolunteerPopup from '@/components/VolunteerPopup';
 import ComingSoon from '@/components/ComingSoon';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main id="main-content">{children}</main>
             <Footer />
             <PWAManager />
+            <VolunteerPopup />
           </LanguageProvider>
         )}
       </body>
