@@ -5,6 +5,35 @@
  * and a multi-column footer. Uses the Kapwa tokens from kapwa-tokens.css.
  */
 
+/* Coming-soon page. Tailwind's px/py utilities live in a lower-priority
+   @layer, so the global unlayered `* { padding: 0 }` reset in style.css
+   beats them regardless of specificity — same bug class as the old CTA
+   button padding issue. Real padding here instead of Tailwind px-*/py-*. */
+.coming-soon-btn {
+  padding: 10px 20px;
+}
+.coming-soon-social {
+  display: flex;
+  gap: 16px;
+  margin-top: 28px;
+}
+.coming-soon-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-kapwa-text-inverse);
+  font-size: 1.125rem;
+  transition: background var(--duration-kapwa-200) var(--ease-kapwa-out);
+}
+.coming-soon-social a:hover {
+  background: rgba(255, 255, 255, 0.18);
+  text-decoration: none;
+}
+
 /* Plain-CSS stand-in for Kapwa's <Card>. Kapwa's dist bundles ship their
    own jsx-runtime copy, which crashes Next's dev-mode Server Component
    rendering — so any file rendering <Card> needs 'use client', which
