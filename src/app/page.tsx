@@ -111,28 +111,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PhilSys external CTA */}
-      <div className="cta-banner-accent">
-        <div className="container cta-banner-accent-inner">
-          <div>
-            <h2>PhilSys National ID Registration</h2>
-            <p>
-              Register for your Philippine Identification System (PhilSys) ID — the national
-              government&apos;s single identification document for all citizens, available to
-              residents of Aborlan through the official PhilSys portal.
-            </p>
-          </div>
-          <a
-            href="https://www.philsys.gov.ph/"
-            className="cta-banner-accent-btn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Register Now
-          </a>
-        </div>
-      </div>
-
       {/* Government of Aborlan */}
       <section className="portal-section">
         <div className="container">
@@ -154,6 +132,9 @@ export default function HomePage() {
               </span>
               <h3>Legislative</h3>
               <p>Sangguniang Bayan ng Aborlan — the municipal council that enacts ordinances.</p>
+              <Link href="/legislative">
+                View Legislative <i className="bi bi-arrow-right" aria-hidden="true"></i>
+              </Link>
             </Card>
             <Card className="gov-branch-card">
               <span className="gov-branch-icon">

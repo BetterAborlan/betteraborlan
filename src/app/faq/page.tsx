@@ -36,7 +36,7 @@ export default function FaqPage() {
           <h2>Frequently Asked Questions</h2>
         </div>
 
-        <div className="doc-list" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div className="doc-list">
           {faqs.map((item) => (
             <div key={item.q} className="surface-card" style={{ padding: 24 }}>
               <h3 style={{ marginBottom: 8 }}>{item.q}</h3>

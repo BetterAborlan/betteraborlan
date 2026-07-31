@@ -18,8 +18,8 @@ export default function ContactPage() {
         <div className="surface-card" style={{ padding: 24, marginBottom: 32 }}>
           <h3>Municipal Hall</h3>
           <p>
-            <i className="bi bi-geo-alt-fill" aria-hidden="true"></i> Poblacion, Aborlan, Palawan,
-            Philippines
+            <i className="bi bi-geo-alt-fill" aria-hidden="true"></i> Puerto Princesa South Road,
+            Poblacion, Barangay Ramon Magsaysay, Aborlan, Palawan, 5302
           </p>
           <p className="pending">
             Office hours and direct trunkline pending verification from the municipal hall.
@@ -28,7 +28,8 @@ export default function ContactPage() {
 
         <div id="hotlines">
           <h3 style={{ marginBottom: 16 }}>
-            <i className="bi bi-telephone-fill" aria-hidden="true"></i> Emergency Hotlines
+            <i className="bi bi-telephone-fill" aria-hidden="true"></i> Emergency Hotlines{' '}
+            <span className="data-as-of">as of April 2023</span>
           </h3>
           <ul className="doc-list">
             {hotlines.map((h) => (
