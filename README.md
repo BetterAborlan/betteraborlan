@@ -87,6 +87,10 @@ To launch for real: set `NEXT_PUBLIC_COMING_SOON` to `false` (or delete it) in V
 - Fill in `data/*.json` from verified sources
 - i18n (English/Filipino) via `src/contexts/LanguageContext.tsx`
 
+## Contributing
+
+Want to help? See [CONTRIBUTING.md](CONTRIBUTING.md) for the branching model, commit conventions, and how to submit a PR. Also see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and, if you find a security issue, [SECURITY.md](SECURITY.md) for how to report it responsibly.
+
 ## Community
 
 Join our Discord server to hang out, ask questions, or help build BetterAborlan.org:
