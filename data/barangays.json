@@ -1,5 +1,25 @@
 {
-  "_status": "unverified",
-  "_note": "Populate from the official Aborlan LGU or PSGC (Philippine Standard Geographic Code) list before shipping the barangay directory.",
-  "barangays": []
+  "_status": "sourced",
+  "_note": "19 barangays per PSGC (code 1705301000). population_2024/psgc_code/urban_rural are from PSA's own PSGC site (psa.gov.ph), pasted directly by the user from the official table 'as of 31 July 2025' — all 19 values sum exactly to the municipality's 2024 total (39,972), cross-checked against data/demographics.json. population_2020/population_2015 are PSA Census of Population and Housing via PhilAtlas, summing exactly to the 2020 total (38,736). PSA's official spelling is 'Apoaporawan' (no hyphen) and 'Apurawan' — corrected from the 'Apo-Aporawan'/'Aporawan' spelling PhilAtlas used. Captain/official names still need a primary source.",
+  "barangays": [
+    { "name": "Apoaporawan", "psgc_code": "1705301001", "urban_rural": "Rural", "population_2024": 1045, "population_2020": 1023, "population_2015": 961 },
+    { "name": "Apoc-apoc", "psgc_code": "1705301002", "urban_rural": "Rural", "population_2024": 1295, "population_2020": 1277, "population_2015": 1257 },
+    { "name": "Apurawan", "psgc_code": "1705301003", "urban_rural": "Rural", "population_2024": 4463, "population_2020": 4303, "population_2015": 3403 },
+    { "name": "Barake", "psgc_code": "1705301004", "urban_rural": "Rural", "population_2024": 1066, "population_2020": 992, "population_2015": 888 },
+    { "name": "Cabigaan", "psgc_code": "1705301005", "urban_rural": "Rural", "population_2024": 2349, "population_2020": 2371, "population_2015": 1951 },
+    { "name": "Gogognan", "psgc_code": "1705301006", "urban_rural": "Rural", "population_2024": 681, "population_2020": 656, "population_2015": 586 },
+    { "name": "Iraan", "psgc_code": "1705301007", "urban_rural": "Rural", "population_2024": 2287, "population_2020": 2164, "population_2015": 1852 },
+    { "name": "Isaub", "psgc_code": "1705301008", "urban_rural": "Rural", "population_2024": 2622, "population_2020": 2548, "population_2015": 2466 },
+    { "name": "Jose Rizal", "psgc_code": "1705301009", "urban_rural": "Rural", "population_2024": 1482, "population_2020": 1519, "population_2015": 1371 },
+    { "name": "Mabini", "psgc_code": "1705301010", "urban_rural": "Rural", "population_2024": 1190, "population_2020": 1167, "population_2015": 1038 },
+    { "name": "Magbabadil", "psgc_code": "1705301011", "urban_rural": "Rural", "population_2024": 1392, "population_2020": 1349, "population_2015": 1237 },
+    { "name": "Plaridel", "psgc_code": "1705301012", "urban_rural": "Rural", "population_2024": 3491, "population_2020": 3694, "population_2015": 3297 },
+    { "name": "Ramon Magsaysay", "psgc_code": "1705301014", "urban_rural": "Rural", "population_2024": 3405, "population_2020": 3033, "population_2015": 2714 },
+    { "name": "Sagpangan", "psgc_code": "1705301015", "urban_rural": "Rural", "population_2024": 2121, "population_2020": 1913, "population_2015": 1608 },
+    { "name": "San Juan", "psgc_code": "1705301016", "urban_rural": "Rural", "population_2024": 3882, "population_2020": 3623, "population_2015": 3793 },
+    { "name": "Tagpait", "psgc_code": "1705301017", "urban_rural": "Rural", "population_2024": 1141, "population_2020": 1165, "population_2015": 1003 },
+    { "name": "Tigman", "psgc_code": "1705301018", "urban_rural": "Rural", "population_2024": 1953, "population_2020": 1902, "population_2015": 1908 },
+    { "name": "Poblacion", "psgc_code": "1705301019", "urban_rural": "Urban", "population_2024": 2519, "population_2020": 2526, "population_2015": 2462 },
+    { "name": "Culandanum", "psgc_code": "1705301020", "urban_rural": "Rural", "population_2024": 1588, "population_2020": 1511, "population_2015": 1296 }
+  ]
 }

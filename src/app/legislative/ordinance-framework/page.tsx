@@ -28,9 +28,10 @@ export default function OrdinanceFrameworkPage() {
           </div>
         ) : (
           <ul className="doc-list">
-            {ordinances.map((ord: { id: string; title: string }) => (
+            {ordinances.map((ord: { id: string; title: string; description?: string }) => (
               <li key={ord.id} className="surface-card surface-card--hoverable">
-                {ord.title}
+                <strong>{ord.title}</strong>
+                {ord.description && <p style={{ margin: '4px 0 0' }}>{ord.description}</p>}
               </li>
             ))}
           </ul>

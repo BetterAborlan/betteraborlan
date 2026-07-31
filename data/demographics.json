@@ -1,12 +1,15 @@
 {
-  "_status": "unverified",
-  "_note": "Fill only from PSA (Philippine Statistics Authority) census releases or the official Aborlan LGU. Do not estimate.",
-  "population": null,
-  "population_source": null,
-  "population_year": null,
-  "land_area_km2": null,
-  "income_classification": null,
-  "barangay_count": null,
+  "_status": "sourced",
+  "_note": "Population is the PSA 2024 Census of Population (POPCEN) figure (independently confirmed via PIA and palawan-news reporting on PSA data), up from 38,736 in the 2020 census. Land area and income classification are from the 2020 census via PhilAtlas (https://www.philatlas.com/luzon/mimaropa/palawan/aborlan.html) — note some sources (e.g. older LGU material) list Aborlan as 2nd class rather than 1st class; PSA's own income-classification list is the tiebreaker if this ever needs re-verifying. Registered voters figure is from COMELEC-sourced 2025 election reporting (Rappler).",
+  "population": 39972,
+  "population_source": "PSA 2024 Census of Population (POPCEN)",
+  "population_year": 2024,
+  "population_2020": 38736,
+  "households_2024": 9715,
+  "registered_voters_2025": 28433,
+  "land_area_km2": 807.33,
+  "income_classification": "1st class municipality",
+  "barangay_count": 19,
   "province": "Palawan",
   "region": "MIMAROPA (Region IV-B)"
 }
