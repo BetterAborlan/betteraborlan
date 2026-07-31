@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { serviceCategories } from '@/data/serviceCategories';
 
@@ -27,33 +28,79 @@ export default function Footer() {
               <img
                 src="/assets/images/logo/better-aborlan-logo-white.svg"
                 alt="BetterAborlan.org"
-                width={70}
-                height={28}
+                width={110}
+                height={44}
               />
             </div>
             <p className="footer-v2-tagline">{t('footer-tagline')}</p>
+            <div className="footer-social-new">
+              <a
+                href="https://facebook.com/betteraborlan.org"
+                className="footer-social-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <i className="bi bi-facebook"></i>
+              </a>
+              <a
+                href="https://github.com/BetterAborlan/betteraborlan"
+                className="footer-social-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <i className="bi bi-github"></i>
+              </a>
+              <a
+                href="https://discord.gg/Fsgdh7cJvw"
+                className="footer-social-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Discord"
+              >
+                <i className="bi bi-discord"></i>
+              </a>
+              <a
+                href="https://linkedin.com/company/betteraborlan"
+                className="footer-social-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <i className="bi bi-linkedin"></i>
+              </a>
+            </div>
+            <a
+              href="https://github.com/BetterAborlan/betteraborlan/releases"
+              className="footer-changelog-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="bi bi-clock-history" aria-hidden="true"></i> Changelog
+            </a>
           </div>
 
           <div>
             <h4>{t('footer-quick-links')}</h4>
             <ul>
               <li>
-                <a href="/about">About</a>
+                <Link href="/about">About</Link>
               </li>
               <li>
-                <a href="/sitemap-page">{t('footer-sitemap')}</a>
+                <Link href="/sitemap-page">{t('footer-sitemap')}</Link>
               </li>
               <li>
-                <a href="/terms">{t('footer-terms')}</a>
+                <Link href="/terms">{t('footer-terms')}</Link>
               </li>
               <li>
-                <a href="/privacy">{t('footer-privacy')}</a>
+                <Link href="/privacy">{t('footer-privacy')}</Link>
               </li>
               <li>
-                <a href="/accessibility">{t('footer-accessibility')}</a>
+                <Link href="/accessibility">{t('footer-accessibility')}</Link>
               </li>
               <li>
-                <a href="/faq">{t('footer-faq')}</a>
+                <Link href="/faq">{t('footer-faq')}</Link>
               </li>
             </ul>
           </div>
@@ -63,11 +110,11 @@ export default function Footer() {
             <ul>
               {serviceCategories.slice(0, 5).map((cat) => (
                 <li key={cat.id}>
-                  <a href={cat.href}>{cat.title}</a>
+                  <Link href={cat.href}>{cat.title}</Link>
                 </li>
               ))}
               <li>
-                <a href="/services">All Services</a>
+                <Link href="/services">All Services</Link>
               </li>
             </ul>
           </div>
@@ -75,20 +122,6 @@ export default function Footer() {
           <div>
             <h4>{t('footer-resources')}</h4>
             <ul>
-              <li>
-                <a
-                  href="https://github.com/BetterAborlan/betteraborlan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t('footer-contribute')}
-                </a>
-              </li>
-              <li>
-                <a href="https://discord.gg/Fsgdh7cJvw" target="_blank" rel="noopener noreferrer">
-                  Discord
-                </a>
-              </li>
               <li>
                 <a href="https://data.gov.ph" target="_blank" rel="noopener noreferrer">
                   {t('footer-open-data')}
@@ -102,11 +135,6 @@ export default function Footer() {
               <li>
                 <a href="https://blgf.gov.ph/" target="_blank" rel="noopener noreferrer">
                   {t('footer-blgf')}
-                </a>
-              </li>
-              <li>
-                <a href="https://bettergov.ph" target="_blank" rel="noopener noreferrer">
-                  BetterGov.ph
                 </a>
               </li>
             </ul>

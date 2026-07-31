@@ -1,6 +1,6 @@
 {
-  "_status": "scaffold",
-  "_note": "Service types are standard nationwide LGU offerings, safe as directory scaffolding. fee/processingTime/office are left null — fill only from the official Aborlan LGU or its Citizen's Charter, never guessed.",
+  "_status": "sourced",
+  "_note": "All 14 services below, including fee/processingTime/office, are from the Municipal Government of Aborlan Citizen's Charter 2025 (1st revision), pulled directly from aborlanpalawan.gov.ph's own PDF and cross-checked against the 'TOTAL' row of each service's step table. Seedling/farm-input distribution and a local scholarship program were removed from this list — neither is listed as a frontline service in the Charter, so rather than leave a stub with fabricated fields, they're left out until a real source (LGU Agriculture/Education office) confirms one exists and how to avail it. Where a service has multiple sub-processes (e.g. Senior Citizen ID also covers purchase booklets and financial assistance), only the primary/first one's figures are used here.",
   "services": [
     {
       "id": "birth-certificate",
@@ -8,9 +8,9 @@
       "category": "Certificates & Vital Records",
       "categoryId": "certificates",
       "description": "Request a copy of a birth certificate (local civil registry or PSA copy).",
-      "fee": null,
-      "processingTime": null,
-      "office": null
+      "fee": "₱25.00",
+      "processingTime": "25 minutes (on-time registration)",
+      "office": "Municipal Civil Registrar's Office (MCR)"
     },
     {
       "id": "marriage-certificate",
@@ -18,9 +18,9 @@
       "category": "Certificates & Vital Records",
       "categoryId": "certificates",
       "description": "Request a copy of a marriage certificate.",
-      "fee": null,
-      "processingTime": null,
-      "office": null
+      "fee": "₱25.00 (on-time) / ₱75.00 (delayed registration)",
+      "processingTime": "Same-day for on-time registration; up to 11 days for delayed registration (includes a mandatory 10-day posting period)",
+      "office": "Municipal Civil Registrar's Office (MCR)"
     },
     {
       "id": "death-certificate",
@@ -28,9 +28,9 @@
       "category": "Certificates & Vital Records",
       "categoryId": "certificates",
       "description": "Request a copy of a death certificate.",
-      "fee": null,
-      "processingTime": null,
-      "office": null
+      "fee": "₱45.00 (on-time) / ₱75.00 (delayed registration)",
+      "processingTime": "50 minutes",
+      "office": "Municipal Civil Registrar's Office (MCR)"
     },
     {
       "id": "business-permit-new",
@@ -38,19 +38,19 @@
       "category": "Business & Trade",
       "categoryId": "business",
       "description": "Apply for a new mayor's permit for a business operating in Aborlan.",
-      "fee": null,
-      "processingTime": null,
-      "office": null
+      "fee": "Based on the Revenue Code (Municipal Tax Ordinance No. 01, s. 2018) — varies by business type and gross receipts",
+      "processingTime": "4 hours 30 minutes (regular) / 7 hours 45 minutes (peak season)",
+      "office": "Office of the Municipal Mayor – Business Permit and Licensing Division (BPLO)"
     },
     {
       "id": "business-permit-renewal",
       "title": "Business Permit Renewal",
       "category": "Business & Trade",
       "categoryId": "business",
-      "description": "Renew an existing annual business permit.",
-      "fee": null,
-      "processingTime": null,
-      "office": null
+      "description": "Renew an existing annual business permit. Must be renewed January 1–20 each year per the local tax ordinance; penalties apply after.",
+      "fee": "Based on the Revenue Code (Municipal Tax Ordinance No. 01, s. 2018) — varies by business type and gross receipts",
+      "processingTime": "4 hours 30 minutes (regular) / 7 hours 45 minutes (peak season)",
+      "office": "Office of the Municipal Mayor – Business Permit and Licensing Division (BPLO)"
     },
     {
       "id": "real-property-tax",
@@ -58,9 +58,9 @@
       "category": "Taxation & Payments",
       "categoryId": "tax-payments",
       "description": "Pay annual real property tax on land and improvements.",
-      "fee": null,
-      "processingTime": null,
-      "office": null
+      "fee": "2% of assessed value (10% discount for prompt payment, 20% for advance payment; 2% monthly penalty on late payment)",
+      "processingTime": "35 minutes",
+      "office": "Municipal Treasurer's Office (MTO)"
     },
     {
       "id": "cedula",
@@ -68,9 +68,9 @@
       "category": "Taxation & Payments",
       "categoryId": "tax-payments",
       "description": "Community tax certificate for individuals and businesses.",
-      "fee": null,
-      "processingTime": null,
-      "office": null
+      "fee": "Individual: ₱5.00 basic + variable (based on income/business/property); Corporation: ₱500.00 basic + variable",
+      "processingTime": "6 minutes",
+      "office": "Municipal Treasurer's Office (MTO)"
     },
     {
       "id": "senior-citizen-id",
@@ -79,8 +79,8 @@
       "categoryId": "social-services",
       "description": "ID for residents 60 years old and above.",
       "fee": null,
-      "processingTime": null,
-      "office": null
+      "processingTime": "16 minutes",
+      "office": "MSWDO – Office for the Senior Citizen Affairs (OSCA)"
     },
     {
       "id": "pwd-id",
@@ -89,18 +89,18 @@
       "categoryId": "social-services",
       "description": "Identification for persons with disabilities.",
       "fee": null,
-      "processingTime": null,
-      "office": null
+      "processingTime": "16 minutes",
+      "office": "Municipal Social Welfare and Development Office (MSWDO)"
     },
     {
       "id": "medical-financial-assistance",
       "title": "Medical / Financial Assistance",
       "category": "Social Services",
       "categoryId": "social-services",
-      "description": "Emergency financial aid for medical, burial, or educational needs.",
+      "description": "Emergency financial aid for medical, burial, or educational needs. For indigent residents who have not yet availed of financial assistance during the year.",
       "fee": null,
-      "processingTime": null,
-      "office": null
+      "processingTime": "1 week, 45 minutes",
+      "office": "Municipal Social Welfare and Development Office (MSWDO)"
     },
     {
       "id": "medical-consultation",
@@ -109,8 +109,8 @@
       "categoryId": "health",
       "description": "Consultation at Rural Health Units / Municipal Health Office.",
       "fee": null,
-      "processingTime": null,
-      "office": null
+      "processingTime": "35 minutes",
+      "office": "Municipal Health Office"
     },
     {
       "id": "building-permit",
@@ -118,49 +118,29 @@
       "category": "Infrastructure",
       "categoryId": "infrastructure",
       "description": "Permit for new construction or renovation.",
-      "fee": null,
-      "processingTime": null,
-      "office": null
-    },
-    {
-      "id": "seedling-distribution",
-      "title": "Seedling / Farm Input Distribution",
-      "category": "Agriculture",
-      "categoryId": "agriculture",
-      "description": "Distribution of seeds, seedlings, and farm inputs to registered farmers (RSBSA).",
-      "fee": null,
-      "processingTime": null,
-      "office": null
-    },
-    {
-      "id": "scholarship-program",
-      "title": "Scholarship Program",
-      "category": "Education",
-      "categoryId": "education",
-      "description": "Local scholarship and educational assistance for qualified students.",
-      "fee": null,
-      "processingTime": null,
-      "office": null
+      "fee": "Based on the National Building Code of the Philippines (PD 1096) — varies by project",
+      "processingTime": "1 hour 20 minutes (office processing after all required endorsements are secured)",
+      "office": "Municipal Engineering Office (MEO)"
     },
     {
       "id": "disaster-preparedness",
       "title": "Disaster Preparedness & Response",
       "category": "Public Safety",
       "categoryId": "public-safety",
-      "description": "MDRRMO emergency response, evacuation, and disaster-readiness programs.",
+      "description": "MDRRMO emergency response, evacuation, and disaster-readiness programs. Requests can be sent to aborlandrrmoffice@gmail.com.",
       "fee": null,
-      "processingTime": null,
-      "office": null
+      "processingTime": "25 minutes",
+      "office": "Municipal Disaster Risk Reduction and Management Office (MDRRMO)"
     },
     {
       "id": "waste-collection-schedule",
       "title": "Waste Collection Schedule",
       "category": "Environment",
       "categoryId": "environment",
-      "description": "Garbage collection schedule and waste segregation guidelines by barangay.",
+      "description": "Garbage collection schedule and waste segregation guidelines by barangay, per Municipal Ordinance No. 17, s. 2009.",
       "fee": null,
-      "processingTime": null,
-      "office": null
+      "processingTime": "1 day, 1 hour, 31 minutes",
+      "office": "Municipal Environment and Natural Resources Office (MENRO)"
     }
   ]
 }

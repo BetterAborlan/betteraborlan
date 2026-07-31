@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { CivicTechBanner } from '@bettergov/kapwa/civic-tech-banner';
 import { Card } from '@bettergov/kapwa/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import SearchAutocomplete from '@/components/SearchAutocomplete';
@@ -25,10 +24,8 @@ export default function HomePage() {
             <div className="portal-hero-tags">
               <span>{t('hero-popular')}</span>
               <Link href="/service-details/birth-certificate">{t('hero-birth-certificate')}</Link>
-              <Link href="/service-details/business-permits-licensing">
-                {t('hero-business-permit')}
-              </Link>
-              <Link href="/service-details/municipal-treasurer">{t('hero-real-property-tax')}</Link>
+              <Link href="/service-details/business-permit-new">{t('hero-business-permit')}</Link>
+              <Link href="/service-details/real-property-tax">{t('hero-real-property-tax')}</Link>
             </div>
           </div>
 
@@ -114,52 +111,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Contribute CTA */}
-      <section className="portal-section">
-        <div className="container">
-          <CivicTechBanner
-            fullBannerTitle="Contribute"
-            fullBanner={{
-              title: 'Join the',
-              highlightedWord: '#CivicTech',
-              description:
-                'Help build transparent, accessible digital government services for Aborlan — code, design, content, or data. All skill levels welcome. ',
-              highlightedPhrase: 'Join the movement.',
-              primaryButton: {
-                text: 'Contribute on GitHub',
-                href: 'https://github.com/BetterAborlan/betteraborlan',
-              },
-              secondaryButton: {
-                text: 'Join BetterGov.ph Discord',
-                href: 'https://discord.gg/CTtjDCUgca',
-              },
-            }}
-          />
-        </div>
-      </section>
-
-      {/* PhilSys external CTA */}
-      <div className="cta-banner-accent">
-        <div className="container cta-banner-accent-inner">
-          <div>
-            <h2>PhilSys National ID Registration</h2>
-            <p>
-              Register for your Philippine Identification System (PhilSys) ID — the national
-              government&apos;s single identification document for all citizens, available to
-              residents of Aborlan through the official PhilSys portal.
-            </p>
-          </div>
-          <a
-            href="https://www.philsys.gov.ph/"
-            className="cta-banner-accent-btn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Register Now
-          </a>
-        </div>
-      </div>
-
       {/* Government of Aborlan */}
       <section className="portal-section">
         <div className="container">
@@ -181,6 +132,9 @@ export default function HomePage() {
               </span>
               <h3>Legislative</h3>
               <p>Sangguniang Bayan ng Aborlan — the municipal council that enacts ordinances.</p>
+              <Link href="/legislative">
+                View Legislative <i className="bi bi-arrow-right" aria-hidden="true"></i>
+              </Link>
             </Card>
             <Card className="gov-branch-card">
               <span className="gov-branch-icon">

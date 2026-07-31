@@ -13,7 +13,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);
   const pathname = usePathname();
-  const { t } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
   const navRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const isAnimatingRef = useRef(false);
@@ -89,12 +89,9 @@ export default function Header() {
           <img
             src="/assets/images/logo/better-aborlan-logo.svg"
             alt="BetterAborlan.org"
-            width={85}
-            height={34}
+            width={130}
+            height={52}
           />
-          <span className="brand-v2-text">
-            <span className="brand-v2-tagline">A community-run portal for Aborlan</span>
-          </span>
         </Link>
 
         <nav
@@ -150,22 +147,19 @@ export default function Header() {
                 </li>
               </ul>
             </li>
-            <li>
-              <Link href="/government">{t('nav-government')}</Link>
-            </li>
-            <li>
-              <Link href="/statistics">{t('nav-statistics')}</Link>
-            </li>
             <li className={openDropdown === 1 ? 'dropdown-open' : ''}>
               <Link
-                href="/legislative"
+                href="/government"
                 aria-haspopup="true"
                 aria-expanded={openDropdown === 1 ? 'true' : 'false'}
                 onClick={(e) => toggleDropdown(1, e)}
               >
-                {t('nav-legislative')} <i className="bi bi-chevron-down chevron" aria-hidden="true"></i>
+                {t('nav-government')} <i className="bi bi-chevron-down chevron" aria-hidden="true"></i>
               </Link>
               <ul className="dropdown-menu">
+                <li>
+                  <Link href="/legislative">{t('nav-legislative')}</Link>
+                </li>
                 <li>
                   <Link href="/legislative/ordinance-framework">
                     {t('dropdown-ordinance-framework')}
@@ -179,7 +173,7 @@ export default function Header() {
               </ul>
             </li>
             <li>
-              <Link href="/budget">{t('nav-transparency')}</Link>
+              <Link href="/statistics">{t('nav-statistics')}</Link>
             </li>
             <li>
               <Link href="/contact">{t('nav-contact')}</Link>
@@ -191,6 +185,25 @@ export default function Header() {
           <i className="bi bi-search" aria-hidden="true"></i>
           <span>Search</span>
         </Link>
+
+        <div className="lang-selector-v2">
+          <button
+            type="button"
+            className={`lang-btn-v2 ${language === 'en' ? 'active' : ''}`}
+            onClick={() => setLanguage('en')}
+            aria-label="Switch to English"
+          >
+            EN
+          </button>
+          <button
+            type="button"
+            className={`lang-btn-v2 ${language === 'fil' ? 'active' : ''}`}
+            onClick={() => setLanguage('fil')}
+            aria-label="Switch to Filipino"
+          >
+            FIL
+          </button>
+        </div>
 
         <button
           ref={toggleRef}

@@ -29,7 +29,7 @@ export default function ComingSoon() {
           href="https://github.com/BetterAborlan/betteraborlan"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md bg-[var(--color-kapwa-neutral-50)] px-5 py-2.5 font-semibold transition-colors hover:bg-kapwa-blue-50"
+          className="coming-soon-btn coming-soon-btn--solid inline-flex items-center gap-2 rounded-md bg-[var(--color-kapwa-neutral-50)] font-semibold transition-colors hover:bg-kapwa-blue-50"
           style={{ color: 'var(--color-kapwa-brand-800)' }}
         >
           <i className="bi bi-github" aria-hidden="true"></i> Follow progress
@@ -38,17 +38,36 @@ export default function ComingSoon() {
           href="https://discord.gg/Fsgdh7cJvw"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-md border border-white/30 px-5 py-2.5 font-semibold transition-colors hover:bg-white/10"
+          className="coming-soon-btn inline-flex items-center gap-2 rounded-md border border-white/30 font-semibold transition-colors hover:bg-white/10"
           style={{ color: 'var(--color-kapwa-text-inverse)' }}
         >
           <i className="bi bi-discord" aria-hidden="true"></i> Join the Discord
         </a>
         <a
           href="mailto:info@betteraborlan.org"
-          className="inline-flex items-center gap-2 rounded-md border border-white/30 px-5 py-2.5 font-semibold transition-colors hover:bg-white/10"
+          className="coming-soon-btn inline-flex items-center gap-2 rounded-md border border-white/30 font-semibold transition-colors hover:bg-white/10"
           style={{ color: 'var(--color-kapwa-text-inverse)' }}
         >
           <i className="bi bi-envelope" aria-hidden="true"></i> info@betteraborlan.org
+        </a>
+      </div>
+
+      <div className="coming-soon-social">
+        <a
+          href="https://facebook.com/betteraborlan.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <i className="bi bi-facebook" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://linkedin.com/company/betteraborlan"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+        >
+          <i className="bi bi-linkedin" aria-hidden="true"></i>
         </a>
       </div>
     </div>

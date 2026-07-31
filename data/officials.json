@@ -1,9 +1,23 @@
 {
-  "_status": "unverified",
-  "_note": "No official names populated yet. Fill only from the COMELEC proclamation, the Aborlan Sangguniang Bayan's own published roster, or another primary source — never guess or infer from search snippets.",
-  "mayor": { "name": null, "title": "Municipal Mayor", "image": null },
-  "vice_mayor": { "name": null, "title": "Municipal Vice Mayor", "image": null },
-  "councilors": [],
-  "sk_federation_president": { "name": null, "title": "SK Federation President", "image": null },
-  "ipmr": { "name": null, "title": "IPMR (Indigenous Peoples Mandatory Representative)", "image": null }
+  "_status": "sourced",
+  "_note": "Mayor and Vice Mayor confirmed across multiple independent sources (Wikipedia, Philippine Information Agency, Philippine News Agency, palawan-news.com) as the officials who assumed office June 30, 2025. Representative confirmed via Wikipedia and palawandailynews.com. Councilors are from Rappler's 2025 election results page, itself sourced from the COMELEC Media Server transmission tally (not yet cross-checked against a final COMELEC proclamation) — names are listed in ballot order (surname first) as reported. SK Federation President and IPMR names were provided directly by the project owner; no independent online source was found to corroborate either (expected for hyperlocal SK/IPMR posts — palawan-news.com even has a piece on the IPMR appointment being delayed) — worth confirming against the LGU, SK Federation, or NCIP records if this ever needs re-verifying.",
+  "mayor": { "name": "Lito O. Tito", "title": "Municipal Mayor", "image": null },
+  "vice_mayor": { "name": "Marvin C. Madeja", "title": "Municipal Vice Mayor", "image": null },
+  "representative": {
+    "name": "Gil Acosta Jr.",
+    "title": "Representative, 3rd District of Palawan (covers Aborlan and Puerto Princesa City)",
+    "image": null
+  },
+  "councilors": [
+    { "name": "Reyna Michelle Ruhen", "title": "Sangguniang Bayan Member" },
+    { "name": "Jan Michael Delgado", "title": "Sangguniang Bayan Member" },
+    { "name": "Pinoy Peneyra", "title": "Sangguniang Bayan Member" },
+    { "name": "Joel Lumis Jr.", "title": "Sangguniang Bayan Member" },
+    { "name": "Raff Ortega", "title": "Sangguniang Bayan Member" },
+    { "name": "Arnel Ortega", "title": "Sangguniang Bayan Member" },
+    { "name": "Jun Agustin", "title": "Sangguniang Bayan Member" },
+    { "name": "Dave Perez", "title": "Sangguniang Bayan Member" }
+  ],
+  "sk_federation_president": { "name": "Reneail Clarence Sobremonte", "title": "SK Federation President", "image": null },
+  "ipmr": { "name": "Stephen Kim Agas Cursod", "title": "IPMR (Indigenous Peoples Mandatory Representative)", "image": null }
 }

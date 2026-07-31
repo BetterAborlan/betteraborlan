@@ -46,10 +46,10 @@ Every push to `main` runs [semantic-release](https://semantic-release.gitbook.io
 ## Branches & environments
 
 - **`main`** → production. Every merge here triggers a release (see above) and a prod deploy.
-- **`develop`** → deploys as a standard Vercel Preview on every push. Vercel's GitHub integration also gives it a persistent branch-alias URL that updates on every push: `https://betteraborlan-git-develop-<your-vercel-scope>.vercel.app` — that's the "dev site" URL, point a dev domain at it via Project → Settings → Domains → assign to the `develop` branch.
+- **`develop`** → deploys as a standard Vercel Preview on every push, then `deploy.yml` re-points a fixed alias, **`https://betteraborlan-dev.vercel.app`**, at that fresh deployment. That's the one stable "dev site" URL — bookmark that, not the raw per-deploy `*.vercel.app` hash URL, which changes every push. (This is deliberately not Vercel's automatic `-git-develop-` alias — that one is only maintained by Vercel's own git-integration builds, which are disabled in favor of this workflow; see the comment in `deploy.yml` for why.)
 - Pull requests into `main` get their own ephemeral Vercel preview URL, commented on the PR.
 
-Day to day: branch off `develop`, open a PR into `develop`, merge → deploys to the develop preview URL. When it's ready for real users, PR `develop` into `main` → semantic-release cuts a version and ships it.
+Day to day: branch off `develop`, open a PR into `develop`, merge → deploys to `betteraborlan-dev.vercel.app`. When it's ready for real users, PR `develop` into `main` → semantic-release cuts a version and ships it.
 
 ## Data policy — no fabricated civic data
 
@@ -57,20 +57,20 @@ Day to day: branch off `develop`, open a PR into `develop`, merge → deploys to
 
 ## Deployment — Vercel + GitHub Actions
 
-1. `vercel link` locally once to create the project, or create it in the Vercel dashboard. Linking also connects Vercel's own GitHub integration, which is what gives `develop` its persistent branch-alias URL.
-2. **Turn off Vercel's automatic Git deployments** (Project → Settings → Git) so only the GitHub Actions below trigger deploys — otherwise every push deploys twice (once from Vercel's integration, once from `deploy.yml`/`release.yml`), and `main` risks deploying pre-version-bump code before `release.yml` finishes.
+1. `vercel link` locally once to create the project, or create it in the Vercel dashboard.
+2. **Turn off Vercel's automatic Git deployments** (Project → Settings → Git → Ignored Build Step → `exit 0`) so only the GitHub Actions below trigger deploys — otherwise every push deploys twice, and `main` risks deploying pre-version-bump code before `release.yml` finishes.
 3. In the GitHub repo, add these secrets (Settings → Secrets and variables → Actions):
    - `VERCEL_TOKEN` — personal/team token from Vercel account settings
    - `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` — from `.vercel/project.json` after `vercel link`
    - `GITHUB_TOKEN` is automatic, no setup needed — semantic-release uses the one GitHub Actions injects.
-4. Set the env vars from `.env.local.example` in Vercel (Project → Settings → Environment Variables), scoped per environment (Production / Preview) as needed.
-5. Push to `develop` → deploys as a Preview. Merge `develop` into `main` → `release.yml` versions and deploys to production. PRs get an ephemeral preview.
+4. Set the env vars from `.env.local.example` in Vercel (Project → Settings → Environment Variables), scoped per environment (Production / Preview) as needed. **Add them as non-sensitive** — Vercel's "Sensitive" var type only resolves to its real value on Vercel's own build infra, not when `vercel build` runs via CLI/token the way our GitHub Actions do. A sensitive var shows up as the literal string `"[SENSITIVE]"` at build time instead of erroring, so this fails silently — worth knowing since it already happened once.
+5. Push to `develop` → deploys as a Preview, then aliased to `betteraborlan-dev.vercel.app`. Merge `develop` into `main` → `release.yml` versions and deploys to production. PRs get an ephemeral preview.
 
 ## Domains (Hostinger)
 
 For each domain (prod and dev), once purchased on Hostinger:
 
-1. Add the domain in Vercel (Project → Settings → Domains) — the apex/`www` domain assigned to Production, a subdomain like `dev.betteraborlan.org` assigned to the `develop` branch (Vercel lets you pin a domain to a specific git branch under Preview).
+1. Add the domain in Vercel (Project → Settings → Domains) — the apex/`www` domain assigned to Production. For the dev domain, add it as an alias target in `deploy.yml`'s "Alias to fixed dev URL" step (alongside `betteraborlan-dev.vercel.app`) so it gets re-pointed on every push too.
 2. In Hostinger's DNS zone editor, point it at Vercel per what the Vercel domain screen instructs (`A`/`CNAME` records, or delegate nameservers).
 3. Update `NEXT_PUBLIC_SITE_URL` for that environment in Vercel to the matching domain.
 
@@ -86,6 +86,10 @@ To launch for real: set `NEXT_PUBLIC_COMING_SOON` to `false` (or delete it) in V
 - Server-side logic as Vercel Functions (form submissions, scheduled data syncs)
 - Fill in `data/*.json` from verified sources
 - i18n (English/Filipino) via `src/contexts/LanguageContext.tsx`
+
+## Contributing
+
+Want to help? See [CONTRIBUTING.md](CONTRIBUTING.md) for the branching model, commit conventions, and how to submit a PR. Also see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and, if you find a security issue, [SECURITY.md](SECURITY.md) for how to report it responsibly.
 
 ## Community
 

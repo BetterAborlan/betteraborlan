@@ -3,9 +3,9 @@ import './globals.css';
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import InfoBar from '@/components/layout/InfoBar';
-import PromoBanner from '@/components/layout/PromoBanner';
 import Footer from '@/components/layout/Footer';
 import PWAManager from '@/components/PWAManager';
+import VolunteerPopup from '@/components/VolunteerPopup';
 import ComingSoon from '@/components/ComingSoon';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
@@ -80,10 +80,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <TopBar />
             <Header />
             <InfoBar />
-            <PromoBanner />
             <main id="main-content">{children}</main>
             <Footer />
             <PWAManager />
+            <VolunteerPopup />
           </LanguageProvider>
         )}
       </body>
