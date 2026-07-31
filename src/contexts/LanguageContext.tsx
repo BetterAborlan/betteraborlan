@@ -10,7 +10,6 @@ const translations: Record<string, Record<string, string>> = {
     'nav-government': 'Government',
     'nav-statistics': 'Statistics',
     'nav-legislative': 'Legislative',
-    'nav-transparency': 'Transparency',
     'nav-contact': 'Contact',
 
     // Header dropdown - Services
@@ -125,7 +124,6 @@ const translations: Record<string, Record<string, string>> = {
     'nav-government': 'Pamahalaan',
     'nav-statistics': 'Estadistika',
     'nav-legislative': 'Lehislatura',
-    'nav-transparency': 'Transparensiya',
     'nav-contact': 'Makipag-ugnayan',
 
     'dropdown-certificates': 'Mga Sertipiko',

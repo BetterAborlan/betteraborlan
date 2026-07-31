@@ -15,7 +15,6 @@ const mainPages = [
   { href: '/legislative/ordinance-framework', label: 'Ordinance Framework' },
   { href: '/legislative/resolution-framework', label: 'Resolution Framework' },
   { href: '/statistics', label: 'Statistics' },
-  { href: '/budget', label: 'Budget' },
   { href: '/contact', label: 'Contact' },
   { href: '/about', label: 'About' },
   { href: '/search', label: 'Search' },

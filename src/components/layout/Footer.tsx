@@ -28,12 +28,21 @@ export default function Footer() {
               <img
                 src="/assets/images/logo/better-aborlan-logo-white.svg"
                 alt="BetterAborlan.org"
-                width={70}
-                height={28}
+                width={110}
+                height={44}
               />
             </div>
             <p className="footer-v2-tagline">{t('footer-tagline')}</p>
             <div className="footer-social-new">
+              <a
+                href="https://facebook.com/betteraborlan.org"
+                className="footer-social-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <i className="bi bi-facebook"></i>
+              </a>
               <a
                 href="https://github.com/BetterAborlan/betteraborlan"
                 className="footer-social-btn"
@@ -62,23 +71,14 @@ export default function Footer() {
                 <i className="bi bi-linkedin"></i>
               </a>
             </div>
-            <div className="footer-partners">
-              <a
-                href="https://bettergov.ph"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="BetterGov.ph"
-              >
-                <img
-                  src="/assets/images/logo/bettergov-footer.svg"
-                  alt="BetterGov.ph"
-                  className="footer-partner-logo"
-                  width={120}
-                  height={28}
-                  loading="lazy"
-                />
-              </a>
-            </div>
+            <a
+              href="https://github.com/BetterAborlan/betteraborlan/releases"
+              className="footer-changelog-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="bi bi-clock-history" aria-hidden="true"></i> Changelog
+            </a>
           </div>
 
           <div>

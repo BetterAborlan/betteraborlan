@@ -1,11 +1,6 @@
-'use client';
-
 import Link from 'next/link';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function TopBar() {
-  const { language, setLanguage } = useLanguage();
-
   return (
     <div className="topbar">
       <div className="container topbar-inner">
@@ -20,15 +15,6 @@ export default function TopBar() {
         <Link href="/about">About</Link>
         <Link href="/contact">Contact Us</Link>
         <Link href="/contact#hotlines">Hotlines</Link>
-        <select
-          className="topbar-lang"
-          value={language}
-          onChange={(e) => setLanguage(e.target.value as 'en' | 'fil')}
-          aria-label="Select language"
-        >
-          <option value="en">English</option>
-          <option value="fil">Filipino</option>
-        </select>
       </div>
     </div>
   );
