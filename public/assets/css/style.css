@@ -8067,7 +8067,10 @@ a.a11y-contact-item:hover i {
 
 .home-stats-v2-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* auto-fit instead of a fixed 4 columns: both current users of this class
+     (budget's 2 cards, statistics' 6 cards) don't divide evenly into 4,
+     which left visibly empty trailing grid tracks. */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: var(--spacing-md);
 }
 
@@ -8162,17 +8165,7 @@ a.a11y-contact-item:hover i {
 }
 
 /* Home Stats V2 Responsive */
-@media (max-width: 992px) {
-  .home-stats-v2-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 576px) {
-  .home-stats-v2-grid {
-    grid-template-columns: 1fr;
-  }
-
   .home-stats-v2-header {
     flex-direction: column;
     gap: var(--spacing-sm);
