@@ -8,9 +8,9 @@ interface Props {
 }
 
 const suggestions = [
-  'Birth Certificate',
-  'Marriage Certificate',
-  'Death Certificate',
+  'Birth Registration',
+  'Marriage Registration',
+  'Death Registration',
   'Business Permit',
   'Real Property Tax',
   'Cedula',

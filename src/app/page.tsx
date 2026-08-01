@@ -44,11 +44,11 @@ export default function HomePage() {
                 </span>
                 <span>{t('service-business')}</span>
               </Link>
-              <Link href="/services/education" className="popular-panel-card">
+              <Link href="/services/agriculture" className="popular-panel-card">
                 <span className="popular-panel-icon">
-                  <i className="bi bi-mortarboard-fill" aria-hidden="true"></i>
+                  <i className="bi bi-flower1" aria-hidden="true"></i>
                 </span>
-                <span>Education</span>
+                <span>{t('dropdown-agriculture')}</span>
               </Link>
               <Link href="/services/health" className="popular-panel-card">
                 <span className="popular-panel-icon">
@@ -68,26 +68,30 @@ export default function HomePage() {
       <section className="portal-section">
         <div className="container">
           <div className="portal-section-header">
-            <h2>Government Services</h2>
-            <p>Access official municipal services quickly and easily.</p>
+            <h2>{t('home-gov-services-title')}</h2>
+            <p>{t('home-gov-services-subtitle')}</p>
           </div>
           <div className="service-cat-grid">
-            {serviceCategories.map((cat) => (
-              <Card key={cat.id} hoverable className="service-cat-card">
-                <span className="service-cat-icon">
-                  <i className={`bi ${cat.icon}`} aria-hidden="true"></i>
-                </span>
-                <h3>{cat.title}</h3>
-                <ul>
-                  {cat.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <Link href={cat.href}>
-                  View All {cat.title} <i className="bi bi-arrow-right" aria-hidden="true"></i>
-                </Link>
-              </Card>
-            ))}
+            {serviceCategories.map((cat) => {
+              const catTitle = t(`dropdown-${cat.id}`);
+              return (
+                <Card key={cat.id} hoverable className="service-cat-card">
+                  <span className="service-cat-icon">
+                    <i className={`bi ${cat.icon}`} aria-hidden="true"></i>
+                  </span>
+                  <h3>{catTitle}</h3>
+                  <ul>
+                    {cat.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <Link href={cat.href}>
+                    {t('services-view-all')} {catTitle}{' '}
+                    <i className="bi bi-arrow-right" aria-hidden="true"></i>
+                  </Link>
+                </Card>
+              );
+            })}
           </div>
           <div className="portal-section-cta">
             <Link
@@ -104,7 +108,7 @@ export default function HomePage() {
       <section className="portal-section portal-section--alt">
         <div className="container">
           <div className="portal-section-header">
-            <h2>Real-Time Data Services</h2>
+            <h2>{t('home-realtime-title')}</h2>
             <p>{t('weather-map-title')}</p>
           </div>
           <RealTimeData />
@@ -115,33 +119,32 @@ export default function HomePage() {
       <section className="portal-section">
         <div className="container">
           <div className="portal-section-header">
-            <h2>Government of Aborlan</h2>
-            <p>How the municipal government of Aborlan is organized.</p>
+            <h2>{t('gov-page-title')}</h2>
+            <p>{t('gov-page-subtitle')}</p>
           </div>
           <div className="gov-branch-grid">
             <Card className="gov-branch-card">
               <span className="gov-branch-icon">
                 <i className="bi bi-star-fill" aria-hidden="true"></i>
               </span>
-              <h3>Executive</h3>
-              <p>Office of the Municipal Mayor and Vice Mayor, and their line departments.</p>
+              <h3>{t('gov-branch-executive')}</h3>
+              <p>{t('gov-branch-executive-desc')}</p>
             </Card>
             <Card className="gov-branch-card">
               <span className="gov-branch-icon">
                 <i className="bi bi-bank2" aria-hidden="true"></i>
               </span>
-              <h3>Legislative</h3>
-              <p>Sangguniang Bayan ng Aborlan — the municipal council that enacts ordinances.</p>
-              <Link href="/legislative">
-                View Legislative <i className="bi bi-arrow-right" aria-hidden="true"></i>
-              </Link>
+              <h3>{t('gov-branch-legislative')}</h3>
+              <p>{t('gov-branch-legislative-desc')}</p>
             </Card>
             <Card className="gov-branch-card">
               <span className="gov-branch-icon">
                 <i className="bi bi-signpost-split-fill" aria-hidden="true"></i>
               </span>
-              <h3>Barangays</h3>
-              <p>{t('stats-barangays-source')} — the local administrative units of Aborlan.</p>
+              <h3>{t('gov-branch-barangays')}</h3>
+              <p>
+                {t('stats-barangays-source')} — {t('gov-branch-barangays-desc')}
+              </p>
             </Card>
           </div>
         </div>
@@ -151,11 +154,11 @@ export default function HomePage() {
       <div className="directory-banner">
         <div className="container directory-banner-inner">
           <div>
-            <h2>Official Directory</h2>
-            <p>Find contact information for Aborlan officials, offices, and barangays.</p>
+            <h2>{t('home-directory-title')}</h2>
+            <p>{t('home-directory-subtitle')}</p>
           </div>
           <Link href="/government" className="directory-banner-btn">
-            View Directory
+            {t('home-directory-btn')}
           </Link>
         </div>
       </div>
