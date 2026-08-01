@@ -147,9 +147,27 @@
   flex-shrink: 0;
 }
 .brand-v2 img {
-  height: 52px;
+  height: 38px;
   width: auto;
   display: block;
+  flex-shrink: 0;
+}
+.brand-v2-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.brand-v2-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-kapwa-gray-900);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.brand-v2-tagline {
+  font-size: 0.75rem;
+  color: var(--color-kapwa-gray-500);
+  line-height: 1.15;
 }
 .main-nav-v2 {
   flex: 1;
@@ -482,6 +500,24 @@
   box-shadow: var(--shadow-kapwa-md);
   border-color: var(--color-kapwa-brand-600);
 }
+.service-cat-empty {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  text-align: center;
+}
+.service-cat-empty .service-cat-icon {
+  margin: 0 auto 16px;
+}
+.service-cat-empty h3 {
+  margin: 0 0 10px;
+}
+.service-cat-empty p {
+  color: var(--color-kapwa-text-support);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0;
+}
 .service-cat-icon {
   width: 40px;
   height: 40px;
@@ -598,6 +634,20 @@
 .aborlan-map-marker {
   background: none;
   border: none;
+  position: relative;
+}
+.aborlan-map-marker svg {
+  display: block;
+}
+.aborlan-map-marker i {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 30px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1;
 }
 .realtime-map-loading {
   display: flex;
@@ -938,11 +988,24 @@
   margin-bottom: 10px;
 }
 .footer-v2-brand img {
-  height: 44px;
+  height: 38px;
+  width: auto;
+  flex-shrink: 0;
 }
 .footer-v2-brand-text {
-  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.footer-v2-brand-title {
+  font-size: 1.125rem;
+  font-weight: 800;
   color: var(--color-kapwa-neutral-50);
+  letter-spacing: -0.01em;
+}
+.footer-v2-brand-tagline {
+  font-size: 0.8125rem;
+  color: var(--color-kapwa-gray-400);
 }
 .footer-social-new {
   display: flex;

@@ -13,7 +13,9 @@ export default function TopBar() {
           <i className="bi bi-rocket-takeoff-fill" aria-hidden="true"></i> Join Us
         </a>
         <Link href="/about">About</Link>
-        <Link href="/contact">Contact Us</Link>
+        <a href="https://aborlanpalawan.gov.ph" target="_blank" rel="noopener noreferrer">
+          Official Aborlan Website
+        </a>
         <Link href="/contact#hotlines">Hotlines</Link>
       </div>
     </div>

@@ -4,8 +4,8 @@ export default function ComingSoon() {
       <img
         src="/assets/images/logo/better-aborlan-logo-white.svg"
         alt="BetterAborlan.org"
-        width={200}
-        height={80}
+        width={102}
+        height={110}
         className="mb-8"
       />
       {/* Inline style, not a Tailwind class: Tailwind utilities live in a

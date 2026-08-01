@@ -9860,8 +9860,8 @@ a.a11y-contact-item:hover i {
   position: relative;
   z-index: 1;
   display: block;
-  width: 210px;
-  height: auto;
+  height: 84px;
+  width: auto;
   max-width: 72%;
   margin: 0 auto 18px;
   /* Subtle drop-shadow so the white mark reads against any bg bleed */
@@ -10020,7 +10020,7 @@ a.a11y-contact-item:hover i {
   }
 
   .vol-popup-logo {
-    width: 170px;
+    height: 68px;
   }
 
   .vol-popup-title {

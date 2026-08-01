@@ -1,23 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { serviceCategories } from '@/data/serviceCategories';
 
+const version = process.env.NEXT_PUBLIC_APP_VERSION ?? '';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { t } = useLanguage();
-  const [version, setVersion] = useState('');
-
-  useEffect(() => {
-    fetch('/version.json')
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => {
-        if (data?.version) setVersion(data.version);
-      })
-      .catch(() => {});
-  }, []);
 
   return (
     <footer className="footer-v2">
@@ -27,10 +18,14 @@ export default function Footer() {
             <div className="footer-v2-brand">
               <img
                 src="/assets/images/logo/better-aborlan-logo-white.svg"
-                alt="BetterAborlan.org"
-                width={110}
-                height={44}
+                alt=""
+                width={38}
+                height={41}
               />
+              <span className="footer-v2-brand-text">
+                <span className="footer-v2-brand-title">BetterAborlan</span>
+                <span className="footer-v2-brand-tagline">A community-run portal for Aborlan</span>
+              </span>
             </div>
             <p className="footer-v2-tagline">{t('footer-tagline')}</p>
             <div className="footer-social-new">
@@ -122,6 +117,15 @@ export default function Footer() {
           <div>
             <h4>{t('footer-resources')}</h4>
             <ul>
+              <li>
+                <a
+                  href="https://aborlanpalawan.gov.ph/wp-content/uploads/2025/04/Citizens-Charter-2025-1st-revision.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Aborlan Citizen&apos;s Charter (PDF)
+                </a>
+              </li>
               <li>
                 <a href="https://data.gov.ph" target="_blank" rel="noopener noreferrer">
                   {t('footer-open-data')}
