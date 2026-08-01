@@ -15,10 +15,10 @@ Workflow:
 
 1. Branch off `develop`: `git checkout -b feat/short-description`
 2. Open a PR into `develop`. CI (`npm run lint` + `npm run build`) must pass — see `.github/workflows/ci.yml`.
-3. Merging to `develop` deploys to `betteraborlan-dev.vercel.app` (see `.github/workflows/deploy.yml`).
-4. When `develop` is ready to ship, open a PR from `develop` into `main`. Merging triggers [semantic-release](https://semantic-release.gitbook.io/), which bumps the version, writes `CHANGELOG.md`, tags a GitHub Release, and deploys to production (see `.github/workflows/release.yml`).
+3. Merging to `develop` runs [semantic-release](https://semantic-release.gitbook.io/) in prerelease mode first (`.releaserc.json` — `develop` is a prerelease channel of `main`, e.g. `0.3.1-develop.1`), then deploys to `betteraborlan-dev.vercel.app` (see `.github/workflows/deploy.yml`).
+4. When `develop` is ready to ship, open a PR from `develop` into `main`. Merging triggers semantic-release again, this time as a stable release: bumps the version, writes `CHANGELOG.md`, tags a GitHub Release, and deploys to production (see `.github/workflows/release.yml`).
 
-No manual version bumping — the version is entirely derived from commit messages (see below).
+No manual version bumping, on either branch — versions derive entirely from commit messages (see below).
 
 ## Getting started
 

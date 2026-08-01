@@ -2,6 +2,14 @@ name: Deploy Previews
 
 # Both PRs and pushes to `develop` deploy as a standard Vercel Preview.
 #
+# On a push to `develop` (not PRs), semantic-release also runs first in
+# prerelease mode (branches config in .releaserc.json — "develop" is a
+# prerelease channel of "main"), bumping package.json to something like
+# 0.3.1-develop.1 and tagging/releasing it as a GitHub prerelease. This
+# keeps develop's version meaningful on its own instead of silently
+# drifting from main's after every production release. The commit it
+# pushes back includes "[skip ci]", so it doesn't retrigger this workflow.
+#
 # The dev site lives at a fixed alias — https://betteraborlan-dev.vercel.app
 # — that this workflow re-points to the fresh deployment on every push to
 # `develop`. This is NOT Vercel's automatic "-git-<branch>-" alias: that one
@@ -27,14 +35,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prerelease (version, changelog, tag, GitHub prerelease)
+        if: github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
 
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
