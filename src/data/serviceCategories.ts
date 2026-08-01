@@ -6,21 +6,21 @@ export interface ServiceCategory {
   href: string;
 }
 
-// Bullet items are the standard-nationwide service types already listed in
-// data/services.json — no Aborlan-specific facts (fees, offices) fabricated here.
+// Bullet items are real service titles already listed in data/services.json,
+// sourced from the Aborlan Citizen's Charter 2025 — kept in sync with that file.
 export const serviceCategories: ServiceCategory[] = [
   {
     id: 'certificates',
     title: 'Certificates & Vital Records',
     icon: 'bi-file-earmark-text-fill',
-    items: ['Birth Certificate', 'Marriage Certificate', 'Death Certificate'],
+    items: ['Birth Registration', 'Marriage Registration', "Mayor's Clearance"],
     href: '/services/certificates',
   },
   {
     id: 'business',
     title: 'Business & Trade',
     icon: 'bi-shop',
-    items: ['Business Permit (New)', 'Business Permit Renewal'],
+    items: ['Business Permit (New)', 'Business Permit Renewal', 'Tricycle Operator’s Permit'],
     href: '/services/business',
   },
   {
@@ -34,49 +34,56 @@ export const serviceCategories: ServiceCategory[] = [
     id: 'social-services',
     title: 'Social Services',
     icon: 'bi-people-fill',
-    items: ['Senior Citizen ID', 'PWD ID', 'Medical / Financial Assistance'],
+    items: ['Senior Citizen ID', 'PWD ID', 'Solo Parent Program'],
     href: '/services/social-services',
   },
   {
     id: 'health',
     title: 'Health & Wellness',
     icon: 'bi-heart-pulse-fill',
-    items: ['Medical Consultation', 'Rural Health Unit Services'],
+    items: ['Medical Consultation', 'Immunization', 'Maternal Health Care'],
     href: '/services/health',
   },
   {
     id: 'agriculture',
     title: 'Agriculture',
     icon: 'bi-flower1',
-    items: ['Seedling / Farm Input Distribution', 'RSBSA Registration'],
+    items: ['RSBSA Registration', 'Tractor Services', 'Boat Registration'],
     href: '/services/agriculture',
   },
   {
     id: 'infrastructure',
     title: 'Infrastructure',
     icon: 'bi-cone-striped',
-    items: ['Building Permit', 'Occupancy Permit'],
+    items: ['Building Permit', 'Occupancy Permit', 'New Water Connection'],
     href: '/services/infrastructure',
-  },
-  {
-    id: 'education',
-    title: 'Education',
-    icon: 'bi-mortarboard-fill',
-    items: ['Scholarship Program', 'Educational Assistance'],
-    href: '/services/education',
   },
   {
     id: 'public-safety',
     title: 'Public Safety',
     icon: 'bi-shield-fill-check',
-    items: ['Disaster Preparedness & Response', 'Emergency Hotlines'],
+    items: ['Disaster Preparedness Training', 'Flood Control / Mitigation', 'Emergency Hotlines'],
     href: '/services/public-safety',
   },
   {
     id: 'environment',
     title: 'Environment',
     icon: 'bi-recycle',
-    items: ['Waste Collection Schedule', 'Waste Segregation Guidelines'],
+    items: ['Waste Collection Schedule', 'Chainsaw Registration'],
     href: '/services/environment',
+  },
+  {
+    id: 'tourism',
+    title: 'Tourism',
+    icon: 'bi-compass-fill',
+    items: ['DOT Accreditation Assistance', 'Local/Foreign Guest Assistance'],
+    href: '/services/tourism',
+  },
+  {
+    id: 'sports',
+    title: 'Sports',
+    icon: 'bi-trophy-fill',
+    items: ['Request for Sports Equipment', 'Availing of Sports Services'],
+    href: '/services/sports',
   },
 ];
