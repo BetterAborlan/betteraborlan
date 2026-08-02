@@ -9,6 +9,7 @@ const mainPages = [
   { href: '/services', labelKey: 'nav-services' },
   { href: '/government', labelKey: 'nav-government' },
   { href: '/statistics', labelKey: 'nav-statistics' },
+  { href: '/news', labelKey: 'nav-news' },
   { href: '/contact', labelKey: 'nav-contact' },
   { href: '/about', labelKey: 'sitemap-about' },
   { href: '/search', labelKey: 'sitemap-search' },

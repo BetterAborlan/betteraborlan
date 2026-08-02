@@ -5,7 +5,10 @@ import { Card } from '@bettergov/kapwa/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import SearchAutocomplete from '@/components/SearchAutocomplete';
 import RealTimeData from '@/components/RealTimeData';
+import NewsSection from '@/components/NewsSection';
+import StatCard from '@/components/StatCard';
 import { serviceCategories } from '@/data/serviceCategories';
+import demographics from '@data/demographics.json';
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -18,9 +21,9 @@ export default function HomePage() {
           <div className="portal-hero-text">
             <h1>{t('hero-welcome')}</h1>
             <p>{t('hero-subtitle')}</p>
-            <form className="portal-hero-search" role="search" onSubmit={(e) => e.preventDefault()}>
+            <div className="portal-hero-search">
               <SearchAutocomplete placeholder={t('hero-search-placeholder')} />
-            </form>
+            </div>
             <div className="portal-hero-tags">
               <span>{t('hero-popular')}</span>
               <Link href="/service-details/birth-certificate">{t('hero-birth-certificate')}</Link>
@@ -104,8 +107,46 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Real-Time Data */}
+      {/* Aborlan at a Glance */}
       <section className="portal-section portal-section--alt">
+        <div className="container">
+          <div className="glance-header">
+            <h2>{t('home-glance-title')}</h2>
+            <Link href="/statistics" className="glance-view-link">
+              {t('home-glance-view-profile')} <i className="bi bi-arrow-right" aria-hidden="true"></i>
+            </Link>
+          </div>
+          <div className="home-stats-v2-grid">
+            <StatCard
+              icon="bi-people-fill"
+              value={demographics.population.toLocaleString()}
+              label={t('stats-population-label')}
+              source={`${demographics.population_year} census population`}
+            />
+            <StatCard
+              icon="bi-geo-alt-fill"
+              value={demographics.barangay_count.toString()}
+              label={t('stats-barangays-label')}
+              source={t('gov-branch-barangays-desc')}
+            />
+            <StatCard
+              icon="bi-award-fill"
+              value={demographics.income_classification}
+              label={t('stats-income-label')}
+              source={t('stats-source-psa-2020')}
+            />
+            <StatCard
+              icon="bi-rulers"
+              value={`${demographics.land_area_km2} km²`}
+              label={t('stats-land-area-label')}
+              source={t('stats-source-psa-2020')}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Real-Time Data */}
+      <section className="portal-section">
         <div className="container">
           <div className="portal-section-header">
             <h2>{t('home-realtime-title')}</h2>
@@ -115,40 +156,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Government of Aborlan */}
-      <section className="portal-section">
-        <div className="container">
-          <div className="portal-section-header">
-            <h2>{t('gov-page-title')}</h2>
-            <p>{t('gov-page-subtitle')}</p>
-          </div>
-          <div className="gov-branch-grid">
-            <Card className="gov-branch-card">
-              <span className="gov-branch-icon">
-                <i className="bi bi-star-fill" aria-hidden="true"></i>
-              </span>
-              <h3>{t('gov-branch-executive')}</h3>
-              <p>{t('gov-branch-executive-desc')}</p>
-            </Card>
-            <Card className="gov-branch-card">
-              <span className="gov-branch-icon">
-                <i className="bi bi-bank2" aria-hidden="true"></i>
-              </span>
-              <h3>{t('gov-branch-legislative')}</h3>
-              <p>{t('gov-branch-legislative-desc')}</p>
-            </Card>
-            <Card className="gov-branch-card">
-              <span className="gov-branch-icon">
-                <i className="bi bi-signpost-split-fill" aria-hidden="true"></i>
-              </span>
-              <h3>{t('gov-branch-barangays')}</h3>
-              <p>
-                {t('stats-barangays-source')} — {t('gov-branch-barangays-desc')}
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
+      <NewsSection />
 
       {/* Directory banner */}
       <div className="directory-banner">

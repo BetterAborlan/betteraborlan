@@ -9,6 +9,7 @@ const translations: Record<string, Record<string, string>> = {
     'nav-services': 'Services',
     'nav-government': 'Government',
     'nav-statistics': 'Statistics',
+    'nav-news': 'News',
     'nav-contact': 'Contact',
 
     // Header dropdown - Services
@@ -69,6 +70,10 @@ const translations: Record<string, Record<string, string>> = {
     'weather-map-title': 'Weather and Map of Aborlan',
     'weather-mainly-clear': 'Mainly clear',
     'weather-location': 'Aborlan, Palawan',
+    'forecast-5day-title': '5-Day Forecast',
+    'forecast-today': 'Today',
+    'home-glance-title': 'Aborlan at a Glance',
+    'home-glance-view-profile': 'View Municipality Profile',
 
     // Updates
     'section-updates': 'Latest Updates',
@@ -165,7 +170,7 @@ const translations: Record<string, Record<string, string>> = {
     'stats-households-label': 'Households',
     'stats-source-psa-2024': 'PSA 2024 Census',
     'stats-income-label': 'Income Classification',
-    'stats-source-psa-2020': 'PSA 2020 Census',
+    'stats-source-psa-2020': 'PSA 2024 Census',
     'stats-registered-voters-label': 'Registered Voters',
     'stats-source-comelec-2025': 'COMELEC, 2025 elections',
     'stats-province-label': 'Province',
@@ -212,6 +217,17 @@ const translations: Record<string, Record<string, string>> = {
     'search-label': 'Search services',
     'search-placeholder': 'e.g. business permit, barangay clearance...',
     'search-no-results': 'No services match',
+
+    // News section & page
+    'news-section-title': 'Latest News',
+    'news-section-subtitle': 'Recent headlines about Aborlan, via Google News.',
+    'news-view-all': 'View all news',
+    'news-page-title': 'News',
+    'news-page-subtitle': 'Recent headlines about Aborlan, Palawan, gathered from Google News.',
+    'news-loading': 'Loading headlines…',
+    'news-error': "Couldn't load news right now. Please try again later.",
+    'news-empty': 'No recent news found.',
+    'news-source-fallback': 'Google News',
 
     // Sitemap page
     'sitemap-about': 'About',
@@ -297,6 +313,7 @@ const translations: Record<string, Record<string, string>> = {
     'nav-services': 'Mga Serbisyo',
     'nav-government': 'Pamahalaan',
     'nav-statistics': 'Estadistika',
+    'nav-news': 'Balita',
     'nav-contact': 'Makipag-ugnayan',
 
     'dropdown-certificates': 'Mga Sertipiko',
@@ -352,6 +369,10 @@ const translations: Record<string, Record<string, string>> = {
     'weather-map-title': 'Panahon at Mapa ng Aborlan',
     'weather-mainly-clear': 'Halos maaliwalas',
     'weather-location': 'Aborlan, Palawan',
+    'forecast-5day-title': 'Ulat-Panahon sa 5 Araw',
+    'forecast-today': 'Ngayon',
+    'home-glance-title': 'Aborlan sa Isang Sulyap',
+    'home-glance-view-profile': 'Tingnan ang Profile ng Bayan',
 
     'section-updates': 'Pinakabagong mga Update',
     'btn-view-all': 'Tingnan Lahat',
@@ -446,7 +467,7 @@ const translations: Record<string, Record<string, string>> = {
     'stats-households-label': 'Sambahayan',
     'stats-source-psa-2024': 'PSA 2024 Census',
     'stats-income-label': 'Klasipikasyon ng Kita',
-    'stats-source-psa-2020': 'PSA 2020 Census',
+    'stats-source-psa-2020': 'PSA 2024 Census',
     'stats-registered-voters-label': 'Nakarehistrong Botante',
     'stats-source-comelec-2025': 'COMELEC, eleksyon 2025',
     'stats-province-label': 'Lalawigan',
@@ -488,6 +509,17 @@ const translations: Record<string, Record<string, string>> = {
     'service-details-unsourced-2':
       'para malaman kung paano direktang maabot ang bulwagan ng bayan sa ngayon.',
     'service-details-back-to': 'Bumalik sa',
+
+    // News section & page
+    'news-section-title': 'Pinakabagong Balita',
+    'news-section-subtitle': 'Kamakailang balita tungkol sa Aborlan, mula sa Google News.',
+    'news-view-all': 'Tingnan lahat ng balita',
+    'news-page-title': 'Balita',
+    'news-page-subtitle': 'Kamakailang balita tungkol sa Aborlan, Palawan, mula sa Google News.',
+    'news-loading': 'Kinakarga ang mga balita…',
+    'news-error': 'Hindi ma-load ang balita ngayon. Pakisubukang muli mamaya.',
+    'news-empty': 'Walang nakitang kamakailang balita.',
+    'news-source-fallback': 'Google News',
 
     // Search page
     'search-page-title': 'Maghanap',

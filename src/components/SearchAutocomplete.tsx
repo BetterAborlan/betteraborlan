@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Input } from '@bettergov/kapwa/input';
 
 interface Props {
@@ -23,9 +24,10 @@ const suggestions = [
 ];
 
 export default function SearchAutocomplete({ placeholder }: Props) {
+  const router = useRouter();
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLFormElement>(null);
 
   const filtered =
     query.length < 2
@@ -41,7 +43,17 @@ export default function SearchAutocomplete({ placeholder }: Props) {
   }, []);
 
   return (
-    <div ref={ref} className="search-autocomplete-wrapper">
+    <form
+      ref={ref}
+      className="search-autocomplete-wrapper"
+      role="search"
+      onSubmit={(e) => {
+        e.preventDefault();
+        const q = query.trim();
+        setOpen(false);
+        router.push(q ? `/search?q=${encodeURIComponent(q)}` : '/search');
+      }}
+    >
       <Input
         type="text"
         className="search-box"
@@ -54,6 +66,9 @@ export default function SearchAutocomplete({ placeholder }: Props) {
         aria-label="Search services"
         autoComplete="off"
       />
+      <button type="submit" className="search-submit-btn" aria-label="Search">
+        <i className="bi bi-search" aria-hidden="true"></i>
+      </button>
       {open && filtered.length > 0 && (
         <ul className="search-autocomplete-list" role="listbox" aria-label="Search suggestions">
           {filtered.map((item) => (
@@ -72,6 +87,6 @@ export default function SearchAutocomplete({ placeholder }: Props) {
           ))}
         </ul>
       )}
-    </div>
+    </form>
   );
 }

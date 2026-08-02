@@ -161,6 +161,9 @@ export default function Header() {
               <Link href="/statistics">{t('nav-statistics')}</Link>
             </li>
             <li>
+              <Link href="/news">{t('nav-news')}</Link>
+            </li>
+            <li>
               <Link href="/contact">{t('nav-contact')}</Link>
             </li>
           </ul>

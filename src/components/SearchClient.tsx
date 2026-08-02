@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import servicesData from '@data/services.json';
@@ -14,7 +15,8 @@ interface Service {
 
 export default function SearchClient() {
   const { t } = useLanguage();
-  const [query, setQuery] = useState('');
+  const searchParams = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get('q') ?? '');
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -36,15 +38,19 @@ export default function SearchClient() {
           <label htmlFor="site-search" style={{ display: 'block', marginBottom: 8 }}>
             {t('search-label')}
           </label>
-          <input
-            id="site-search"
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={t('search-placeholder')}
-            className="search-input"
-            style={{ width: '100%', padding: '10px 14px', fontSize: '1rem' }}
-          />
+          <form className="search-page-box" role="search" onSubmit={(e) => e.preventDefault()}>
+            <input
+              id="site-search"
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={t('search-placeholder')}
+              className="search-page-input"
+            />
+            <button type="submit" className="search-submit-btn" aria-label="Search">
+              <i className="bi bi-search" aria-hidden="true"></i>
+            </button>
+          </form>
         </div>
 
         {query.trim() && (
