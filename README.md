@@ -43,10 +43,12 @@ Commit messages must follow [Conventional Commits](https://www.conventionalcommi
 
 Every push to `main` runs [semantic-release](https://semantic-release.gitbook.io/) (`.releaserc.json`, `.github/workflows/release.yml`): it reads the commits since the last release, decides the next version (`fix` → patch, `feat` → minor, `BREAKING CHANGE:` in the body → major), bumps `package.json`, writes `CHANGELOG.md`, tags the release, opens a GitHub Release, then deploys the result to Vercel production. No manual version bumping, ever.
 
+`develop` is also a semantic-release channel — configured in `.releaserc.json` as a **prerelease branch** of `main` (e.g. `0.3.1-develop.1`). Every push to `develop` with releasable commits since its last prerelease bumps `package.json` there too, tags it, and opens a GitHub prerelease, before the preview deploy runs. This keeps `develop`'s version meaningful on its own instead of silently drifting from whatever `main` last shipped.
+
 ## Branches & environments
 
 - **`main`** → production. Every merge here triggers a release (see above) and a prod deploy.
-- **`develop`** → deploys as a standard Vercel Preview on every push, then `deploy.yml` re-points a fixed alias, **`https://betteraborlan-dev.vercel.app`**, at that fresh deployment. That's the one stable "dev site" URL — bookmark that, not the raw per-deploy `*.vercel.app` hash URL, which changes every push. (This is deliberately not Vercel's automatic `-git-develop-` alias — that one is only maintained by Vercel's own git-integration builds, which are disabled in favor of this workflow; see the comment in `deploy.yml` for why.)
+- **`develop`** → deploys as a standard Vercel Preview on every push (after the prerelease step above), then `deploy.yml` re-points a fixed alias, **`https://betteraborlan-dev.vercel.app`**, at that fresh deployment. That's the one stable "dev site" URL — bookmark that, not the raw per-deploy `*.vercel.app` hash URL, which changes every push. (This is deliberately not Vercel's automatic `-git-develop-` alias — that one is only maintained by Vercel's own git-integration builds, which are disabled in favor of this workflow; see the comment in `deploy.yml` for why.)
 - Pull requests into `main` get their own ephemeral Vercel preview URL, commented on the PR.
 
 Day to day: branch off `develop`, open a PR into `develop`, merge → deploys to `betteraborlan-dev.vercel.app`. When it's ready for real users, PR `develop` into `main` → semantic-release cuts a version and ships it.

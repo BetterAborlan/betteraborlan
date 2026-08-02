@@ -1,36 +1,146 @@
 {
   "_status": "sourced",
-  "_note": "All 14 services below, including fee/processingTime/office, are from the Municipal Government of Aborlan Citizen's Charter 2025 (1st revision), pulled directly from aborlanpalawan.gov.ph's own PDF and cross-checked against the 'TOTAL' row of each service's step table. Seedling/farm-input distribution and a local scholarship program were removed from this list — neither is listed as a frontline service in the Charter, so rather than leave a stub with fabricated fields, they're left out until a real source (LGU Agriculture/Education office) confirms one exists and how to avail it. Where a service has multiple sub-processes (e.g. Senior Citizen ID also covers purchase booklets and financial assistance), only the primary/first one's figures are used here.",
+  "_note": "All 80 services below, including fee/processingTime/office, are from the Municipal Government of Aborlan Citizen's Charter 2025 (1st revision), pulled directly from aborlanpalawan.gov.ph's own PDF. Each was individually verified against its own step-by-step 'TOTAL' row (title, office, fee, and time cross-checked together) rather than bulk-parsed, since the document's client-step numbering can look like a service header out of context. Where a service has several sub-processes bundled under one Charter entry, only the primary/first sub-process's figures are used. Purely internal/staff-facing services (procurement, internal budget/accounting postings, HR leave filing, records transmittal) are intentionally excluded — this is a citizen-facing directory. Education has no listed frontline service in the Charter (no formal scholarship program), so it stays empty rather than guessed.",
   "services": [
     {
       "id": "birth-certificate",
-      "title": "Birth Certificate",
+      "title": "Birth Registration",
       "category": "Certificates & Vital Records",
       "categoryId": "certificates",
-      "description": "Request a copy of a birth certificate (local civil registry or PSA copy).",
+      "description": "Register a birth with the Municipal Civil Registrar (on-time or delayed registration). This creates the local civil registry record — a certified copy from the national PSA registry is a separate process handled by PSA itself, not the LGU.",
       "fee": "₱25.00",
       "processingTime": "25 minutes (on-time registration)",
       "office": "Municipal Civil Registrar's Office (MCR)"
     },
     {
       "id": "marriage-certificate",
-      "title": "Marriage Certificate",
+      "title": "Marriage Registration",
       "category": "Certificates & Vital Records",
       "categoryId": "certificates",
-      "description": "Request a copy of a marriage certificate.",
+      "description": "Register a marriage with the Municipal Civil Registrar. A certified copy from the national PSA registry is a separate process handled by PSA itself, not the LGU.",
       "fee": "₱25.00 (on-time) / ₱75.00 (delayed registration)",
       "processingTime": "Same-day for on-time registration; up to 11 days for delayed registration (includes a mandatory 10-day posting period)",
       "office": "Municipal Civil Registrar's Office (MCR)"
     },
     {
       "id": "death-certificate",
-      "title": "Death Certificate",
+      "title": "Death Registration",
       "category": "Certificates & Vital Records",
       "categoryId": "certificates",
-      "description": "Request a copy of a death certificate.",
+      "description": "Register a death with the Municipal Civil Registrar. A certified copy from the national PSA registry is a separate process handled by PSA itself, not the LGU.",
       "fee": "₱45.00 (on-time) / ₱75.00 (delayed registration)",
       "processingTime": "50 minutes",
       "office": "Municipal Civil Registrar's Office (MCR)"
+    },
+    {
+      "id": "mayors-clearance",
+      "title": "Mayor's Clearance",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "Certifies residency, good moral character, and law-abiding status — commonly needed for employment or scholarship applications.",
+      "fee": "₱75.00",
+      "processingTime": "23 minutes",
+      "office": "Office of the Municipal Mayor (OMM)"
+    },
+    {
+      "id": "mayors-certification",
+      "title": "Mayor's Certification",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "General certification issued by the Mayor's Office for personal, moral character, posting, project, or business-related purposes.",
+      "fee": "₱75.00",
+      "processingTime": "23 minutes",
+      "office": "Office of the Municipal Mayor (OMM)"
+    },
+    {
+      "id": "property-ownership-certification",
+      "title": "Certification of Total Landholding",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "Certifies a person's total real property landholdings within the municipality.",
+      "fee": "₱75.00",
+      "processingTime": "38 minutes – 1 hour 3 minutes, depending on complexity",
+      "office": "Municipal Assessor's Office (MASSO)"
+    },
+    {
+      "id": "certification-of-improvement",
+      "title": "Certification of Improvement",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "Certifies whether a property has declared improvements (structures, buildings) or none.",
+      "fee": "₱50.00",
+      "processingTime": "43–48 minutes",
+      "office": "Municipal Assessor's Office (MASSO)"
+    },
+    {
+      "id": "land-tax-verification-slip",
+      "title": "Land Tax Verification Slip (LTVS)",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "Verifies the real property tax status of a parcel of land.",
+      "fee": "₱50.00",
+      "processingTime": "58 minutes",
+      "office": "Municipal Assessor's Office (MASSO)"
+    },
+    {
+      "id": "certified-copy-tax-declaration",
+      "title": "Certified Copy of Tax Declaration",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "Certified true copy of an existing tax declaration on file.",
+      "fee": "₱75.00",
+      "processingTime": "38 minutes",
+      "office": "Municipal Assessor's Office (MASSO)"
+    },
+    {
+      "id": "certified-copy-tax-map",
+      "title": "Certified Copy of Tax Map",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "Certified copy of the municipality's tax mapping records for a given parcel.",
+      "fee": "₱100.00",
+      "processingTime": "53 minutes",
+      "office": "Municipal Assessor's Office (MASSO)"
+    },
+    {
+      "id": "certified-copy-encumbrances",
+      "title": "Certified Copy of Encumbrances",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "Certified copy of recorded encumbrances (liens, claims) against a property.",
+      "fee": "₱50.00",
+      "processingTime": "43 minutes",
+      "office": "Municipal Assessor's Office (MASSO)"
+    },
+    {
+      "id": "assessors-certification",
+      "title": "Assessor's Certification",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "General certification issued by the Municipal Assessor's Office for property-related purposes not covered by a more specific certificate.",
+      "fee": "₱75.00",
+      "processingTime": "53 minutes",
+      "office": "Municipal Assessor's Office (MASSO)"
+    },
+    {
+      "id": "request-copies-official-documents",
+      "title": "Request for Copies of Official Public Documents",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "Certified copies of Sangguniang Bayan ordinances, resolutions, and other official public documents.",
+      "fee": "₱50.00 per page",
+      "processingTime": "25 minutes",
+      "office": "Sangguniang Bayan Office (SBO)"
+    },
+    {
+      "id": "certificate-no-pending-case",
+      "title": "Certificate of \"No Pending Administrative Case\"",
+      "category": "Certificates & Vital Records",
+      "categoryId": "certificates",
+      "description": "Certifies that a barangay official has no pending administrative case before the Sangguniang Bayan — commonly required for benefits or further appointments.",
+      "fee": "₱50.00",
+      "processingTime": "21 minutes",
+      "office": "Sangguniang Bayan Office (SBO)"
     },
     {
       "id": "business-permit-new",
@@ -51,6 +161,16 @@
       "fee": "Based on the Revenue Code (Municipal Tax Ordinance No. 01, s. 2018) — varies by business type and gross receipts",
       "processingTime": "4 hours 30 minutes (regular) / 7 hours 45 minutes (peak season)",
       "office": "Office of the Municipal Mayor – Business Permit and Licensing Division (BPLO)"
+    },
+    {
+      "id": "tricycle-operators-permit",
+      "title": "Motorized Tricycle Operator's Permit (MTOP)",
+      "category": "Business & Trade",
+      "categoryId": "business",
+      "description": "Franchise permit to operate a tricycle-for-hire within the municipality.",
+      "fee": "₱550.00",
+      "processingTime": "7 days, 17 minutes",
+      "office": "Sangguniang Bayan Office (SBO)"
     },
     {
       "id": "real-property-tax",
@@ -93,6 +213,16 @@
       "office": "Municipal Social Welfare and Development Office (MSWDO)"
     },
     {
+      "id": "pwd-purchase-booklet",
+      "title": "PWD Purchase Booklet",
+      "category": "Social Services",
+      "categoryId": "social-services",
+      "description": "Purchase booklet used by PWD ID holders to avail of discounts on medicine and groceries.",
+      "fee": null,
+      "processingTime": "10 minutes",
+      "office": "Municipal Social Welfare and Development Office (MSWDO)"
+    },
+    {
       "id": "medical-financial-assistance",
       "title": "Medical / Financial Assistance",
       "category": "Social Services",
@@ -100,6 +230,56 @@
       "description": "Emergency financial aid for medical, burial, or educational needs. For indigent residents who have not yet availed of financial assistance during the year.",
       "fee": null,
       "processingTime": "1 week, 45 minutes",
+      "office": "Municipal Social Welfare and Development Office (MSWDO)"
+    },
+    {
+      "id": "widc-services",
+      "title": "Women in Difficult Circumstances (WIDC) Services",
+      "category": "Social Services",
+      "categoryId": "social-services",
+      "description": "Support services for women who are abused or battered.",
+      "fee": null,
+      "processingTime": "47 minutes",
+      "office": "Municipal Social Welfare and Development Office (MSWDO)"
+    },
+    {
+      "id": "provision-of-women-services",
+      "title": "Provision of Women Services",
+      "category": "Social Services",
+      "categoryId": "social-services",
+      "description": "General welfare and support services for women.",
+      "fee": null,
+      "processingTime": "16 minutes",
+      "office": "Municipal Social Welfare and Development Office (MSWDO)"
+    },
+    {
+      "id": "cicl-child-youth-assistance",
+      "title": "Assistance to Abused Children, CICL, and Youth",
+      "category": "Social Services",
+      "categoryId": "social-services",
+      "description": "Support services for abused children, Children in Conflict with the Law (CICL), Children at Risk (CAR), and youth.",
+      "fee": null,
+      "processingTime": "47 minutes",
+      "office": "Municipal Social Welfare and Development Office (MSWDO)"
+    },
+    {
+      "id": "solo-parent-program",
+      "title": "Solo Parent Program & Services",
+      "category": "Social Services",
+      "categoryId": "social-services",
+      "description": "Support services and benefits registration for solo parents.",
+      "fee": null,
+      "processingTime": "16 minutes",
+      "office": "Municipal Social Welfare and Development Office (MSWDO)"
+    },
+    {
+      "id": "pre-marriage-counselling-mswd",
+      "title": "Pre-Marriage Counselling",
+      "category": "Social Services",
+      "categoryId": "social-services",
+      "description": "Required pre-marriage counselling session for couples applying for a marriage license.",
+      "fee": null,
+      "processingTime": "5 hours, 13 minutes",
       "office": "Municipal Social Welfare and Development Office (MSWDO)"
     },
     {
@@ -113,6 +293,186 @@
       "office": "Municipal Health Office"
     },
     {
+      "id": "birthing-home-admission",
+      "title": "Birthing Home Admission",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Admission for delivery at the Municipal Health Office's birthing home facility.",
+      "fee": null,
+      "processingTime": "15 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "birthing-home-discharge",
+      "title": "Birthing Home Discharge",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Discharge processing after delivery at the birthing home.",
+      "fee": null,
+      "processingTime": "25 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "maternal-health-care",
+      "title": "Maternal Health Care",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Prenatal and maternal health care services.",
+      "fee": null,
+      "processingTime": "15 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "immunization-services",
+      "title": "Immunization Services",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Routine immunization for infants, children, and eligible adults.",
+      "fee": null,
+      "processingTime": "12 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "family-planning-services",
+      "title": "Family Planning Services",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Family planning counselling and services.",
+      "fee": null,
+      "processingTime": "40 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "dental-services",
+      "title": "Dental Services",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Basic dental care and consultation.",
+      "fee": null,
+      "processingTime": "23 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "minor-surgical-emergency-treatment",
+      "title": "Minor Surgical Cases & Medical Emergency Treatment",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Treatment for minor surgical cases and medical emergencies.",
+      "fee": null,
+      "processingTime": "25 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "sanitary-permit-health-certificate",
+      "title": "Sanitary Permit / Health Certificate",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Health certificate and sanitary permit required for food handlers and certain businesses.",
+      "fee": "Per case",
+      "processingTime": "1 day, 26 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "national-tb-program",
+      "title": "National Tuberculosis Program",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "TB screening, diagnosis, and DOTS program enrollment.",
+      "fee": null,
+      "processingTime": "1 hour, 20 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "mho-birth-death-certificate",
+      "title": "Securing Birth/Death Certificate (Health Office)",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Health Office-issued certificate supporting a birth or death event, submitted onward to the Civil Registrar as part of registration.",
+      "fee": "Per case",
+      "processingTime": "35 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "animal-bite-treatment",
+      "title": "Animal Bite Treatment",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Anti-rabies treatment and vaccination for animal bite cases.",
+      "fee": null,
+      "processingTime": "1 hour, 30 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "health-medical-certificate",
+      "title": "Health and Medical Certificate",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "General health and medical certificate for employment, school, or other requirements.",
+      "fee": null,
+      "processingTime": "15 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "laboratory-examination",
+      "title": "Laboratory Examination",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Basic laboratory testing services.",
+      "fee": null,
+      "processingTime": "1 hour, 7 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "drugs-medicines",
+      "title": "Availing of Drugs/Medicines",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Dispensing of available drugs and medicines to patients.",
+      "fee": null,
+      "processingTime": "15 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "pre-marriage-counseling-seminar",
+      "title": "Pre-Marriage Counseling Seminar (Health Office)",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Pre-marriage counseling seminar component conducted through the Health Office.",
+      "fee": null,
+      "processingTime": "7 hours, 13 minutes",
+      "office": "Municipal Health Office"
+    },
+    {
+      "id": "nutrition-diet-consultation",
+      "title": "Nutrition / Diet Consultation",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Nutrition and diet counseling services.",
+      "fee": null,
+      "processingTime": "44 minutes",
+      "office": "Municipal Health Office – Nutrition Division"
+    },
+    {
+      "id": "bns-report-submission",
+      "title": "BNS Report Submission and Form Request",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Barangay Nutrition Scholar (BNS) report submission and form requests.",
+      "fee": null,
+      "processingTime": "15 minutes",
+      "office": "Municipal Health Office – Nutrition Division"
+    },
+    {
+      "id": "dietary-micronutrient-supplementation",
+      "title": "Dietary & Micronutrient Supplementation",
+      "category": "Health & Wellness",
+      "categoryId": "health",
+      "description": "Supplementation program for undernourished pregnant women and young children.",
+      "fee": null,
+      "processingTime": "1 hour, 19 minutes",
+      "office": "Municipal Health Office – Nutrition Division"
+    },
+    {
       "id": "building-permit",
       "title": "Building Permit",
       "category": "Infrastructure",
@@ -123,13 +483,233 @@
       "office": "Municipal Engineering Office (MEO)"
     },
     {
+      "id": "occupancy-permit",
+      "title": "Occupancy Permit",
+      "category": "Infrastructure",
+      "categoryId": "infrastructure",
+      "description": "Required before a completed building or structure can be used or occupied, or when its use/occupancy classification changes.",
+      "fee": "Based on the National Building Code of the Philippines (PD 1096) — varies by project",
+      "processingTime": "1 day, 1 hour, 7 minutes",
+      "office": "Municipal Engineering Office (MEO)"
+    },
+    {
+      "id": "zoning-clearance",
+      "title": "Zoning Clearance",
+      "category": "Infrastructure",
+      "categoryId": "infrastructure",
+      "description": "Required clearance confirming a proposed structure or business location complies with the municipality's zoning plan.",
+      "fee": "Based on the 2018 Revenue Code — varies",
+      "processingTime": "3 days, 53 minutes",
+      "office": "Municipal Planning and Development Office (MPDO)"
+    },
+    {
+      "id": "project-brief-feasibility-study",
+      "title": "Approved Project Brief / Feasibility Study",
+      "category": "Infrastructure",
+      "categoryId": "infrastructure",
+      "description": "Review and approval of a project brief or feasibility study for proposed local development projects.",
+      "fee": null,
+      "processingTime": "12 days, 1 hour, 13 minutes",
+      "office": "Municipal Planning and Development Office (MPDO)"
+    },
+    {
+      "id": "mpmc-project-inspection-report",
+      "title": "MPMC Project Inspection Report",
+      "category": "Infrastructure",
+      "categoryId": "infrastructure",
+      "description": "Inspection report issued by the Municipal Project Monitoring Committee for ongoing local projects.",
+      "fee": null,
+      "processingTime": "10 days, 30 minutes",
+      "office": "Municipal Planning and Development Office (MPDO)"
+    },
+    {
+      "id": "water-new-connection",
+      "title": "New Water Connection",
+      "category": "Infrastructure",
+      "categoryId": "infrastructure",
+      "description": "Apply for a new household or commercial water service connection.",
+      "fee": "₱1,500.00",
+      "processingTime": "1 day, 1 hour, 8 minutes",
+      "office": "Aborlan Water System Management and Operation Unit (AWSMOU)"
+    },
+    {
+      "id": "water-billing",
+      "title": "Water Billing",
+      "category": "Infrastructure",
+      "categoryId": "infrastructure",
+      "description": "Monthly water bill payment. A 10% surcharge applies if paid after the due date.",
+      "fee": "Based on metered usage",
+      "processingTime": "8 minutes",
+      "office": "Aborlan Water System Management and Operation Unit (AWSMOU)"
+    },
+    {
+      "id": "water-disconnection",
+      "title": "Water Service Disconnection",
+      "category": "Infrastructure",
+      "categoryId": "infrastructure",
+      "description": "Disconnection of water service, typically due to unpaid arrears.",
+      "fee": null,
+      "processingTime": "2 days, 10 minutes",
+      "office": "Aborlan Water System Management and Operation Unit (AWSMOU)"
+    },
+    {
+      "id": "water-reconnection",
+      "title": "Water Service Reconnection",
+      "category": "Infrastructure",
+      "categoryId": "infrastructure",
+      "description": "Reconnection of a previously disconnected water service.",
+      "fee": "₱250.00",
+      "processingTime": "1 day, 8 minutes",
+      "office": "Aborlan Water System Management and Operation Unit (AWSMOU)"
+    },
+    {
+      "id": "tractor-services",
+      "title": "Tractor Services",
+      "category": "Agriculture",
+      "categoryId": "agriculture",
+      "description": "Dispatch of a municipal tractor for farm land preparation.",
+      "fee": "Per pass",
+      "processingTime": "3 days, 14 minutes",
+      "office": "Municipal Agriculture Office (MAO)"
+    },
+    {
+      "id": "auxiliary-invoice-services",
+      "title": "Auxiliary Invoice Services",
+      "category": "Agriculture",
+      "categoryId": "agriculture",
+      "description": "Auxiliary invoice for the lawful transport of agricultural and marine products out of the municipality.",
+      "fee": "Per marine product",
+      "processingTime": "23 minutes",
+      "office": "Municipal Agriculture Office (MAO)"
+    },
+    {
+      "id": "marine-enterprise-certificate",
+      "title": "Certificate of Operation for Marine Enterprise",
+      "category": "Agriculture",
+      "categoryId": "agriculture",
+      "description": "Certification authorizing operation of a marine-related enterprise.",
+      "fee": "Per case",
+      "processingTime": "37 minutes",
+      "office": "Municipal Agriculture Office (MAO)"
+    },
+    {
+      "id": "boat-registration",
+      "title": "Boat Registration",
+      "category": "Agriculture",
+      "categoryId": "agriculture",
+      "description": "Registration of boat ownership (Katibayan sa Pagmamay-Ari ng Bangka) for local fisherfolk.",
+      "fee": "Per case",
+      "processingTime": "57 minutes",
+      "office": "Municipal Agriculture Office (MAO)"
+    },
+    {
+      "id": "fruit-tree-cutting-permit",
+      "title": "Non-Productive Fruit Tree Cutting Permit",
+      "category": "Agriculture",
+      "categoryId": "agriculture",
+      "description": "Permit to cut down a non-productive fruit-bearing tree (Katibayan sa Pagputol ng Hindi Produktibong Puno ng Prutas).",
+      "fee": "₱75.00",
+      "processingTime": "54 minutes",
+      "office": "Municipal Agriculture Office (MAO)"
+    },
+    {
+      "id": "coconut-transport-permit",
+      "title": "Coconut Transport Permit",
+      "category": "Agriculture",
+      "categoryId": "agriculture",
+      "description": "Permit for the lawful transport of young coconuts/buko (Katibayan sa Pagbibiyahe ng Buko) out of the municipality.",
+      "fee": "₱75.00",
+      "processingTime": "24 minutes",
+      "office": "Municipal Agriculture Office (MAO)"
+    },
+    {
+      "id": "palay-nfa-selling-certificate",
+      "title": "Certificate to Sell Palay to NFA",
+      "category": "Agriculture",
+      "categoryId": "agriculture",
+      "description": "Certification for farmers selling palay (unmilled rice) to the National Food Authority.",
+      "fee": "₱75.00",
+      "processingTime": "21 minutes",
+      "office": "Municipal Agriculture Office (MAO)"
+    },
+    {
+      "id": "livestock-shipping-health-certificate",
+      "title": "Livestock Shipping Health Certificate",
+      "category": "Agriculture",
+      "categoryId": "agriculture",
+      "description": "Health certificate required to ship live pigs, carabao, or cattle out of the municipality.",
+      "fee": "₱75.00",
+      "processingTime": "29 minutes",
+      "office": "Municipal Agriculture Office (MAO)"
+    },
+    {
+      "id": "rsbsa-registration",
+      "title": "RSBSA Registration",
+      "category": "Agriculture",
+      "categoryId": "agriculture",
+      "description": "Registration to the Registry System for Basic Sectors in Agriculture (RSBSA), a prerequisite for most national agricultural assistance programs.",
+      "fee": null,
+      "processingTime": "20 minutes",
+      "office": "Municipal Agriculture Office (MAO)"
+    },
+    {
       "id": "disaster-preparedness",
-      "title": "Disaster Preparedness & Response",
+      "title": "Disaster Preparedness Training",
       "category": "Public Safety",
       "categoryId": "public-safety",
-      "description": "MDRRMO emergency response, evacuation, and disaster-readiness programs. Requests can be sent to aborlandrrmoffice@gmail.com.",
+      "description": "Request trainings, drills, or lectures on disaster preparedness. Requests can be sent to aborlandrrmoffice@gmail.com.",
       "fee": null,
       "processingTime": "25 minutes",
+      "office": "Municipal Disaster Risk Reduction and Management Office (MDRRMO)"
+    },
+    {
+      "id": "barangay-drrm-technical-assistance",
+      "title": "Barangay DRRM Technical Assistance",
+      "category": "Public Safety",
+      "categoryId": "public-safety",
+      "description": "Technical assistance for organizing a Barangay DRRM Committee, and certification for use of Barangay DRRM Funds.",
+      "fee": "₱75.00",
+      "processingTime": "18 minutes",
+      "office": "Municipal Disaster Risk Reduction and Management Office (MDRRMO)"
+    },
+    {
+      "id": "flood-control-mitigation",
+      "title": "Flood Control / Mitigation Services",
+      "category": "Public Safety",
+      "categoryId": "public-safety",
+      "description": "Manual and mechanical de-clogging/de-silting of drainage and other waterways.",
+      "fee": null,
+      "processingTime": "22 minutes",
+      "office": "Municipal Disaster Risk Reduction and Management Office (MDRRMO)"
+    },
+    {
+      "id": "disaster-response",
+      "title": "Disaster Response Services",
+      "category": "Public Safety",
+      "categoryId": "public-safety",
+      "description": "Emergency disaster response services.",
+      "fee": null,
+      "processingTime": "8 minutes",
+      "office": "Municipal Disaster Risk Reduction and Management Office (MDRRMO)"
+    },
+    {
+      "id": "hazardous-tree-pruning",
+      "title": "Hazardous/Nuisance Tree Branch Pruning",
+      "category": "Public Safety",
+      "categoryId": "public-safety",
+      "description": "Pruning of hazardous or nuisance tree branches that pose a public safety risk.",
+      "fee": null,
+      "processingTime": "22 minutes",
+      "office": "Municipal Disaster Risk Reduction and Management Office (MDRRMO)"
+    },
+    {
+      "id": "drrmo-certification",
+      "title": "DRRMO Certification Services",
+      "category": "Public Safety",
+      "categoryId": "public-safety",
+      "description": "General certification issued by the Disaster Risk Reduction and Management Office.",
+      "fee": "₱75.00",
+      "processingTime": "31 minutes",
       "office": "Municipal Disaster Risk Reduction and Management Office (MDRRMO)"
     },
     {
@@ -141,6 +721,86 @@
       "fee": null,
       "processingTime": "1 day, 1 hour, 31 minutes",
       "office": "Municipal Environment and Natural Resources Office (MENRO)"
+    },
+    {
+      "id": "environmental-impact-validation",
+      "title": "Environmental Impact Validation & Evaluation",
+      "category": "Environment",
+      "categoryId": "environment",
+      "description": "Validation and evaluation report for programs or projects that may have environmental impacts.",
+      "fee": null,
+      "processingTime": "9 days, 15 minutes",
+      "office": "Municipal Environment and Natural Resources Office (MENRO)"
+    },
+    {
+      "id": "chainsaw-registration",
+      "title": "Chainsaw Registration",
+      "category": "Environment",
+      "categoryId": "environment",
+      "description": "Registration of chainsaws as required under Philippine forestry regulations.",
+      "fee": "₱300.00",
+      "processingTime": "35 minutes",
+      "office": "Municipal Environment and Natural Resources Office (MENRO)"
+    },
+    {
+      "id": "dot-accreditation-assistance",
+      "title": "DOT Accreditation Assistance",
+      "category": "Tourism",
+      "categoryId": "tourism",
+      "description": "Assistance for tourism establishments applying for Department of Tourism (DOT) accreditation.",
+      "fee": null,
+      "processingTime": "15 days, 5 minutes",
+      "office": "Office of the Municipal Mayor – Tourism Services Division"
+    },
+    {
+      "id": "guest-assistance",
+      "title": "Local/Foreign Guest Assistance",
+      "category": "Tourism",
+      "categoryId": "tourism",
+      "description": "Assistance for local and foreign guests/tourists visiting Aborlan.",
+      "fee": null,
+      "processingTime": "10 minutes",
+      "office": "Office of the Municipal Mayor – Tourism Services Division"
+    },
+    {
+      "id": "tourist-arrival-data",
+      "title": "Tourist Arrival Data Collection",
+      "category": "Tourism",
+      "categoryId": "tourism",
+      "description": "Collection and reporting of tourist arrival data for the municipality.",
+      "fee": null,
+      "processingTime": "15 minutes",
+      "office": "Office of the Municipal Mayor – Tourism Services Division"
+    },
+    {
+      "id": "sports-training-request",
+      "title": "Request for Training/Seminar",
+      "category": "Sports",
+      "categoryId": "sports",
+      "description": "Request a sports training or seminar for a team, school, or barangay.",
+      "fee": null,
+      "processingTime": "2 days, 7 minutes",
+      "office": "Office of the Municipal Mayor – Special Services Division – Sports Unit"
+    },
+    {
+      "id": "sports-equipment-request",
+      "title": "Request for Sports Equipment",
+      "category": "Sports",
+      "categoryId": "sports",
+      "description": "Request the loan or use of municipal sports equipment for an event or activity.",
+      "fee": null,
+      "processingTime": "12 minutes",
+      "office": "Office of the Municipal Mayor – Special Services Division – Sports Unit"
+    },
+    {
+      "id": "sports-services",
+      "title": "Availing of Sports Services (Referees, Coach, Trainor)",
+      "category": "Sports",
+      "categoryId": "sports",
+      "description": "Request a referee, coach, or trainor for a sporting event or activity.",
+      "fee": null,
+      "processingTime": "1 day, 25 minutes",
+      "office": "Office of the Municipal Mayor – Special Services Division – Sports Unit"
     }
   ]
 }

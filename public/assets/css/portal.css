@@ -101,6 +101,30 @@
   box-shadow: 0 0 0 3px var(--color-kapwa-brand-100);
 }
 
+.search-page-box {
+  position: relative;
+}
+.search-page-input {
+  width: 100%;
+  padding: 16px 60px 16px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--color-kapwa-border-weak);
+  background: var(--color-kapwa-bg-surface);
+  color: var(--color-kapwa-text-default);
+  font-size: 1rem;
+  transition: border-color var(--duration-kapwa-200) var(--ease-kapwa-out);
+}
+.search-page-input:focus {
+  outline: none;
+  border-color: var(--color-kapwa-brand-600);
+  box-shadow: 0 0 0 3px var(--color-kapwa-brand-100);
+}
+.search-page-box .search-submit-btn {
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+}
+
 /* Top utility bar */
 .topbar {
   background: var(--color-kapwa-neutral-50);
@@ -128,6 +152,21 @@
   align-items: center;
   gap: 4px;
 }
+.topbar-hotline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-kapwa-red-600);
+  color: var(--color-kapwa-neutral-50) !important;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  line-height: 1;
+}
+.topbar-hotline-badge:hover {
+  background: var(--color-kapwa-red-700);
+}
 /* Main header */
 .site-header-v2 {
   background: var(--color-kapwa-neutral-50);
@@ -147,9 +186,27 @@
   flex-shrink: 0;
 }
 .brand-v2 img {
-  height: 52px;
+  height: 38px;
   width: auto;
   display: block;
+  flex-shrink: 0;
+}
+.brand-v2-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.brand-v2-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-kapwa-gray-900);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.brand-v2-tagline {
+  font-size: 0.75rem;
+  color: var(--color-kapwa-gray-500);
+  line-height: 1.15;
 }
 .main-nav-v2 {
   flex: 1;
@@ -291,6 +348,25 @@
 .info-strip-v2-item i {
   opacity: 0.85;
 }
+.info-strip-sep {
+  opacity: 0.3;
+}
+.info-strip-ticker {
+  display: inline-block;
+  height: 1.25em;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.info-strip-ticker-track {
+  display: flex;
+  flex-direction: column;
+}
+.info-strip-ticker-item {
+  display: flex;
+  align-items: center;
+  height: 1.25em;
+  white-space: nowrap;
+}
 
 /* Hero */
 .portal-hero {
@@ -329,10 +405,32 @@
 }
 .portal-hero-search input {
   width: 100%;
-  padding: 14px 16px;
-  border-radius: 10px;
+  height: 56px;
+  padding: 0 64px 0 22px;
+  border-radius: 999px;
   border: none;
-  font-size: 1rem;
+  font-size: 1.0625rem;
+}
+.search-submit-btn {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-kapwa-bg-brand-default);
+  color: var(--color-kapwa-text-inverse);
+  font-size: 1.0625rem;
+  cursor: pointer;
+  transition: background var(--duration-kapwa-200) var(--ease-kapwa-out);
+}
+.search-submit-btn:hover {
+  background: var(--color-kapwa-bg-brand-hover);
 }
 .search-autocomplete-list {
   position: absolute;
@@ -461,6 +559,71 @@
   color: var(--color-kapwa-text-support);
   margin: 0;
 }
+.glance-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.glance-header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-kapwa-text-strong);
+  margin: 0;
+}
+.glance-view-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-kapwa-text-link);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.glance-view-link:hover {
+  text-decoration: underline;
+}
+
+/* News section & page */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.news-grid--page {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.news-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  color: inherit;
+}
+.news-card-source {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--color-kapwa-brand-700);
+}
+.news-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-kapwa-text-strong);
+  margin: 0;
+  line-height: 1.4;
+}
+.news-card-date {
+  font-size: 0.8125rem;
+  color: var(--color-kapwa-text-weak);
+  margin-top: auto;
+}
+.news-card--loading {
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
 
 /* Service category grid */
 .service-cat-grid {
@@ -481,6 +644,24 @@
 .service-cat-card:hover {
   box-shadow: var(--shadow-kapwa-md);
   border-color: var(--color-kapwa-brand-600);
+}
+.service-cat-empty {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  text-align: center;
+}
+.service-cat-empty .service-cat-icon {
+  margin: 0 auto 16px;
+}
+.service-cat-empty h3 {
+  margin: 0 0 10px;
+}
+.service-cat-empty p {
+  color: var(--color-kapwa-text-support);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0;
 }
 .service-cat-icon {
   width: 40px;
@@ -598,6 +779,20 @@
 .aborlan-map-marker {
   background: none;
   border: none;
+  position: relative;
+}
+.aborlan-map-marker svg {
+  display: block;
+}
+.aborlan-map-marker i {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 30px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1;
 }
 .realtime-map-loading {
   display: flex;
@@ -631,11 +826,61 @@
 }
 .realtime-weather-current i {
   font-size: 2rem;
-  color: var(--color-kapwa-orange-500);
 }
 .realtime-weather-temp {
   font-size: 1.5rem;
   font-weight: 700;
+}
+.realtime-forecast {
+  margin-top: 14px;
+}
+.realtime-forecast-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--color-kapwa-text-support);
+  margin-bottom: 8px;
+}
+.realtime-forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.realtime-forecast-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 4px;
+  border: 1px solid var(--color-kapwa-border-weak);
+  border-radius: 8px;
+  text-align: center;
+}
+.realtime-forecast-day-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-kapwa-text-default);
+}
+.realtime-forecast-day-date {
+  font-size: 0.6875rem;
+  color: var(--color-kapwa-text-support);
+}
+.realtime-forecast-day i {
+  font-size: 1.25rem;
+  margin: 4px 0;
+}
+.realtime-forecast-day-temps {
+  display: flex;
+  gap: 6px;
+  font-size: 0.8125rem;
+}
+.realtime-forecast-max {
+  font-weight: 700;
+  color: var(--color-kapwa-text-default);
+}
+.realtime-forecast-min {
+  color: var(--color-kapwa-text-support);
 }
 .realtime-weather-other {
   display: grid;
@@ -653,7 +898,6 @@
 }
 .realtime-weather-other-card i {
   font-size: 1.25rem;
-  color: var(--color-kapwa-text-support);
 }
 .realtime-weather-other-card > div {
   font-size: 0.8125rem;
@@ -938,11 +1182,24 @@
   margin-bottom: 10px;
 }
 .footer-v2-brand img {
-  height: 44px;
+  height: 38px;
+  width: auto;
+  flex-shrink: 0;
 }
 .footer-v2-brand-text {
-  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.footer-v2-brand-title {
+  font-size: 1.125rem;
+  font-weight: 800;
   color: var(--color-kapwa-neutral-50);
+  letter-spacing: -0.01em;
+}
+.footer-v2-brand-tagline {
+  font-size: 0.8125rem;
+  color: var(--color-kapwa-gray-400);
 }
 .footer-social-new {
   display: flex;
@@ -1040,6 +1297,9 @@
   .realtime-card--map,
   .realtime-card--hotlines {
     grid-area: auto;
+  }
+  .realtime-forecast-grid {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   }
   .gov-branch-grid {
     grid-template-columns: 1fr;

@@ -88,10 +88,14 @@ export default function Header() {
         <Link href="/" className="brand-v2">
           <img
             src="/assets/images/logo/better-aborlan-logo.svg"
-            alt="BetterAborlan.org"
-            width={130}
-            height={52}
+            alt=""
+            width={38}
+            height={41}
           />
+          <span className="brand-v2-text">
+            <span className="brand-v2-title">BetterAborlan</span>
+            <span className="brand-v2-tagline">A community-run portal for Aborlan</span>
+          </span>
         </Link>
 
         <nav
@@ -137,43 +141,27 @@ export default function Header() {
                   <Link href="/services/infrastructure">{t('dropdown-infrastructure')}</Link>
                 </li>
                 <li>
-                  <Link href="/services/education">{t('dropdown-education')}</Link>
-                </li>
-                <li>
                   <Link href="/services/public-safety">{t('dropdown-public-safety')}</Link>
                 </li>
                 <li>
                   <Link href="/services/environment">{t('dropdown-environment')}</Link>
                 </li>
-              </ul>
-            </li>
-            <li className={openDropdown === 1 ? 'dropdown-open' : ''}>
-              <Link
-                href="/government"
-                aria-haspopup="true"
-                aria-expanded={openDropdown === 1 ? 'true' : 'false'}
-                onClick={(e) => toggleDropdown(1, e)}
-              >
-                {t('nav-government')} <i className="bi bi-chevron-down chevron" aria-hidden="true"></i>
-              </Link>
-              <ul className="dropdown-menu">
                 <li>
-                  <Link href="/legislative">{t('nav-legislative')}</Link>
+                  <Link href="/services/tourism">{t('dropdown-tourism')}</Link>
                 </li>
                 <li>
-                  <Link href="/legislative/ordinance-framework">
-                    {t('dropdown-ordinance-framework')}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/legislative/resolution-framework">
-                    {t('dropdown-resolution-framework')}
-                  </Link>
+                  <Link href="/services/sports">{t('dropdown-sports')}</Link>
                 </li>
               </ul>
             </li>
             <li>
+              <Link href="/government">{t('nav-government')}</Link>
+            </li>
+            <li>
               <Link href="/statistics">{t('nav-statistics')}</Link>
+            </li>
+            <li>
+              <Link href="/news">{t('nav-news')}</Link>
             </li>
             <li>
               <Link href="/contact">{t('nav-contact')}</Link>

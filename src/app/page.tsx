@@ -5,7 +5,10 @@ import { Card } from '@bettergov/kapwa/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import SearchAutocomplete from '@/components/SearchAutocomplete';
 import RealTimeData from '@/components/RealTimeData';
+import NewsSection from '@/components/NewsSection';
+import StatCard from '@/components/StatCard';
 import { serviceCategories } from '@/data/serviceCategories';
+import demographics from '@data/demographics.json';
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -18,9 +21,9 @@ export default function HomePage() {
           <div className="portal-hero-text">
             <h1>{t('hero-welcome')}</h1>
             <p>{t('hero-subtitle')}</p>
-            <form className="portal-hero-search" role="search" onSubmit={(e) => e.preventDefault()}>
+            <div className="portal-hero-search">
               <SearchAutocomplete placeholder={t('hero-search-placeholder')} />
-            </form>
+            </div>
             <div className="portal-hero-tags">
               <span>{t('hero-popular')}</span>
               <Link href="/service-details/birth-certificate">{t('hero-birth-certificate')}</Link>
@@ -44,11 +47,11 @@ export default function HomePage() {
                 </span>
                 <span>{t('service-business')}</span>
               </Link>
-              <Link href="/services/education" className="popular-panel-card">
+              <Link href="/services/agriculture" className="popular-panel-card">
                 <span className="popular-panel-icon">
-                  <i className="bi bi-mortarboard-fill" aria-hidden="true"></i>
+                  <i className="bi bi-flower1" aria-hidden="true"></i>
                 </span>
-                <span>Education</span>
+                <span>{t('dropdown-agriculture')}</span>
               </Link>
               <Link href="/services/health" className="popular-panel-card">
                 <span className="popular-panel-icon">
@@ -68,26 +71,30 @@ export default function HomePage() {
       <section className="portal-section">
         <div className="container">
           <div className="portal-section-header">
-            <h2>Government Services</h2>
-            <p>Access official municipal services quickly and easily.</p>
+            <h2>{t('home-gov-services-title')}</h2>
+            <p>{t('home-gov-services-subtitle')}</p>
           </div>
           <div className="service-cat-grid">
-            {serviceCategories.map((cat) => (
-              <Card key={cat.id} hoverable className="service-cat-card">
-                <span className="service-cat-icon">
-                  <i className={`bi ${cat.icon}`} aria-hidden="true"></i>
-                </span>
-                <h3>{cat.title}</h3>
-                <ul>
-                  {cat.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <Link href={cat.href}>
-                  View All {cat.title} <i className="bi bi-arrow-right" aria-hidden="true"></i>
-                </Link>
-              </Card>
-            ))}
+            {serviceCategories.map((cat) => {
+              const catTitle = t(`dropdown-${cat.id}`);
+              return (
+                <Card key={cat.id} hoverable className="service-cat-card">
+                  <span className="service-cat-icon">
+                    <i className={`bi ${cat.icon}`} aria-hidden="true"></i>
+                  </span>
+                  <h3>{catTitle}</h3>
+                  <ul>
+                    {cat.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <Link href={cat.href}>
+                    {t('services-view-all')} {catTitle}{' '}
+                    <i className="bi bi-arrow-right" aria-hidden="true"></i>
+                  </Link>
+                </Card>
+              );
+            })}
           </div>
           <div className="portal-section-cta">
             <Link
@@ -100,62 +107,66 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Real-Time Data */}
+      {/* Aborlan at a Glance */}
       <section className="portal-section portal-section--alt">
         <div className="container">
+          <div className="glance-header">
+            <h2>{t('home-glance-title')}</h2>
+            <Link href="/statistics" className="glance-view-link">
+              {t('home-glance-view-profile')} <i className="bi bi-arrow-right" aria-hidden="true"></i>
+            </Link>
+          </div>
+          <div className="home-stats-v2-grid">
+            <StatCard
+              icon="bi-people-fill"
+              value={demographics.population.toLocaleString()}
+              label={t('stats-population-label')}
+              source={`${demographics.population_year} census population`}
+            />
+            <StatCard
+              icon="bi-geo-alt-fill"
+              value={demographics.barangay_count.toString()}
+              label={t('stats-barangays-label')}
+              source={t('gov-branch-barangays-desc')}
+            />
+            <StatCard
+              icon="bi-award-fill"
+              value={demographics.income_classification}
+              label={t('stats-income-label')}
+              source={t('stats-source-psa-2020')}
+            />
+            <StatCard
+              icon="bi-rulers"
+              value={`${demographics.land_area_km2} km²`}
+              label={t('stats-land-area-label')}
+              source={t('stats-source-psa-2020')}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Real-Time Data */}
+      <section className="portal-section">
+        <div className="container">
           <div className="portal-section-header">
-            <h2>Real-Time Data Services</h2>
+            <h2>{t('home-realtime-title')}</h2>
             <p>{t('weather-map-title')}</p>
           </div>
           <RealTimeData />
         </div>
       </section>
 
-      {/* Government of Aborlan */}
-      <section className="portal-section">
-        <div className="container">
-          <div className="portal-section-header">
-            <h2>Government of Aborlan</h2>
-            <p>How the municipal government of Aborlan is organized.</p>
-          </div>
-          <div className="gov-branch-grid">
-            <Card className="gov-branch-card">
-              <span className="gov-branch-icon">
-                <i className="bi bi-star-fill" aria-hidden="true"></i>
-              </span>
-              <h3>Executive</h3>
-              <p>Office of the Municipal Mayor and Vice Mayor, and their line departments.</p>
-            </Card>
-            <Card className="gov-branch-card">
-              <span className="gov-branch-icon">
-                <i className="bi bi-bank2" aria-hidden="true"></i>
-              </span>
-              <h3>Legislative</h3>
-              <p>Sangguniang Bayan ng Aborlan — the municipal council that enacts ordinances.</p>
-              <Link href="/legislative">
-                View Legislative <i className="bi bi-arrow-right" aria-hidden="true"></i>
-              </Link>
-            </Card>
-            <Card className="gov-branch-card">
-              <span className="gov-branch-icon">
-                <i className="bi bi-signpost-split-fill" aria-hidden="true"></i>
-              </span>
-              <h3>Barangays</h3>
-              <p>{t('stats-barangays-source')} — the local administrative units of Aborlan.</p>
-            </Card>
-          </div>
-        </div>
-      </section>
+      <NewsSection />
 
       {/* Directory banner */}
       <div className="directory-banner">
         <div className="container directory-banner-inner">
           <div>
-            <h2>Official Directory</h2>
-            <p>Find contact information for Aborlan officials, offices, and barangays.</p>
+            <h2>{t('home-directory-title')}</h2>
+            <p>{t('home-directory-subtitle')}</p>
           </div>
           <Link href="/government" className="directory-banner-btn">
-            View Directory
+            {t('home-directory-btn')}
           </Link>
         </div>
       </div>

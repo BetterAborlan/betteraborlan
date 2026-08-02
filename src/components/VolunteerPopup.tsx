@@ -149,7 +149,7 @@ export default function VolunteerPopup() {
             src="/assets/images/logo/better-aborlan-logo-white.svg"
             alt="BetterAborlan.org"
             className="vol-popup-logo"
-            width={210}
+            width={78}
             height={84}
             draggable={false}
           />

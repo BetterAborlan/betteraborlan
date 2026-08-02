@@ -7178,32 +7178,6 @@ cklist with Icons - Proper Indentation */
   color: #9ca3af;
 }
 
-.search-submit-btn {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, var(--color-primary) 0%, #0044cc 100%);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.125rem;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 50, 160, 0.3);
-}
-
-.search-submit-btn:hover {
-  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #003399 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 50, 160, 0.4);
-}
-
-.search-submit-btn:active {
-  transform: translateY(0);
-}
-
 .home-search-tags {
   margin-top: var(--spacing-sm);
   display: flex;
@@ -9860,8 +9834,8 @@ a.a11y-contact-item:hover i {
   position: relative;
   z-index: 1;
   display: block;
-  width: 210px;
-  height: auto;
+  height: 84px;
+  width: auto;
   max-width: 72%;
   margin: 0 auto 18px;
   /* Subtle drop-shadow so the white mark reads against any bg bleed */
@@ -10020,7 +9994,7 @@ a.a11y-contact-item:hover i {
   }
 
   .vol-popup-logo {
-    width: 170px;
+    height: 68px;
   }
 
   .vol-popup-title {

@@ -1,13 +1,21 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { CyclingTicker, TickerText } from '@/components/Ticker';
 
 // Approximate Aborlan poblacion coordinates, used only for the weather widget.
 const ABORLAN_LAT = 9.4167;
 const ABORLAN_LON = 118.5167;
 
+const CURRENCIES = ['USD', 'JPY', 'GBP', 'SGD', 'AUD', 'EUR'] as const;
+
+function formatRate(cur: string, rates: Record<string, number> | null) {
+  if (!rates?.PHP || !rates[cur]) return `1 ${cur} = ₱ --`;
+  return `1 ${cur} = ₱ ${(rates.PHP / rates[cur]).toFixed(2)}`;
+}
+
 export default function InfoBar() {
-  const [rate, setRate] = useState('1 USD = ₱ --');
+  const [rates, setRates] = useState<Record<string, number> | null>(null);
   const [temp, setTemp] = useState('--°C');
   const [dateStr, setDateStr] = useState('--- --, ----');
   const [timeStr, setTimeStr] = useState('--:-- --');
@@ -50,7 +58,7 @@ export default function InfoBar() {
     fetch('https://open.er-api.com/v6/latest/USD')
       .then((r) => r.json())
       .then((data) => {
-        if (data?.rates?.PHP) setRate(`1 USD = ₱ ${data.rates.PHP.toFixed(2)}`);
+        if (data?.rates?.PHP) setRates(data.rates);
       })
       .catch(() => {});
 
@@ -69,14 +77,26 @@ export default function InfoBar() {
   return (
     <div className="info-strip-v2" role="complementary" aria-label="Real-time information">
       <div className="container info-strip-v2-inner" aria-live="polite" aria-atomic="false">
-        <span className="info-strip-v2-item" aria-label="Exchange rate">
-          <i className="bi bi-currency-exchange" aria-hidden="true" /> {rate}
+        <span
+          className="info-strip-v2-item"
+          aria-label="Currency exchange rates, cycling every 3 seconds"
+        >
+          <i className="bi bi-currency-exchange" aria-hidden="true" />
+          <CyclingTicker items={CURRENCIES.map((cur) => formatRate(cur, rates))} />
+        </span>
+        <span className="info-strip-sep" aria-hidden="true">
+          |
         </span>
         <span className="info-strip-v2-item" aria-label="Current weather in Aborlan">
-          <i className="bi bi-thermometer-half" aria-hidden="true" /> Aborlan {temp}
+          <i className="bi bi-thermometer-half" aria-hidden="true" />
+          <TickerText value={`Aborlan ${temp}`} />
+        </span>
+        <span className="info-strip-sep" aria-hidden="true">
+          |
         </span>
         <span className="info-strip-v2-item" aria-label="Philippine Date and Time">
-          <i className="bi bi-calendar3" aria-hidden="true" /> {dateStr} • {timeStr} PHT
+          <i className="bi bi-calendar3" aria-hidden="true" />
+          <TickerText value={`${dateStr} • ${timeStr} PHT`} />
         </span>
       </div>
     </div>
