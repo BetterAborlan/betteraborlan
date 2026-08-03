@@ -49,12 +49,15 @@ jobs:
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy (production)
-        # vercel deploy's upload step intermittently aborts against Vercel's
-        # API (transient, not size/version related — see repo notes). Retry
-        # a few times with backoff before failing the job.
+        # Without --archive=tgz, the CLI uploads every build output file as
+        # its own request and blows through Vercel's free-plan per-file
+        # upload quota ("Too many requests ... code: api-upload-free"),
+        # surfacing as an opaque "Upload aborted". Bundling into one tgz
+        # upload avoids that entirely. Retry loop stays as a safety net for
+        # genuine transient network blips.
         run: |
           for i in 1 2 3; do
-            vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} && exit 0
+            vercel deploy --prebuilt --prod --archive=tgz --token=${{ secrets.VERCEL_TOKEN }} && exit 0
             echo "Deploy attempt $i failed, retrying in 15s..."
             sleep 15
           done
