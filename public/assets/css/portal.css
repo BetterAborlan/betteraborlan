@@ -8,9 +8,20 @@
 /* Coming-soon page. Tailwind's px/py utilities live in a lower-priority
    @layer, so the global unlayered `* { padding: 0 }` reset in style.css
    beats them regardless of specificity — same bug class as the old CTA
-   button padding issue. Real padding here instead of Tailwind px-*/py-*. */
+   button padding issue. Explicit height + longhand padding here instead
+   of Tailwind px-*/py-*, styled to match .coming-soon-social's icon
+   buttons below (same radius, same translucent background). */
 .coming-soon-btn {
-  padding: 10px 20px;
+  height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: none !important;
+  color: var(--color-kapwa-text-inverse) !important;
+}
+.coming-soon-btn:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
 }
 .coming-soon-social {
   display: flex;

@@ -21,16 +21,12 @@ export default function ComingSoon() {
         A community-run transparency portal for Aborlan, Palawan — government services,
         officials, and public data, all in one place. Launching soon.
       </p>
-      {/* Inline color styles here for the same reason as the h1 above:
-          style.css has a global `a { color: var(--color-primary) }` rule
-          that beats any Tailwind text-color utility regardless of specificity. */}
       <div className="flex flex-wrap items-center justify-center gap-4">
         <a
           href="https://github.com/BetterAborlan/betteraborlan"
           target="_blank"
           rel="noopener noreferrer"
-          className="coming-soon-btn coming-soon-btn--solid inline-flex items-center gap-2 rounded-md bg-[var(--color-kapwa-neutral-50)] font-semibold transition-colors hover:bg-kapwa-blue-50"
-          style={{ color: 'var(--color-kapwa-brand-800)' }}
+          className="coming-soon-btn inline-flex items-center gap-2 font-semibold transition-colors"
         >
           <i className="bi bi-github" aria-hidden="true"></i> Follow progress
         </a>
@@ -38,15 +34,13 @@ export default function ComingSoon() {
           href="https://discord.gg/Fsgdh7cJvw"
           target="_blank"
           rel="noopener noreferrer"
-          className="coming-soon-btn inline-flex items-center gap-2 rounded-md border border-white/30 font-semibold transition-colors hover:bg-white/10"
-          style={{ color: 'var(--color-kapwa-text-inverse)' }}
+          className="coming-soon-btn inline-flex items-center gap-2 font-semibold transition-colors"
         >
           <i className="bi bi-discord" aria-hidden="true"></i> Join the Discord
         </a>
         <a
           href="mailto:info@betteraborlan.org"
-          className="coming-soon-btn inline-flex items-center gap-2 rounded-md border border-white/30 font-semibold transition-colors hover:bg-white/10"
-          style={{ color: 'var(--color-kapwa-text-inverse)' }}
+          className="coming-soon-btn inline-flex items-center gap-2 font-semibold transition-colors"
         >
           <i className="bi bi-envelope" aria-hidden="true"></i> info@betteraborlan.org
         </a>
