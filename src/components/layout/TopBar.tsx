@@ -1,11 +1,23 @@
 'use client';
 
 import Link from 'next/link';
+import { MarqueeTicker } from '@/components/Ticker';
+import { hotlines } from '@/data/hotlines';
+
+const HOTLINE_ITEMS = hotlines.map((h) => `${h.label}: ${h.numbers?.join(' / ') ?? 'TBD'}`);
 
 export default function TopBar() {
   return (
     <div className="topbar">
       <div className="container topbar-inner">
+        <Link
+          href="/contact#hotlines"
+          className="topbar-ticker"
+          aria-label="Emergency hotlines"
+        >
+          <i className="bi bi-telephone-fill" aria-hidden="true"></i>
+          <MarqueeTicker items={HOTLINE_ITEMS} />
+        </Link>
         <a
           href="https://github.com/BetterAborlan/betteraborlan"
           className="topbar-join"
@@ -18,10 +30,6 @@ export default function TopBar() {
         <a href="https://aborlanpalawan.gov.ph" target="_blank" rel="noopener noreferrer">
           Official Aborlan Website
         </a>
-        <Link href="/contact#hotlines" className="topbar-hotline-badge">
-          <i className="bi bi-telephone-fill" aria-hidden="true"></i>
-          Emergency Hotlines
-        </Link>
       </div>
     </div>
   );

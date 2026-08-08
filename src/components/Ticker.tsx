@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 
 // Must match .info-strip-ticker-item's height in portal.css.
 export const TICKER_ITEM_HEIGHT_EM = 1.25;
@@ -154,6 +154,28 @@ export function AutoWidthTicker({
       >
         {items[index]}
       </span>
+    </span>
+  );
+}
+
+// Classic horizontal marquee: a continuously-scrolling single line, not the
+// vertical slide the other tickers above do. Fills whatever flex space its
+// container gives it (see .topbar-ticker) rather than sizing to content, so
+// it never forces its row wider. The track renders `items` twice back to
+// back and animates translateX(0 -> -50%) — since the second half is an
+// exact duplicate of the first, that's a seamless, JS-free loop; no width
+// measurement needed. Speed and iteration count follow prefers-reduced-motion
+// globally (accessibility.css sets `animation-duration: 0.01ms !important`).
+export function MarqueeTicker({ items, separator = '   •   ' }: { items: string[]; separator?: string }) {
+  const line = items.join(separator);
+  return (
+    <span className="topbar-ticker-track" aria-hidden="true">
+      {[0, 1].map((rep) => (
+        <Fragment key={rep}>
+          <span className="topbar-ticker-item">{line}</span>
+          <span className="topbar-ticker-item">{separator}</span>
+        </Fragment>
+      ))}
     </span>
   );
 }
