@@ -151,9 +151,15 @@ const translations: Record<string, Record<string, string>> = {
     'gov-elected-officials-subtitle':
       'The mayor, vice mayor, and other leaders representing Aborlan for the 2025–2028 term.',
     'gov-councilors-pending': 'Sangguniang Bayan member roster pending verification.',
-    'gov-sb-members': 'Sangguniang Bayan Members',
-    'gov-officials-footnote':
-      'Officials assumed office June 30, 2025. Mayor and Vice Mayor are confirmed from news reports; councilor names are from initial election results and may change once officially proclaimed.',
+    'gov-sb-members': 'Sangguniang Bayan Members *',
+    'gov-footnotes-heading': 'Sources & Notes',
+    'gov-footnote-mayor-vp':
+      'Mayor and Vice Mayor — confirmed across multiple independent sources (PIA, PNA, Wikipedia, palawan-news.com); assumed office June 30, 2025.',
+    'gov-footnote-rep': 'Representative — confirmed via Wikipedia and palawandailynews.com.',
+    'gov-footnote-councilors':
+      "* Sangguniang Bayan members — Rappler's 2025 election results (COMELEC Media Server tally), not yet cross-checked against the final COMELEC proclamation; names may change.",
+    'gov-footnote-sk-ipmr':
+      '* SK Federation President and IPMR — provided directly by the project maintainers; no independent source found to corroborate. Worth confirming against LGU, SK Federation, or NCIP records.',
     'gov-barangays-page-subtitle':
       'Aborlan is made up of 19 barangays, each with its own 2024 census population.',
     'gov-barangays-directory-pending':
@@ -471,9 +477,15 @@ const translations: Record<string, Record<string, string>> = {
     'gov-elected-officials-subtitle':
       'Ang punong bayan, bise punong bayan, at iba pang lider na kumakatawan sa Aborlan para sa termino 2025–2028.',
     'gov-councilors-pending': 'Hinihintay ang beripikasyon ng listahan ng Sangguniang Bayan.',
-    'gov-sb-members': 'Mga Kagawad ng Sangguniang Bayan',
-    'gov-officials-footnote':
-      'Umupo sa katungkulan ang mga opisyal noong Hunyo 30, 2025. Nakumpirma ang Punong Bayan at Bise Punong Bayan mula sa mga balita; ang mga pangalan ng kagawad ay mula sa unang resulta ng eleksyon at maaaring magbago kapag opisyal nang na-proklama.',
+    'gov-sb-members': 'Mga Kagawad ng Sangguniang Bayan *',
+    'gov-footnotes-heading': 'Mga Pinagmulan at Tala',
+    'gov-footnote-mayor-vp':
+      'Punong Bayan at Bise Punong Bayan — nakumpirma sa maraming independiyenteng pagkukunan (PIA, PNA, Wikipedia, palawan-news.com); umupo sa katungkulan noong Hunyo 30, 2025.',
+    'gov-footnote-rep': 'Kinatawan — nakumpirma sa Wikipedia at palawandailynews.com.',
+    'gov-footnote-councilors':
+      "* Mga kagawad ng Sangguniang Bayan — resulta ng eleksyon 2025 ng Rappler (tally ng COMELEC Media Server), hindi pa na-cross-check sa huling proklamasyon ng COMELEC; maaaring magbago ang mga pangalan.",
+    'gov-footnote-sk-ipmr':
+      '* Pangulo ng SK Federation at IPMR — direktang ibinigay ng mga tagapangasiwa ng proyekto; walang independiyenteng pagkukunan na natagpuan para kumpirmahin. Karapat-dapat kumpirmahin sa LGU, SK Federation, o mga rekord ng NCIP.',
     'gov-barangays-page-subtitle':
       'Binubuo ang Aborlan ng 19 barangay, bawat isa may sariling populasyon batay sa 2024 census.',
     'gov-barangays-directory-pending':

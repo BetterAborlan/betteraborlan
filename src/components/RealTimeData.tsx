@@ -214,15 +214,11 @@ export default function RealTimeData() {
         <div className="realtime-forecast">
           <div className="realtime-forecast-title">{t('forecast-5day-title')}</div>
           <div className="realtime-forecast-grid">
-            {(forecast ?? Array.from({ length: 5 }, () => null)).map((day, i) => {
-              return (
+            {(forecast ? forecast.slice(1) : Array.from({ length: 4 }, () => null)).map(
+              (day, i) => (
                 <div key={i} className="realtime-forecast-day">
                   <div className="realtime-forecast-day-label">
-                    {i === 0
-                      ? t('forecast-today')
-                      : day
-                        ? WEEKDAYS[language][day.date.getDay()]
-                        : '--'}
+                    {day ? WEEKDAYS[language][day.date.getDay()] : '--'}
                   </div>
                   <div className="realtime-forecast-day-date">
                     {day
@@ -239,8 +235,8 @@ export default function RealTimeData() {
                     </span>
                   </div>
                 </div>
-              );
-            })}
+              )
+            )}
           </div>
         </div>
 

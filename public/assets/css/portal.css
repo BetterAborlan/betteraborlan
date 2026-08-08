@@ -790,6 +790,15 @@
   border: 1px solid var(--color-kapwa-border-weak);
   border-radius: 8px;
   text-align: center;
+  transition:
+    border-color var(--duration-kapwa-200) var(--ease-kapwa-out),
+    box-shadow var(--duration-kapwa-200) var(--ease-kapwa-out),
+    transform var(--duration-kapwa-200) var(--ease-kapwa-out);
+}
+.realtime-forecast-day:hover {
+  border-color: var(--color-kapwa-brand-700);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 .realtime-forecast-day-label {
   font-size: 0.75rem;
@@ -829,6 +838,15 @@
   padding: 10px 12px;
   border: 1px solid var(--color-kapwa-border-weak);
   border-radius: 8px;
+  transition:
+    border-color var(--duration-kapwa-200) var(--ease-kapwa-out),
+    box-shadow var(--duration-kapwa-200) var(--ease-kapwa-out),
+    transform var(--duration-kapwa-200) var(--ease-kapwa-out);
+}
+.realtime-weather-other-card:hover {
+  border-color: var(--color-kapwa-brand-700);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 .realtime-weather-other-card i {
   font-size: 1.25rem;
@@ -1044,10 +1062,10 @@
 }
 
 /* Sources & notes footer */
-.stats-footnotes {
+.sources-footnote {
   padding: 24px 28px;
 }
-.stats-footnotes h3 {
+.sources-footnote h3 {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -1055,7 +1073,7 @@
   color: var(--color-kapwa-text-support);
   margin: 0 0 12px;
 }
-.stats-footnotes ul {
+.sources-footnote ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1063,7 +1081,7 @@
   flex-direction: column;
   gap: 8px;
 }
-.stats-footnotes li {
+.sources-footnote li {
   font-size: 0.8125rem;
   line-height: 1.5;
   color: var(--color-kapwa-text-support);
