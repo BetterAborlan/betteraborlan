@@ -144,16 +144,10 @@
 }
 .topbar-inner {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   gap: 20px;
   padding: 7px 0;
-}
-.topbar-inner > a:not(.topbar-ticker) {
-  /* The ticker (first child) is the only item allowed to shrink -- these
-     fixed links keep their natural size and never wrap or break mid-text,
-     so the row never displaces onto a second line. */
-  flex-shrink: 0;
-  white-space: nowrap;
 }
 .topbar a {
   color: var(--color-kapwa-text-support);
@@ -169,37 +163,20 @@
   align-items: center;
   gap: 4px;
 }
-/* Emergency-hotlines ticker tape: leftmost, fills whatever space the fixed
-   links (Join Us / About / Official site) don't need. flex-shrink is what
-   lets the topbar avoid wrapping under white-space:nowrap items above --
-   this is the one thing that gives, shrinking (and clipping its scrolling
-   text via overflow:hidden) instead of forcing the row wider. */
-.topbar-ticker {
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--color-kapwa-red-600) !important;
-  font-weight: 600;
-}
-.topbar-ticker-track {
+.topbar-hotline-badge {
   display: inline-flex;
-  white-space: nowrap;
-  animation: topbar-ticker-scroll 22s linear infinite;
-  will-change: transform;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-kapwa-red-600);
+  color: var(--color-kapwa-neutral-50) !important;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+  line-height: 1;
 }
-.topbar-ticker-item {
-  white-space: nowrap;
-}
-@keyframes topbar-ticker-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+.topbar-hotline-badge:hover {
+  background: var(--color-kapwa-red-700);
 }
 /* Main header */
 .site-header-v2 {
@@ -1564,9 +1541,6 @@
     display: none;
   }
   .header-inner-v2 {
-    gap: 12px;
-  }
-  .topbar-inner {
     gap: 12px;
   }
   .service-cat-grid {

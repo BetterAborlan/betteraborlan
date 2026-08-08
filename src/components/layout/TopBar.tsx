@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { MarqueeTicker } from '@/components/Ticker';
+import { AutoWidthTicker } from '@/components/Ticker';
 import { hotlines } from '@/data/hotlines';
 
 const HOTLINE_ITEMS = hotlines.map((h) => `${h.label}: ${h.numbers?.join(' / ') ?? 'TBD'}`);
@@ -12,11 +12,11 @@ export default function TopBar() {
       <div className="container topbar-inner">
         <Link
           href="/contact#hotlines"
-          className="topbar-ticker"
-          aria-label="Emergency hotlines"
+          className="topbar-hotline-badge"
+          aria-label="Emergency hotlines, cycling every 5 seconds"
         >
           <i className="bi bi-telephone-fill" aria-hidden="true"></i>
-          <MarqueeTicker items={HOTLINE_ITEMS} />
+          <AutoWidthTicker items={HOTLINE_ITEMS} intervalMs={5000} />
         </Link>
         <a
           href="https://github.com/BetterAborlan/betteraborlan"
