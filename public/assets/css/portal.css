@@ -787,23 +787,12 @@
 .realtime-map-container .leaflet-popup-tip {
   box-shadow: var(--shadow-kapwa-md);
 }
-.aborlan-map-marker {
-  background: none;
-  border: none;
-  position: relative;
-}
-.aborlan-map-marker svg {
-  display: block;
-}
-.aborlan-map-marker i {
-  position: absolute;
-  top: 6px;
-  left: 0;
-  width: 30px;
-  text-align: center;
-  color: #ffffff;
-  font-size: 14px;
-  line-height: 1;
+.realtime-map-container .leaflet-tooltip {
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--color-kapwa-text-default);
+  border-color: var(--color-kapwa-border-weak);
+  box-shadow: var(--shadow-kapwa-xs);
 }
 .realtime-map-loading {
   display: flex;

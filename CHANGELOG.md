@@ -2,6 +2,10 @@
 
 ## [1.0.0](https://github.com/BetterAborlan/betteraborlan/compare/v0.4.1...v1.0.0) (2026-08-08)
 
+## [0.5.0-develop.2](https://github.com/BetterAborlan/betteraborlan/compare/v0.5.0-develop.1...v0.5.0-develop.2) (2026-08-08)
+
+## [0.5.0-develop.1](https://github.com/BetterAborlan/betteraborlan/compare/v0.4.1-develop.1...v0.5.0-develop.1) (2026-08-08)
+
 ## [0.4.1](https://github.com/BetterAborlan/betteraborlan/compare/v0.4.0...v0.4.1) (2026-08-03)
 
 ## [0.4.1-develop.1](https://github.com/BetterAborlan/betteraborlan/compare/v0.4.0...v0.4.1-develop.1) (2026-08-03)
