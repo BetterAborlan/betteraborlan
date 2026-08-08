@@ -19,7 +19,6 @@ If you added or changed a value in `data/`, what's the source? (Skip this sectio
 - [ ] Commit messages follow [Conventional Commits](../CONTRIBUTING.md#commit-message-format-conventional-commits)
 - [ ] `npm run lint` passes
 - [ ] `npm run build` passes
-- [ ] Targets the `develop` branch (not `main`)
 - [ ] Checked on a mobile viewport, if this is a UI change
 - [ ] No fabricated/guessed data — unverified fields stay `null` with a sourcing note
 

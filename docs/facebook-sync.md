@@ -49,9 +49,14 @@ In **GitHub → Settings → Secrets and variables → Actions**:
 | `FB_PAGE_ID`      | **Variable** | The page's numeric ID (public, safe as a variable)  |
 | `FB_ACCESS_TOKEN` | **Secret**   | The Page / System User access token                 |
 
-No FTP/cPanel setup is needed here — the workflow commits the updated
-`data/news.json` straight to `develop`, and the existing `deploy.yml`
-pipeline picks it up and ships it to the preview alias like any other push.
+No FTP/cPanel setup is needed here. Note for whoever recreates the scheduler
+workflow: it used to commit `data/news.json` straight to `develop` and ride
+`deploy.yml`'s alias re-point. That branch is gone — `main` is now the only
+branch, and it's protected (PR required, enforced for admins, no direct
+push), so a bot token can't push straight to it either. The recreated
+workflow needs to open a PR instead (e.g. `peter-evans/create-pull-request`),
+optionally auto-merged once `lint-and-build` passes, rather than committing
+directly.
 
 ## How it behaves (reliability guarantees)
 
