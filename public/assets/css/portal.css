@@ -191,9 +191,10 @@
 }
 .header-inner-v2 {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 12px 24px;
   padding: 16px 0;
 }
 .brand-v2 {
@@ -1536,6 +1537,9 @@
   }
 }
 @media (max-width: 640px) {
+  .brand-v2-tagline {
+    display: none;
+  }
   .service-cat-grid {
     grid-template-columns: 1fr;
   }
