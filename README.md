@@ -6,7 +6,7 @@ Civic transparency portal for LGU Aborlan, Palawan — government services direc
 [![Updated Badge](https://badges.pufler.dev/updated/BetterAborlan/betteraborlan)](https://github.com/BetterAborlan/betteraborlan/)
 [![Visits Badge](https://badges.pufler.dev/visits/BetterAborlan/betteraborlan)](https://github.com/BetterAborlan/betteraborlan/)
 
-![Version](https://img.shields.io/badge/version-0.1.0-green)
+![Version](https://img.shields.io/github/package-json/v/BetterAborlan/betteraborlan?color=green)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
@@ -43,11 +43,15 @@ Commit messages must follow [Conventional Commits](https://www.conventionalcommi
 
 Every push to `main` runs [semantic-release](https://semantic-release.gitbook.io/) (`.releaserc.json`, `.github/workflows/release.yml`): it reads the commits since the last release, decides the next version (`fix` → patch, `feat` → minor, `BREAKING CHANGE:` in the body → major), bumps `package.json`, writes `CHANGELOG.md`, tags the release, opens a GitHub Release, then deploys the result to Vercel production. No manual version bumping, ever.
 
-`develop` is also a semantic-release channel — configured in `.releaserc.json` as a **prerelease branch** of `main` (e.g. `0.3.1-develop.1`). Every push to `develop` with releasable commits since its last prerelease bumps `package.json` there too, tags it, and opens a GitHub prerelease, before the preview deploy runs. This keeps `develop`'s version meaningful on its own instead of silently drifting from whatever `main` last shipped.
+`develop` is also a semantic-release channel — configured in `.releaserc.json` as a **prerelease branch** of `main` (e.g. `1.2.1-develop.1`). Every push to `develop` with releasable commits since its last prerelease bumps `package.json` there too, tags it, and opens a GitHub prerelease, before the preview deploy runs. This keeps `develop`'s version meaningful on its own instead of silently drifting from whatever `main` last shipped.
+
+`develop`'s own CI pushes that `chore(release) [skip ci]` commit back to `develop` right after your push lands — if you push to `develop` and it gets rejected as non-fast-forward a few seconds later, that's why; `git fetch && git merge origin/develop` and push again.
+
+**Never hand-edit `package.json`'s version or push a tag directly to `main`.** Doing that once (to mark the v1.0.0 launch) desynced `main` and `develop`'s independent version lineages and caused real merge conflicts in `package.json`/`package-lock.json`/`CHANGELOG.md` the next time `develop` merged in. If a version needs to jump outside normal bumping, do it as a real commit with a `BREAKING CHANGE:` footer through the normal `develop` → PR → `main` path instead, so semantic-release computes it and both lineages stay in sync.
 
 ## Branches & environments
 
-- **`main`** → production. Every merge here triggers a release (see above) and a prod deploy.
+- **`main`** → production. Protected: PRs only (enforced for admins too, no direct push), `lint-and-build` must pass against an up-to-date branch, no force-push/delete. Every merge here triggers a release (see above) and a prod deploy.
 - **`develop`** → deploys as a standard Vercel Preview on every push (after the prerelease step above), then `deploy.yml` re-points a fixed alias, **`https://betteraborlan-dev.vercel.app`**, at that fresh deployment. That's the one stable "dev site" URL — bookmark that, not the raw per-deploy `*.vercel.app` hash URL, which changes every push. (This is deliberately not Vercel's automatic `-git-develop-` alias — that one is only maintained by Vercel's own git-integration builds, which are disabled in favor of this workflow; see the comment in `deploy.yml` for why.)
 - Pull requests into `main` get their own ephemeral Vercel preview URL, commented on the PR.
 
