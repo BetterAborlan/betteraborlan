@@ -54,8 +54,6 @@ Trunk-based — one long-lived branch:
 
 Day to day: branch off `main`, open a PR into `main`, get the preview, merge → semantic-release cuts a version and ships it to production.
 
-(This repo used to run a second long-lived `develop` branch with its own prerelease channel and fixed preview alias, GitFlow-style. Dropped it — that split exists to serve projects maintaining multiple parallel versions, e.g. a library patching v1.x while developing v2.x. A continuously-deployed website isn't that, and the two-branch setup mostly produced version-lineage drift and merge conflicts between the branches' independent semantic-release commits instead of buying anything. PR previews already cover what the fixed dev alias was for.)
-
 ## Data policy — no fabricated civic data
 
 **Never fabricate or guess values for officials, statistics, ordinances, or contact info.** Everything under `data/*.json` leaves unverified fields `null`, with a `_status`/`_note` explaining what's missing and where to source it from (COMELEC, PSA, the official Aborlan LGU, or the Sangguniang Bayan). The homepage renders explicit "Pending verification" / empty states rather than placeholder numbers.
@@ -68,7 +66,7 @@ Day to day: branch off `main`, open a PR into `main`, get the preview, merge →
    - `VERCEL_TOKEN` — personal/team token from Vercel account settings
    - `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` — from `.vercel/project.json` after `vercel link`
    - `GITHUB_TOKEN` is automatic, no setup needed — semantic-release uses the one GitHub Actions injects.
-4. Set the env vars from `.env.local.example` in Vercel (Project → Settings → Environment Variables), scoped per environment (Production / Preview) as needed. **Add them as non-sensitive** — Vercel's "Sensitive" var type only resolves to its real value on Vercel's own build infra, not when `vercel build` runs via CLI/token the way our GitHub Actions do. A sensitive var shows up as the literal string `"[SENSITIVE]"` at build time instead of erroring, so this fails silently — worth knowing since it already happened once.
+4. Set the env vars from `.env.local.example` in Vercel (Project → Settings → Environment Variables), scoped per environment (Production / Preview) as needed. **Add them as non-sensitive** — Vercel's "Sensitive" var type only resolves to its real value on Vercel's own build infra, not when `vercel build` runs via CLI/token the way our GitHub Actions do. A sensitive var shows up as the literal string `"[SENSITIVE]"` at build time instead of erroring, so this fails silently.
 5. Open a PR into `main` → gets an ephemeral preview. Merge → `release.yml` versions and deploys to production.
 
 ## Domains (Hostinger)
