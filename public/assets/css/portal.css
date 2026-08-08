@@ -188,14 +188,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  /* Longhand on purpose: this div also carries .container, and .container
-     sets the shorthand `padding` property too (for left/right). Two rules
-     of equal specificity setting the same shorthand on the same element
-     means whichever is later in the cascade wins outright for all four
-     sides -- so a plain `padding: 16px 0` here would silently clobber
-     .container's left/right (or get clobbered itself) depending on file
-     order, instead of the two composing. Longhand top/bottom only avoids
-     the collision regardless of which loads last. */
   padding-top: 16px;
   padding-bottom: 16px;
 }
@@ -400,6 +392,9 @@
   gap: 48px;
   align-items: start;
 }
+.portal-hero-grid--solo {
+  grid-template-columns: 1fr;
+}
 .portal-hero-text h1 {
   font-size: 2.5rem;
   font-weight: 800;
@@ -478,85 +473,6 @@
 .search-autocomplete-item:hover {
   background: var(--color-kapwa-bg-surface-raised);
 }
-.portal-hero-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-  font-size: 0.875rem;
-  color: var(--color-kapwa-blue-100);
-}
-.portal-hero-tags a {
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--color-kapwa-neutral-50);
-  padding: 6px 14px;
-  border-radius: 999px;
-}
-.portal-hero-tags a:hover {
-  background: rgba(255, 255, 255, 0.22);
-  text-decoration: none;
-}
-
-/* Popular services panel (hero right column) */
-.popular-panel {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
-  padding: 24px;
-  backdrop-filter: blur(4px);
-}
-.popular-panel h2 {
-  font-size: 1.125rem;
-  margin: 0 0 16px;
-}
-.popular-panel-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-.popular-panel-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  padding: 18px 12px;
-  text-align: center;
-  color: var(--color-kapwa-neutral-50);
-}
-.popular-panel-card:hover {
-  background: rgba(255, 255, 255, 0.14);
-  text-decoration: none;
-}
-.popular-panel-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--color-kapwa-brand-600);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 10px;
-  font-size: 1.15rem;
-}
-.popular-panel-card span {
-  font-weight: 600;
-  font-size: 0.9375rem;
-}
-.popular-panel-btn {
-  display: block;
-  width: 100%;
-  text-align: center;
-  background: var(--color-kapwa-neutral-50);
-  color: var(--color-kapwa-brand-800);
-  font-weight: 700;
-  padding: 12px;
-  border-radius: 10px;
-}
-.popular-panel-btn:hover {
-  text-decoration: none;
-  opacity: 0.9;
-}
-
 /* Generic section */
 .portal-section {
   padding: 64px 0;
@@ -1458,11 +1374,6 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
-  /* Topbar (hotlines/Join Us/About/official site) and the info strip
-     (currency/weather/date ticker) are desktop-only clutter at this width
-     -- same breakpoint the hamburger nav switches on (isMobileNav() in
-     Header.tsx). Nav bar gets a bit more breathing room to compensate for
-     being the first thing on the page now. */
   .topbar,
   .info-strip-v2 {
     display: none;
@@ -1539,8 +1450,6 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    /* 44x44 minimum touch target (WCAG 2.5.5 / iOS & Android guidance) --
-       this used to be just the bare icon, ~22x22px. */
     min-width: 44px;
     min-height: 44px;
     background: none;
@@ -1550,7 +1459,6 @@
     color: var(--color-kapwa-gray-800);
   }
   .header-search-btn {
-    /* Icon-only at this width (label hidden below) -- same 44px minimum. */
     min-width: 44px;
     min-height: 44px;
     justify-content: center;
@@ -1570,17 +1478,6 @@
   }
 }
 @media (max-width: 640px) {
-  /* Legacy responsive.css (a leftover from the reference project this repo
-     was templated from) shrinks .container padding down to 8px at this
-     width -- reads as "no padding" against the actual content. This file
-     loads after it, so this wins.
-     Longhand left/right only, deliberately: elements like .header-inner-v2
-     carry both .container and their own class on the same div, and set
-     their own padding-top/padding-bottom. The full `padding` shorthand
-     implicitly zeroes all four sides, so writing it here would silently
-     clobber whichever of the two rules for top/bottom loses the cascade
-     -- longhand keeps this rule scoped to the sides it actually means to
-     change. */
   .container {
     padding-left: 16px;
     padding-right: 16px;
@@ -1589,9 +1486,6 @@
     display: none;
   }
   .header-inner-v2 {
-    /* Tighter than the 1024px breakpoint's 24px -- the 44px touch targets
-       added to .header-mobile-toggle/.header-search-btn/.lang-btn-v2 eat
-       into the width budget this compensates for. */
     gap: 8px;
   }
   .service-cat-grid {

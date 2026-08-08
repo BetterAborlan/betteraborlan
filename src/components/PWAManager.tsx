@@ -55,8 +55,13 @@ export default function PWAManager() {
         });
       });
 
+      let hasController = !!navigator.serviceWorker.controller;
       let refreshing = false;
       navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!hasController) {
+          hasController = true;
+          return;
+        }
         if (refreshing) return;
         refreshing = true;
         window.location.reload();

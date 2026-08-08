@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import L from 'leaflet';
@@ -31,10 +32,14 @@ const HOVER_STYLE: L.PathOptions = {
 const boundsCenter = L.geoJSON(boundaries as GeoJSON.GeoJsonObject).getBounds().getCenter();
 
 export default function AborlanMap() {
+  const [zoom] = useState(() =>
+    typeof window !== 'undefined' && window.innerWidth <= 640 ? 10 : 11
+  );
+
   return (
     <MapContainer
       center={boundsCenter}
-      zoom={11}
+      zoom={zoom}
       scrollWheelZoom={false}
       className="realtime-map-container"
     >
