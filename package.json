@@ -1,6 +1,6 @@
 {
   "name": "betteraborlan",
-  "version": "0.4.1-develop.1",
+  "version": "0.5.0-develop.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
