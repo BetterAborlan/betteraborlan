@@ -41,21 +41,20 @@ npm run lint
 
 Commit messages must follow [Conventional Commits](https://www.conventionalcommits.org/) (`feat: ...`, `fix: ...`, `chore: ...`, etc.) — enforced locally by a commit-msg git hook (`.husky/commit-msg` + `commitlint.config.js`), so a bad commit message just won't go through.
 
-Every push to `main` runs [semantic-release](https://semantic-release.gitbook.io/) (`.releaserc.json`, `.github/workflows/release.yml`): it reads the commits since the last release, decides the next version (`fix` → patch, `feat` → minor, `BREAKING CHANGE:` in the body → major), bumps `package.json`, writes `CHANGELOG.md`, tags the release, opens a GitHub Release, then deploys the result to Vercel production. No manual version bumping, ever.
+Every merge to `main` runs [semantic-release](https://semantic-release.gitbook.io/) (`.releaserc.json`, `.github/workflows/release.yml`): it reads the commits since the last release, decides the next version (`fix` → patch, `feat` → minor, `BREAKING CHANGE:` in the body → major), bumps `package.json`, writes `CHANGELOG.md`, tags the release, opens a GitHub Release, then deploys the result to Vercel production. No manual version bumping, ever.
 
-`develop` is also a semantic-release channel — configured in `.releaserc.json` as a **prerelease branch** of `main` (e.g. `1.2.1-develop.1`). Every push to `develop` with releasable commits since its last prerelease bumps `package.json` there too, tags it, and opens a GitHub prerelease, before the preview deploy runs. This keeps `develop`'s version meaningful on its own instead of silently drifting from whatever `main` last shipped.
-
-`develop`'s own CI pushes that `chore(release) [skip ci]` commit back to `develop` right after your push lands — if you push to `develop` and it gets rejected as non-fast-forward a few seconds later, that's why; `git fetch && git merge origin/develop` and push again.
-
-**Never hand-edit `package.json`'s version or push a tag directly to `main`.** Doing that once (to mark the v1.0.0 launch) desynced `main` and `develop`'s independent version lineages and caused real merge conflicts in `package.json`/`package-lock.json`/`CHANGELOG.md` the next time `develop` merged in. If a version needs to jump outside normal bumping, do it as a real commit with a `BREAKING CHANGE:` footer through the normal `develop` → PR → `main` path instead, so semantic-release computes it and both lineages stay in sync.
+**Never hand-edit `package.json`'s version or push a tag directly to `main`.** If a version needs to jump outside normal bumping, do it as a real commit with a `BREAKING CHANGE:` footer through a normal PR instead, so semantic-release computes it.
 
 ## Branches & environments
 
-- **`main`** → production. Protected: PRs only (enforced for admins too, no direct push), `lint-and-build` must pass against an up-to-date branch, no force-push/delete. Every merge here triggers a release (see above) and a prod deploy.
-- **`develop`** → deploys as a standard Vercel Preview on every push (after the prerelease step above), then `deploy.yml` re-points a fixed alias, **`https://betteraborlan-dev.vercel.app`**, at that fresh deployment. That's the one stable "dev site" URL — bookmark that, not the raw per-deploy `*.vercel.app` hash URL, which changes every push. (This is deliberately not Vercel's automatic `-git-develop-` alias — that one is only maintained by Vercel's own git-integration builds, which are disabled in favor of this workflow; see the comment in `deploy.yml` for why.)
-- Pull requests into `main` get their own ephemeral Vercel preview URL, commented on the PR.
+Trunk-based — one long-lived branch:
 
-Day to day: branch off `develop`, open a PR into `develop`, merge → deploys to `betteraborlan-dev.vercel.app`. When it's ready for real users, PR `develop` into `main` → semantic-release cuts a version and ships it.
+- **`main`** → production. Protected: PRs only (enforced for admins too, no direct push), `lint-and-build` must pass against an up-to-date branch, no force-push/delete. Every merge here triggers a release (see above) and a prod deploy.
+- Pull requests into `main` get their own ephemeral Vercel preview URL, commented on the PR — use it to sanity-check before merging.
+
+Day to day: branch off `main`, open a PR into `main`, get the preview, merge → semantic-release cuts a version and ships it to production.
+
+(This repo used to run a second long-lived `develop` branch with its own prerelease channel and fixed preview alias, GitFlow-style. Dropped it — that split exists to serve projects maintaining multiple parallel versions, e.g. a library patching v1.x while developing v2.x. A continuously-deployed website isn't that, and the two-branch setup mostly produced version-lineage drift and merge conflicts between the branches' independent semantic-release commits instead of buying anything. PR previews already cover what the fixed dev alias was for.)
 
 ## Data policy — no fabricated civic data
 
@@ -70,19 +69,19 @@ Day to day: branch off `develop`, open a PR into `develop`, merge → deploys to
    - `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` — from `.vercel/project.json` after `vercel link`
    - `GITHUB_TOKEN` is automatic, no setup needed — semantic-release uses the one GitHub Actions injects.
 4. Set the env vars from `.env.local.example` in Vercel (Project → Settings → Environment Variables), scoped per environment (Production / Preview) as needed. **Add them as non-sensitive** — Vercel's "Sensitive" var type only resolves to its real value on Vercel's own build infra, not when `vercel build` runs via CLI/token the way our GitHub Actions do. A sensitive var shows up as the literal string `"[SENSITIVE]"` at build time instead of erroring, so this fails silently — worth knowing since it already happened once.
-5. Push to `develop` → deploys as a Preview, then aliased to `betteraborlan-dev.vercel.app`. Merge `develop` into `main` → `release.yml` versions and deploys to production. PRs get an ephemeral preview.
+5. Open a PR into `main` → gets an ephemeral preview. Merge → `release.yml` versions and deploys to production.
 
 ## Domains (Hostinger)
 
-For each domain (prod and dev), once purchased on Hostinger:
+Once purchased on Hostinger:
 
-1. Add the domain in Vercel (Project → Settings → Domains) — the apex/`www` domain assigned to Production. For the dev domain, add it as an alias target in `deploy.yml`'s "Alias to fixed dev URL" step (alongside `betteraborlan-dev.vercel.app`) so it gets re-pointed on every push too.
+1. Add the domain in Vercel (Project → Settings → Domains), assigned to Production.
 2. In Hostinger's DNS zone editor, point it at Vercel per what the Vercel domain screen instructs (`A`/`CNAME` records, or delegate nameservers).
-3. Update `NEXT_PUBLIC_SITE_URL` for that environment in Vercel to the matching domain.
+3. Update `NEXT_PUBLIC_SITE_URL` in Vercel's Production environment vars to the matching domain.
 
 ## Coming-soon mode
 
-Production and the `develop` preview run the exact same code — the only difference is `NEXT_PUBLIC_COMING_SOON`, set to `true` in Vercel's **Production** environment vars only. When set, the root layout (`src/app/layout.tsx`) skips the whole site shell and renders a standalone coming-soon page (`src/components/ComingSoon.tsx`) instead. `develop`/Preview always show the full site regardless of this flag, so it's safe to build in the open on the dev domain while production shows coming-soon.
+Production and PR previews run the exact same code — the only difference is `NEXT_PUBLIC_COMING_SOON`, set to `true` in Vercel's **Production** environment vars only. When set, the root layout (`src/app/layout.tsx`) skips the whole site shell and renders a standalone coming-soon page (`src/components/ComingSoon.tsx`) instead. Previews always show the full site regardless of this flag, so it's safe to build in the open while production shows coming-soon.
 
 To launch for real: set `NEXT_PUBLIC_COMING_SOON` to `false` (or delete it) in Vercel's Production env vars and redeploy. No code or branch changes needed.
 

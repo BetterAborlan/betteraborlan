@@ -4,21 +4,19 @@ Thanks for wanting to help. This is a volunteer-built civic transparency portal 
 
 ## Branching model
 
-Two long-lived branches:
+Trunk-based — one long-lived branch:
 
-| Branch    | Environment                                              | Purpose                                                 |
-| --------- | --------------------------------------------------------- | -------------------------------------------------------- |
-| `develop` | Preview — https://betteraborlan-dev.vercel.app             | Default branch. All feature/fix branches target this.   |
-| `main`    | Production — https://betteraborlan.org                     | Only receives merges from `develop` once it's release-ready. |
+| Branch | Environment                       | Purpose                                    |
+| ------ | ---------------------------------- | -------------------------------------------- |
+| `main` | Production — https://betteraborlan.org | Default branch. All feature/fix branches target this. |
 
 Workflow:
 
-1. Branch off `develop`: `git checkout -b feat/short-description`
-2. Open a PR into `develop`. CI (`npm run lint` + `npm run build`) must pass — see `.github/workflows/ci.yml`.
-3. Merging to `develop` runs [semantic-release](https://semantic-release.gitbook.io/) in prerelease mode first (`.releaserc.json` — `develop` is a prerelease channel of `main`, e.g. `1.2.1-develop.1`), then deploys to `betteraborlan-dev.vercel.app` (see `.github/workflows/deploy.yml`).
-4. When `develop` is ready to ship, open a PR from `develop` into `main`. Merging triggers semantic-release again, this time as a stable release: bumps the version, writes `CHANGELOG.md`, tags a GitHub Release, and deploys to production (see `.github/workflows/release.yml`).
+1. Branch off `main`: `git checkout -b feat/short-description`
+2. Open a PR into `main`. CI (`npm run lint` + `npm run build`) must pass — see `.github/workflows/ci.yml` — and you get an ephemeral Vercel preview URL commented on the PR (`.github/workflows/deploy.yml`).
+3. Merging runs [semantic-release](https://semantic-release.gitbook.io/): bumps the version, writes `CHANGELOG.md`, tags a GitHub Release, and deploys to production (see `.github/workflows/release.yml`).
 
-No manual version bumping, on either branch — versions derive entirely from commit messages (see below). `main` is a protected branch (PR required, status check must pass, enforced even for admins) — a PR is the only way in, there's no direct-push shortcut.
+No manual version bumping — versions derive entirely from commit messages (see below). `main` is a protected branch (PR required, status check must pass, enforced even for admins) — a PR is the only way in, there's no direct-push shortcut.
 
 ## Getting started
 
@@ -51,9 +49,9 @@ Open an issue describing the feature, who it helps, and why. Mockups or examples
 ### Submitting code
 
 1. **Fork** the repository.
-2. **Branch** off `develop`:
+2. **Branch** off `main`:
    ```bash
-   git checkout develop && git pull
+   git checkout main && git pull
    git checkout -b feat/your-feature-name
    ```
 3. **Make** your changes.
@@ -61,7 +59,7 @@ Open an issue describing the feature, who it helps, and why. Mockups or examples
    ```bash
    git commit -m "feat: add brief description of your change"
    ```
-5. **Push** to your fork and **open a Pull Request into `develop`** (not `main`).
+5. **Push** to your fork and **open a Pull Request into `main`**.
 
 ### Commit message format (Conventional Commits)
 
@@ -96,7 +94,7 @@ Examples:
 ```
 feat(services): add online business permit renewal page
 fix(footer): correct social icon alignment on mobile
-docs: explain the develop/main branch split in the README
+docs: explain the trunk-based branching model in the README
 ```
 
 ## Contribution areas
