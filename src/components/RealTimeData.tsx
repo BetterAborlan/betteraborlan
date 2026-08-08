@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import dynamic from 'next/dynamic';
 import { Card } from '@bettergov/kapwa/card';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -19,6 +19,7 @@ const WEATHER_LOCATIONS = [
 ] as const;
 
 const CURRENCIES = ['USD', 'JPY', 'GBP', 'SGD', 'AUD', 'EUR'] as const;
+const CURRENCIES_PER_PAGE = 3;
 
 // WMO weather codes (Open-Meteo) mapped to a Bootstrap Icon, a color that
 // reflects the condition (not one flat color for every icon), and a
@@ -147,8 +148,18 @@ export default function RealTimeData() {
   const { t, language } = useLanguage();
   const [temps, setTemps] = useState<(string | null)[]>(WEATHER_LOCATIONS.map(() => null));
   const [codes, setCodes] = useState<(number | null)[]>(WEATHER_LOCATIONS.map(() => null));
+  const [wind, setWind] = useState<number | null>(null);
   const [rates, setRates] = useState<Record<string, number> | null>(null);
   const [forecast, setForecast] = useState<ForecastDay[] | null>(null);
+  const [currencyPage, setCurrencyPage] = useState(0);
+  const currencyPageCount = Math.ceil(CURRENCIES.length / CURRENCIES_PER_PAGE);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCurrencyPage((p) => (p + 1) % currencyPageCount);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [currencyPageCount]);
 
   useEffect(() => {
     const lats = WEATHER_LOCATIONS.map((l) => l.lat).join(',');
@@ -167,12 +178,13 @@ export default function RealTimeData() {
           )
         );
         setCodes(results.map((d) => d?.current_weather?.weathercode ?? null));
+        setWind(results[0]?.current_weather?.windspeed ?? null);
       })
       .catch(() => {});
 
     const aborlan = WEATHER_LOCATIONS[0];
     fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${aborlan.lat}&longitude=${aborlan.lon}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5`
+      `https://api.open-meteo.com/v1/forecast?latitude=${aborlan.lat}&longitude=${aborlan.lon}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=6`
     )
       .then((r) => r.json())
       .then((data) => {
@@ -203,18 +215,44 @@ export default function RealTimeData() {
         <h3>
           <i className="bi bi-cloud-sun-fill" aria-hidden="true"></i> Weather
         </h3>
-        <div className="realtime-weather-current">
-          <WeatherIcon code={codes[0]} />
-          <div>
-            <div className="realtime-weather-temp">{temps[0] ?? '--°C'}</div>
-            <div>{t('weather-location')}</div>
+        <div
+          className="realtime-weather-current"
+          style={
+            {
+              '--weather-accent': WEATHER_CODES[codes[0] ?? -1]?.color ?? DEFAULT_WEATHER_ICON.color,
+            } as CSSProperties
+          }
+        >
+          <div className="realtime-weather-current-top">
+            <WeatherIcon code={codes[0]} />
+            <div className="realtime-weather-current-main">
+              <div className="realtime-weather-temp">{temps[0] ?? '--°C'}</div>
+              <div className="realtime-weather-condition">
+                {codes[0] != null ? (WEATHER_CODES[codes[0]]?.[language] ?? '--') : '--'}
+              </div>
+              <div className="realtime-weather-location">{t('weather-location')}</div>
+            </div>
+          </div>
+          <div className="realtime-weather-meta">
+            <span>
+              <i className="bi bi-arrow-up-short" aria-hidden="true"></i>
+              {forecast?.[0]?.max != null ? `${Math.round(forecast[0].max)}°` : '--'}
+            </span>
+            <span>
+              <i className="bi bi-arrow-down-short" aria-hidden="true"></i>
+              {forecast?.[0]?.min != null ? `${Math.round(forecast[0].min)}°` : '--'}
+            </span>
+            <span>
+              <i className="bi bi-wind" aria-hidden="true"></i>
+              {wind != null ? `${Math.round(wind)} km/h` : '--'}
+            </span>
           </div>
         </div>
 
         <div className="realtime-forecast">
           <div className="realtime-forecast-title">{t('forecast-5day-title')}</div>
           <div className="realtime-forecast-grid">
-            {(forecast ? forecast.slice(1) : Array.from({ length: 4 }, () => null)).map(
+            {(forecast ? forecast.slice(1) : Array.from({ length: 5 }, () => null)).map(
               (day, i) => (
                 <div key={i} className="realtime-forecast-day">
                   <div className="realtime-forecast-day-label">
@@ -264,8 +302,11 @@ export default function RealTimeData() {
               <th>Rate</th>
             </tr>
           </thead>
-          <tbody>
-            {CURRENCIES.map((cur) => {
+          <tbody key={currencyPage} className="fade-in">
+            {CURRENCIES.slice(
+              currencyPage * CURRENCIES_PER_PAGE,
+              currencyPage * CURRENCIES_PER_PAGE + CURRENCIES_PER_PAGE
+            ).map((cur) => {
               const value = rates && rates.PHP && rates[cur] ? rates.PHP / rates[cur] : null;
               return (
                 <tr key={cur}>

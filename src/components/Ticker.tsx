@@ -110,10 +110,18 @@ export function CyclingTicker({
   );
 }
 
-// Like CyclingTicker (one item at a time, same vertical slide), but the
-// wrapper also measures each item's natural text width and animates its
-// own width to match — so a pill/badge around it visibly grows or shrinks
-// as it slides to a longer or shorter line.
+// Cycles through a fixed list of strings on a timer, one at a time, fading
+// out and back in on each change. The wrapper also animates its own width to
+// match each item's natural text width, so a pill/badge around it visibly
+// grows or shrinks as it fades to a longer or shorter line.
+//
+// All items are measured once up front (not just the current one) so the
+// width for the *next* item is already known the instant `index` changes --
+// width and text swap in the same render. Measuring reactively after each
+// swap (starting from the old item's width, waiting on an effect to catch
+// up to the new one) leaves a ~400ms window every cycle where a longer next
+// item renders inside a wrapper still sized for the shorter previous one,
+// clipping it via overflow:hidden until the width transition finishes.
 export function AutoWidthTicker({
   items,
   intervalMs = 3000,
@@ -122,8 +130,8 @@ export function AutoWidthTicker({
   intervalMs?: number;
 }) {
   const [index, setIndex] = useState(0);
-  const [width, setWidth] = useState<number | null>(null);
-  const measureRef = useRef<HTMLSpanElement>(null);
+  const [widths, setWidths] = useState<number[]>([]);
+  const measureRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
     const tick = setInterval(() => {
@@ -133,8 +141,10 @@ export function AutoWidthTicker({
   }, [intervalMs, items.length]);
 
   useEffect(() => {
-    if (measureRef.current) setWidth(measureRef.current.offsetWidth);
-  }, [index, items]);
+    setWidths(measureRefs.current.map((el) => el?.offsetWidth ?? 0));
+  }, [items]);
+
+  const width = widths[index];
 
   return (
     <span
@@ -142,17 +152,30 @@ export function AutoWidthTicker({
         display: 'inline-block',
         overflow: 'hidden',
         verticalAlign: 'middle',
+        whiteSpace: 'nowrap',
         width: width != null ? `${width}px` : 'auto',
         transition: 'width 0.4s ease',
       }}
     >
-      <TickerText value={items[index]} />
       <span
-        ref={measureRef}
-        aria-hidden="true"
-        style={{ position: 'absolute', visibility: 'hidden', whiteSpace: 'nowrap' }}
+        key={index}
+        className="fade-in"
+        style={{ display: 'inline-block', whiteSpace: 'nowrap' }}
       >
         {items[index]}
+      </span>
+      <span aria-hidden="true" style={{ position: 'absolute', visibility: 'hidden' }}>
+        {items.map((item, i) => (
+          <span
+            key={i}
+            ref={(el) => {
+              measureRefs.current[i] = el;
+            }}
+            style={{ display: 'block', width: 'max-content', whiteSpace: 'nowrap' }}
+          >
+            {item}
+          </span>
+        ))}
       </span>
     </span>
   );

@@ -752,18 +752,57 @@
 }
 .realtime-weather-current {
   display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--weather-accent, var(--color-kapwa-brand-600)) 14%, var(--color-kapwa-bg-surface-raised)) 0%,
+    var(--color-kapwa-bg-surface-raised) 100%
+  );
+  border: 1px solid color-mix(in srgb, var(--weather-accent, var(--color-kapwa-brand-600)) 30%, var(--color-kapwa-border-weak));
+}
+.realtime-weather-current-top {
+  display: flex;
   align-items: center;
   gap: 14px;
-  padding: 14px;
-  background: var(--color-kapwa-bg-surface-raised);
-  border-radius: 10px;
 }
-.realtime-weather-current i {
-  font-size: 2rem;
+.realtime-weather-current-top i {
+  font-size: 2.25rem;
 }
 .realtime-weather-temp {
   font-size: 1.5rem;
   font-weight: 700;
+  line-height: 1.2;
+}
+.realtime-weather-condition {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--weather-accent, var(--color-kapwa-brand-600)) 75%, var(--color-kapwa-text-strong));
+}
+.realtime-weather-location {
+  font-size: 0.8125rem;
+  color: var(--color-kapwa-text-support);
+}
+.realtime-weather-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding-top: 12px;
+  border-top: 1px solid color-mix(in srgb, var(--weather-accent, var(--color-kapwa-brand-600)) 20%, var(--color-kapwa-border-weak));
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-kapwa-text-default);
+}
+.realtime-weather-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.realtime-weather-meta i {
+  font-size: 1rem;
+  color: var(--color-kapwa-text-support);
 }
 .realtime-forecast {
   margin-top: 14px;
@@ -864,6 +903,17 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 0.875rem;
+}
+.fade-in {
+  animation: fade-in var(--duration-kapwa-500) var(--ease-kapwa-out);
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .realtime-currency-table th {
   text-align: left;
