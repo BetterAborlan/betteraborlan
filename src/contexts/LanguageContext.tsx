@@ -164,9 +164,9 @@ const translations: Record<string, Record<string, string>> = {
     'title-ipmr': 'IPMR (Indigenous Peoples Mandatory Representative)',
 
     // Statistics page
-    'stats-page-title': 'Aborlan at a Glance',
+    'stats-page-title': 'Full Statistical Profile',
     'stats-page-subtitle':
-      'Population is from the 2024 national census; land area and income class from 2020.',
+      'A complete demographic, geographic, and administrative profile of Aborlan, Palawan.',
     'stats-households-label': 'Households',
     'stats-source-psa-2024': 'PSA 2024 Census',
     'stats-income-label': 'Income Classification',
@@ -182,9 +182,32 @@ const translations: Record<string, Record<string, string>> = {
     'stats-th-barangay': 'Barangay',
     'stats-th-urban-rural': 'Urban / Rural',
     'stats-th-population': '2024 Population',
+    'stats-th-2020-population': '2020 Population',
+    'stats-th-growth': 'Growth (’20–’24)',
     'stats-th-share': 'Share of Total',
     'stats-urban': 'Urban',
     'stats-rural': 'Rural',
+    'stats-group-population': 'Population & Households',
+    'stats-group-geography': 'Geography & Classification',
+    'stats-group-governance': 'Governance & Elections',
+    'stats-density-label': 'Population Density',
+    'stats-density-unit': 'people / km²',
+    'stats-voter-rate-label': 'Voter Registration Rate',
+    'stats-voter-rate-note': 'of total population',
+    'stats-growth-heading': 'Population Growth',
+    'stats-growth-subtitle': 'Total municipal population across the last three censuses.',
+    'stats-growth-since': 'since',
+    'stats-urban-rural-heading': 'Urban vs. Rural Population',
+    'stats-urban-rural-subtitle':
+      "Poblacion is Aborlan's only urban barangay; the remaining 18 are classified rural.",
+    'stats-footnotes-heading': 'Sources & Notes',
+    'stats-footnote-population':
+      'Population and households — PSA 2024 Census of Population (POPCEN).',
+    'stats-footnote-land-income':
+      '* Land area and income classification — 2020 Census of Population and Housing, via PhilAtlas. Not yet re-published for 2024; will be updated once PSA releases newer figures.',
+    'stats-footnote-voters': 'Registered voters — COMELEC, 2025 elections (as reported by Rappler).',
+    'stats-footnote-barangay':
+      'Barangay-level population — PSA PSGC table, as of 31 July 2025; figures sum exactly to the municipal total.',
 
     // Services pages
     'services-page-title': 'Services Directory',
@@ -461,9 +484,9 @@ const translations: Record<string, Record<string, string>> = {
     'title-ipmr': 'IPMR (Kinatawan ng mga Katutubong Mamamayan)',
 
     // Statistics page
-    'stats-page-title': 'Isang Tingin sa Aborlan',
+    'stats-page-title': 'Buong Profile ng Estadistika',
     'stats-page-subtitle':
-      'Ang populasyon ay mula sa 2024 pambansang census; ang lawak ng lupa at klasipikasyon ng kita ay mula 2020.',
+      'Kumpletong demograpiko, heograpiko, at administratibong profile ng Aborlan, Palawan.',
     'stats-households-label': 'Sambahayan',
     'stats-source-psa-2024': 'PSA 2024 Census',
     'stats-income-label': 'Klasipikasyon ng Kita',
@@ -479,9 +502,32 @@ const translations: Record<string, Record<string, string>> = {
     'stats-th-barangay': 'Barangay',
     'stats-th-urban-rural': 'Urban / Rural',
     'stats-th-population': 'Populasyon 2024',
+    'stats-th-2020-population': 'Populasyon 2020',
+    'stats-th-growth': 'Paglago (’20–’24)',
     'stats-th-share': 'Bahagdan sa Kabuuan',
     'stats-urban': 'Urban',
     'stats-rural': 'Rural',
+    'stats-group-population': 'Populasyon at Sambahayan',
+    'stats-group-geography': 'Heograpiya at Klasipikasyon',
+    'stats-group-governance': 'Pamamahala at Eleksyon',
+    'stats-density-label': 'Densidad ng Populasyon',
+    'stats-density-unit': 'tao / km²',
+    'stats-voter-rate-label': 'Rate ng Rehistradong Botante',
+    'stats-voter-rate-note': 'ng kabuuang populasyon',
+    'stats-growth-heading': 'Paglago ng Populasyon',
+    'stats-growth-subtitle': 'Kabuuang populasyon ng bayan sa huling tatlong census.',
+    'stats-growth-since': 'mula noong',
+    'stats-urban-rural-heading': 'Urban kumpara sa Rural na Populasyon',
+    'stats-urban-rural-subtitle':
+      'Poblacion lamang ang urban na barangay ng Aborlan; ang natitirang 18 ay rural.',
+    'stats-footnotes-heading': 'Mga Pinagmulan at Tala',
+    'stats-footnote-population':
+      'Populasyon at sambahayan — PSA 2024 Census of Population (POPCEN).',
+    'stats-footnote-land-income':
+      '* Lawak ng lupa at klasipikasyon ng kita — 2020 Census of Population and Housing, sa pamamagitan ng PhilAtlas. Hindi pa na-update para sa 2024; babaguhin kapag naglabas ng mas bagong datos ang PSA.',
+    'stats-footnote-voters': 'Nakarehistrong botante — COMELEC, eleksyon 2025 (ayon sa ulat ng Rappler).',
+    'stats-footnote-barangay':
+      'Populasyon bawat barangay — talahanayan ng PSA PSGC, noong 31 Hulyo 2025; eksaktong katumbas ng kabuuang bilang ng bayan.',
 
     // Services pages
     'services-page-title': 'Direktoryo ng Serbisyo',
