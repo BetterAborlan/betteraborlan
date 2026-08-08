@@ -188,7 +188,16 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 16px 0;
+  /* Longhand on purpose: this div also carries .container, and .container
+     sets the shorthand `padding` property too (for left/right). Two rules
+     of equal specificity setting the same shorthand on the same element
+     means whichever is later in the cascade wins outright for all four
+     sides -- so a plain `padding: 16px 0` here would silently clobber
+     .container's left/right (or get clobbered itself) depending on file
+     order, instead of the two composing. Longhand top/bottom only avoids
+     the collision regardless of which loads last. */
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 .brand-v2 {
   display: flex;
@@ -1449,6 +1458,19 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
+  /* Topbar (hotlines/Join Us/About/official site) and the info strip
+     (currency/weather/date ticker) are desktop-only clutter at this width
+     -- same breakpoint the hamburger nav switches on (isMobileNav() in
+     Header.tsx). Nav bar gets a bit more breathing room to compensate for
+     being the first thing on the page now. */
+  .topbar,
+  .info-strip-v2 {
+    display: none;
+  }
+  .header-inner-v2 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
   .portal-hero-grid {
     grid-template-columns: 1fr;
   }
@@ -1534,9 +1556,17 @@
   /* Legacy responsive.css (a leftover from the reference project this repo
      was templated from) shrinks .container padding down to 8px at this
      width -- reads as "no padding" against the actual content. This file
-     loads after it, so this wins. */
+     loads after it, so this wins.
+     Longhand left/right only, deliberately: elements like .header-inner-v2
+     carry both .container and their own class on the same div, and set
+     their own padding-top/padding-bottom. The full `padding` shorthand
+     implicitly zeroes all four sides, so writing it here would silently
+     clobber whichever of the two rules for top/bottom loses the cascade
+     -- longhand keeps this rule scoped to the sides it actually means to
+     change. */
   .container {
-    padding: 0 16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   .brand-v2-tagline {
     display: none;
