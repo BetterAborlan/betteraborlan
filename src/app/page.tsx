@@ -17,52 +17,13 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="portal-hero">
-        <div className="container portal-hero-grid">
+        <div className="container portal-hero-grid portal-hero-grid--solo">
           <div className="portal-hero-text">
             <h1>{t('hero-welcome')}</h1>
             <p>{t('hero-subtitle')}</p>
             <div className="portal-hero-search">
               <SearchAutocomplete placeholder={t('hero-search-placeholder')} />
             </div>
-            <div className="portal-hero-tags">
-              <span>{t('hero-popular')}</span>
-              <Link href="/service-details/birth-certificate">{t('hero-birth-certificate')}</Link>
-              <Link href="/service-details/business-permit-new">{t('hero-business-permit')}</Link>
-              <Link href="/service-details/real-property-tax">{t('hero-real-property-tax')}</Link>
-            </div>
-          </div>
-
-          <div className="popular-panel">
-            <h2>{t('section-popular')}</h2>
-            <div className="popular-panel-grid">
-              <Link href="/services/certificates" className="popular-panel-card">
-                <span className="popular-panel-icon">
-                  <i className="bi bi-file-earmark-text-fill" aria-hidden="true"></i>
-                </span>
-                <span>{t('service-certificates')}</span>
-              </Link>
-              <Link href="/services/business" className="popular-panel-card">
-                <span className="popular-panel-icon">
-                  <i className="bi bi-shop" aria-hidden="true"></i>
-                </span>
-                <span>{t('service-business')}</span>
-              </Link>
-              <Link href="/services/agriculture" className="popular-panel-card">
-                <span className="popular-panel-icon">
-                  <i className="bi bi-flower1" aria-hidden="true"></i>
-                </span>
-                <span>{t('dropdown-agriculture')}</span>
-              </Link>
-              <Link href="/services/health" className="popular-panel-card">
-                <span className="popular-panel-icon">
-                  <i className="bi bi-heart-pulse-fill" aria-hidden="true"></i>
-                </span>
-                <span>{t('service-health')}</span>
-              </Link>
-            </div>
-            <Link href="/services" className="popular-panel-btn">
-              {t('btn-view-all-services')}
-            </Link>
           </div>
         </div>
       </section>

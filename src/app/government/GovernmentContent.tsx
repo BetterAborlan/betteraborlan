@@ -4,11 +4,22 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import officials from '@data/officials.json';
 import barangaysData from '@data/barangays.json';
 
-function OfficialCard({ name, title }: { name: string | null; title: string }) {
+function OfficialCard({
+  name,
+  title,
+  unverified,
+}: {
+  name: string | null;
+  title: string;
+  unverified?: boolean;
+}) {
   const { t } = useLanguage();
   return (
-    <div className="surface-card gov-branch-card official-card">
-      <h3>{name ?? t('gov-pending-verification')}</h3>
+    <div className="surface-card surface-card--hoverable gov-branch-card official-card">
+      <h3>
+        {name ?? t('gov-pending-verification')}
+        {unverified ? ' *' : ''}
+      </h3>
       <p>{title}</p>
     </div>
   );
@@ -26,21 +37,21 @@ export default function GovernmentContent() {
             <p>{t('gov-page-subtitle')}</p>
           </div>
           <div className="gov-branch-grid">
-            <div className="surface-card gov-branch-card">
+            <div className="surface-card surface-card--hoverable gov-branch-card">
               <span className="gov-branch-icon">
                 <i className="bi bi-star-fill" aria-hidden="true"></i>
               </span>
               <h3>{t('gov-branch-executive')}</h3>
               <p>{t('gov-branch-executive-desc')}</p>
             </div>
-            <div className="surface-card gov-branch-card">
+            <div className="surface-card surface-card--hoverable gov-branch-card">
               <span className="gov-branch-icon">
                 <i className="bi bi-bank2" aria-hidden="true"></i>
               </span>
               <h3>{t('gov-branch-legislative')}</h3>
               <p>{t('gov-branch-legislative-desc')}</p>
             </div>
-            <div className="surface-card gov-branch-card">
+            <div className="surface-card surface-card--hoverable gov-branch-card">
               <span className="gov-branch-icon">
                 <i className="bi bi-signpost-split-fill" aria-hidden="true"></i>
               </span>
@@ -69,8 +80,9 @@ export default function GovernmentContent() {
             <OfficialCard
               name={officials.sk_federation_president.name}
               title={t('title-sk-president')}
+              unverified
             />
-            <OfficialCard name={officials.ipmr.name} title={t('title-ipmr')} />
+            <OfficialCard name={officials.ipmr.name} title={t('title-ipmr')} unverified />
           </div>
           {officials.councilors.length === 0 ? (
             <p style={{ textAlign: 'center', marginTop: 24 }}>{t('gov-councilors-pending')}</p>
@@ -92,9 +104,6 @@ export default function GovernmentContent() {
               </div>
             </div>
           )}
-          <p className="pending" style={{ textAlign: 'center', marginTop: 24 }}>
-            {t('gov-officials-footnote')}
-          </p>
         </div>
       </section>
 
@@ -121,6 +130,21 @@ export default function GovernmentContent() {
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="portal-section">
+        <div className="container">
+          <div className="surface-card sources-footnote">
+            <h3>{t('gov-footnotes-heading')}</h3>
+            <ul>
+              <li>{t('gov-footnote-mayor-vp')}</li>
+              <li>{t('gov-footnote-rep')}</li>
+              <li>{t('gov-footnote-councilors')}</li>
+              <li>{t('gov-footnote-sk-ipmr')}</li>
+              <li>{t('stats-footnote-barangay')}</li>
+            </ul>
+          </div>
         </div>
       </section>
     </>

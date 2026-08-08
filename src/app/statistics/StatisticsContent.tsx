@@ -34,7 +34,7 @@ export default function StatisticsContent() {
         </div>
 
         <div className="stat-profile-grid">
-          <div className="surface-card stat-profile-group">
+          <div className="surface-card surface-card--hoverable stat-profile-group">
             <h3>{t('stats-group-population')}</h3>
             <dl>
               <div className="stat-profile-row">
@@ -55,7 +55,7 @@ export default function StatisticsContent() {
             </dl>
           </div>
 
-          <div className="surface-card stat-profile-group">
+          <div className="surface-card surface-card--hoverable stat-profile-group">
             <h3>{t('stats-group-geography')}</h3>
             <dl>
               <div className="stat-profile-row">
@@ -81,7 +81,7 @@ export default function StatisticsContent() {
             </dl>
           </div>
 
-          <div className="surface-card stat-profile-group">
+          <div className="surface-card surface-card--hoverable stat-profile-group">
             <h3>{t('stats-group-governance')}</h3>
             <dl>
               <div className="stat-profile-row">
@@ -211,7 +211,7 @@ export default function StatisticsContent() {
 
       {/* Sources & notes */}
       <div className="container" style={{ marginTop: 56 }}>
-        <div className="surface-card stats-footnotes">
+        <div className="surface-card sources-footnote">
           <h3>{t('stats-footnotes-heading')}</h3>
           <ul>
             <li>{t('stats-footnote-population')}</li>
