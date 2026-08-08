@@ -1598,3 +1598,251 @@
     gap: 16px;
   }
 }
+
+/* ==========================================================================
+   Chat Widget — floating AI assistant, mounted site-wide in layout.tsx.
+   Follows the same mounted/visible/closing tri-state animation pattern as
+   .vol-popup, but is non-modal (no overlay, no scroll lock, no focus trap)
+   since it's meant to stay usable alongside the rest of the page.
+   ========================================================================== */
+
+.chat-widget-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-kapwa-brand-600);
+  color: var(--color-kapwa-text-inverse);
+  font-size: 1.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  z-index: 9000;
+  transition:
+    background var(--duration-kapwa-200) var(--ease-kapwa-out),
+    transform var(--duration-kapwa-200) var(--ease-kapwa-spring);
+}
+
+.chat-widget-fab:hover,
+.chat-widget-fab:focus-visible {
+  background: var(--color-kapwa-brand-700);
+  transform: scale(1.06);
+}
+
+.chat-widget-fab--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chat-widget-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: min(380px, calc(100vw - 40px));
+  height: min(560px, calc(100vh - 40px));
+  background: var(--color-kapwa-bg-surface);
+  border: 1px solid var(--color-kapwa-border-weak);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.94) translateY(16px);
+  transform-origin: bottom right;
+  transition:
+    opacity var(--duration-kapwa-200) var(--ease-kapwa-out),
+    transform var(--duration-kapwa-200) var(--ease-kapwa-spring);
+}
+
+.chat-widget-panel--visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.chat-widget-panel.is-closing {
+  opacity: 0;
+  transform: scale(0.94) translateY(16px);
+  transition:
+    opacity var(--duration-kapwa-150) var(--ease-kapwa-in),
+    transform var(--duration-kapwa-150) var(--ease-kapwa-in);
+}
+
+.chat-widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--color-kapwa-brand-600);
+  color: var(--color-kapwa-text-inverse);
+  flex-shrink: 0;
+}
+
+.chat-widget-header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.chat-widget-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--color-kapwa-text-inverse);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--duration-kapwa-150) var(--ease-kapwa-out);
+}
+
+.chat-widget-close:hover,
+.chat-widget-close:focus-visible {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.chat-widget-messages {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-widget-empty-state {
+  color: var(--color-kapwa-text-support);
+  font-size: 0.875rem;
+  text-align: center;
+  margin: auto 0;
+}
+
+.chat-widget-message {
+  max-width: 85%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.chat-widget-message--user {
+  align-self: flex-end;
+  background: var(--color-kapwa-brand-600);
+  color: var(--color-kapwa-text-inverse);
+  border-bottom-right-radius: 4px;
+}
+
+.chat-widget-message--assistant {
+  align-self: flex-start;
+  background: var(--color-kapwa-bg-surface-raised);
+  color: var(--color-kapwa-text-default);
+  border: 1px solid var(--color-kapwa-border-weak);
+  border-bottom-left-radius: 4px;
+}
+
+.chat-widget-message--error {
+  align-self: flex-start;
+  background: var(--color-kapwa-bg-surface-raised);
+  color: var(--color-kapwa-red-600);
+  border: 1px solid var(--color-kapwa-border-weak);
+}
+
+.chat-widget-loading {
+  color: var(--color-kapwa-text-support);
+  font-style: italic;
+}
+
+.chat-widget-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--color-kapwa-border-weak);
+  flex-shrink: 0;
+}
+
+.chat-widget-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 1px solid var(--color-kapwa-border-weak);
+  background: var(--color-kapwa-bg-surface);
+  color: var(--color-kapwa-text-default);
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 0.875rem;
+  transition: border-color var(--duration-kapwa-200) var(--ease-kapwa-out);
+}
+
+.chat-widget-input:focus-visible {
+  outline: none;
+  border-color: var(--color-kapwa-brand-600);
+  box-shadow: 0 0 0 3px var(--color-kapwa-brand-100);
+}
+
+.chat-widget-input:disabled {
+  opacity: 0.6;
+}
+
+.chat-widget-send {
+  width: 36px;
+  height: 36px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-kapwa-brand-600);
+  color: var(--color-kapwa-text-inverse);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--duration-kapwa-150) var(--ease-kapwa-out);
+}
+
+.chat-widget-send:hover:not(:disabled),
+.chat-widget-send:focus-visible:not(:disabled) {
+  background: var(--color-kapwa-brand-700);
+}
+
+.chat-widget-send:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chat-widget-disclaimer {
+  padding: 0 16px 12px;
+  font-size: 0.6875rem;
+  color: var(--color-kapwa-text-support);
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .chat-widget-fab {
+    right: 16px;
+    bottom: 16px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .chat-widget-panel {
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    width: auto;
+    height: min(70vh, calc(100vh - 16px));
+  }
+}

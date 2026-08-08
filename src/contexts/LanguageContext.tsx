@@ -336,6 +336,17 @@ const translations: Record<string, Record<string, string>> = {
     'accessibility-github-issues': 'GitHub issues',
     'accessibility-or': 'or',
     'accessibility-body-4': 'so it can be fixed.',
+
+    // Chat widget
+    'chat-widget-label': 'Chat with BetterAborlan Assistant',
+    'chat-widget-title': 'BetterAborlan Assistant',
+    'chat-widget-close': 'Close chat',
+    'chat-widget-placeholder': 'Ask about a service, official, or barangay…',
+    'chat-widget-send': 'Send',
+    'chat-widget-disclaimer': 'Answers are based on official municipal data and may not always be complete. For official transactions, confirm with the municipal office directly.',
+    'chat-widget-loading': 'Thinking…',
+    'chat-widget-error': 'Something went wrong. Please try again.',
+    'chat-widget-empty-state': 'Ask me about local services, officials, barangays, or emergency hotlines.',
   },
   fil: {
     'nav-home': 'Tahanan',
@@ -666,6 +677,17 @@ const translations: Record<string, Record<string, string>> = {
     'accessibility-github-issues': 'GitHub issues',
     'accessibility-or': 'o sa',
     'accessibility-body-4': 'para maayos ito.',
+
+    // Chat widget
+    'chat-widget-label': 'Makipag-chat sa BetterAborlan Assistant',
+    'chat-widget-title': 'BetterAborlan Assistant',
+    'chat-widget-close': 'Isara ang chat',
+    'chat-widget-placeholder': 'Magtanong tungkol sa serbisyo, opisyal, o barangay…',
+    'chat-widget-send': 'Ipadala',
+    'chat-widget-disclaimer': 'Base ang mga sagot sa opisyal na datos ng munisipyo at maaaring hindi laging kumpleto. Para sa opisyal na transaksyon, kumpirmahin nang direkta sa tanggapan ng munisipyo.',
+    'chat-widget-loading': 'Nag-iisip…',
+    'chat-widget-error': 'May naganap na error. Pakisubukang muli.',
+    'chat-widget-empty-state': 'Magtanong tungkol sa mga lokal na serbisyo, opisyal, barangay, o emergency hotlines.',
   },
 };
 

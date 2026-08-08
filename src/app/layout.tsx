@@ -6,6 +6,7 @@ import InfoBar from '@/components/layout/InfoBar';
 import Footer from '@/components/layout/Footer';
 import PWAManager from '@/components/PWAManager';
 import VolunteerPopup from '@/components/VolunteerPopup';
+import ChatWidget from '@/components/ChatWidget';
 import ComingSoon from '@/components/ComingSoon';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
             <PWAManager />
             <VolunteerPopup />
+            <ChatWidget />
           </LanguageProvider>
         )}
       </body>
