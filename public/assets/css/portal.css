@@ -1539,14 +1539,31 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    /* 44x44 minimum touch target (WCAG 2.5.5 / iOS & Android guidance) --
+       this used to be just the bare icon, ~22x22px. */
+    min-width: 44px;
+    min-height: 44px;
     background: none;
     border: none;
     font-size: 1.4rem;
     cursor: pointer;
     color: var(--color-kapwa-gray-800);
   }
+  .header-search-btn {
+    /* Icon-only at this width (label hidden below) -- same 44px minimum. */
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+  }
   .header-search-btn span {
     display: none;
+  }
+  .lang-btn-v2 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 16px;
   }
   .site-header-v2 {
     position: relative;
@@ -1572,7 +1589,10 @@
     display: none;
   }
   .header-inner-v2 {
-    gap: 12px;
+    /* Tighter than the 1024px breakpoint's 24px -- the 44px touch targets
+       added to .header-mobile-toggle/.header-search-btn/.lang-btn-v2 eat
+       into the width budget this compensates for. */
+    gap: 8px;
   }
   .service-cat-grid {
     grid-template-columns: 1fr;
