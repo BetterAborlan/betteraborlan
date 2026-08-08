@@ -144,10 +144,16 @@
 }
 .topbar-inner {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
-  gap: 20px;
+  gap: 8px 20px;
   padding: 7px 0;
+}
+.topbar-inner > * {
+  /* Each item wraps onto its own line as a whole (flex-wrap above) rather
+     than ever breaking its own label mid-text. */
+  white-space: nowrap;
 }
 .topbar a {
   color: var(--color-kapwa-text-support);
