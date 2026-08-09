@@ -143,7 +143,7 @@ export default function ChatWidget() {
         onClick={open}
         aria-label={t('chat-widget-label')}
       >
-        <i className="bi bi-chat-dots-fill" aria-hidden="true"></i>
+        <i className="bi bi-robot" aria-hidden="true"></i>
       </button>
     );
   }
@@ -157,7 +157,7 @@ export default function ChatWidget() {
         aria-label={t('chat-widget-label')}
         tabIndex={-1}
       >
-        <i className="bi bi-chat-dots-fill" aria-hidden="true"></i>
+        <i className="bi bi-robot" aria-hidden="true"></i>
       </button>
       <div
         ref={panelRef}
@@ -168,8 +168,9 @@ export default function ChatWidget() {
       >
         <div className="chat-widget-header">
           <span id="chat-widget-title" className="chat-widget-header-title">
-            <i className="bi bi-chat-dots-fill" aria-hidden="true"></i>
+            <i className="bi bi-robot" aria-hidden="true"></i>
             {t('chat-widget-title')}
+            <span className="chat-widget-ai-badge">{t('chat-widget-ai-badge')}</span>
           </span>
           <button
             type="button"
