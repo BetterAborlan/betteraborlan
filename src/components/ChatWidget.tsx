@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react';
+import { useCallback, useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport, type UIMessage } from 'ai';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -19,6 +19,36 @@ function textOf(message: UIMessage): string {
     .filter((p): p is { type: 'text'; text: string } => p.type === 'text')
     .map((p) => p.text)
     .join('');
+}
+
+// Matches markdown-style links, e.g. "[Services](/services)". Assistant
+// replies (LLM and quick-answers alike) may include these to point the
+// resident at the relevant page; this turns them into real anchors instead
+// of showing the raw brackets/parens.
+const MD_LINK_RE = /\[([^\]]+)\]\((\/[^)\s]*)\)/g;
+
+function renderMessageContent(text: string) {
+  const nodes: ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+
+  MD_LINK_RE.lastIndex = 0;
+  while ((match = MD_LINK_RE.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      nodes.push(text.slice(lastIndex, match.index));
+    }
+    nodes.push(
+      <a key={key++} href={match[2]} className="chat-widget-message-link">
+        {match[1]}
+      </a>,
+    );
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    nodes.push(text.slice(lastIndex));
+  }
+  return nodes;
 }
 
 export default function ChatWidget() {
@@ -160,7 +190,7 @@ export default function ChatWidget() {
               key={message.id}
               className={`chat-widget-message chat-widget-message--${message.role}`}
             >
-              {textOf(message)}
+              {renderMessageContent(textOf(message))}
             </div>
           ))}
           {status === 'submitted' && (

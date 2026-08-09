@@ -1760,6 +1760,21 @@
   border: 1px solid var(--color-kapwa-border-weak);
 }
 
+.chat-widget-message-link {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.chat-widget-message--user .chat-widget-message-link {
+  color: var(--color-kapwa-text-inverse);
+}
+
+.chat-widget-message--assistant .chat-widget-message-link {
+  color: var(--color-kapwa-brand-600);
+}
+
 .chat-widget-loading {
   color: var(--color-kapwa-text-support);
   font-style: italic;

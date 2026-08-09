@@ -53,6 +53,22 @@ function normalize(text: string): string {
   return text.toLowerCase().trim();
 }
 
+// Small pool of conversational openers so instant answers don't read like a
+// database dump — picked at random per answer so repeat questions in the
+// same session don't feel like a canned script.
+const OPENERS = [
+  'Sure thing!',
+  'Good question —',
+  'Happy to help!',
+  'Here you go —',
+  'Got it —',
+  "Sure, here's what I have:",
+];
+
+function pickOpener(): string {
+  return OPENERS[Math.floor(Math.random() * OPENERS.length)];
+}
+
 // Returns a ready-to-show answer string for confidently-matched common
 // questions, or null when the widget should fall through to the streaming
 // API instead. Deliberately conservative — a false "instant" match that's
@@ -62,29 +78,29 @@ export function findQuickAnswer(question: string): string | null {
   if (q.length < 3) return null;
 
   if (HOTLINE_KEYWORDS.some((k) => q.includes(k))) {
-    return 'Emergency hotlines: National Emergency 911, PNP 0998-598-5850, BFP (Fire) 0915-603-1372, MDRRMO 0912-120-2000. See the Home page ticker for the full list.';
+    return `${pickOpener()} Emergency hotlines: National Emergency 911, PNP 0998-598-5850, BFP (Fire) 0915-603-1372, MDRRMO 0912-120-2000. [See all hotlines](/contact)`;
   }
 
   if (MAYOR_KEYWORDS.some((k) => q.includes(k))) {
-    return `The current Municipal Mayor of Aborlan is ${quickFacts.mayor}.`;
+    return `${pickOpener()} The current Municipal Mayor of Aborlan is ${quickFacts.mayor}. [Local Officials](/government)`;
   }
 
   if (VICE_MAYOR_KEYWORDS.some((k) => q.includes(k))) {
-    return `The current Municipal Vice Mayor of Aborlan is ${quickFacts.viceMayor}.`;
+    return `${pickOpener()} The current Municipal Vice Mayor of Aborlan is ${quickFacts.viceMayor}. [Local Officials](/government)`;
   }
 
   if (POPULATION_KEYWORDS.some((k) => q.includes(k))) {
-    return `Aborlan's population is ${quickFacts.population}.`;
+    return `${pickOpener()} Aborlan's population is ${quickFacts.population}. [Municipal Statistics](/statistics)`;
   }
 
   if (BARANGAY_COUNT_KEYWORDS.some((k) => q.includes(k))) {
-    return `Aborlan has ${quickFacts.barangayCount} barangays.`;
+    return `${pickOpener()} Aborlan has ${quickFacts.barangayCount} barangays. [Municipal Statistics](/statistics)`;
   }
 
   const serviceMatch = quickServices.find((s) => s.keywords.some((k) => q.includes(k)));
   if (serviceMatch) {
     const feeText = serviceMatch.fee ? `Fee: ${serviceMatch.fee}.` : 'No fee.';
-    return `${serviceMatch.title}: ${feeText} Processing time: ${serviceMatch.processingTime}. Office: ${serviceMatch.office}.`;
+    return `${pickOpener()} ${serviceMatch.title}: ${feeText} Processing time: ${serviceMatch.processingTime}. Office: ${serviceMatch.office}. [View details](/service-details/${serviceMatch.id})`;
   }
 
   return null;

@@ -72,7 +72,7 @@ function formatServices(list: Service[]): string {
   return list
     .map(
       (s) =>
-        `- ${s.title} (${s.category}): ₱fee ${s.fee}, ${s.processingTime}, at ${s.office}. ${s.description}`,
+        `- ${s.title} (${s.category}): ₱fee ${s.fee}, ${s.processingTime}, at ${s.office}. ${s.description} Page link: [${s.title}](/service-details/${s.id})`,
     )
     .join('\n');
 }
@@ -115,6 +115,27 @@ function formatHotlines(): string {
     .join('\n');
 }
 
+// Site pages worth pointing residents to when relevant. Kept small and
+// static — these are the top-level sections, not every route in the app.
+const SITE_PAGES = [
+  { label: 'All Services', path: '/services' },
+  { label: 'Certificates & Vital Records', path: '/services/certificates' },
+  { label: 'Business Permits', path: '/services/business' },
+  { label: 'Tax Payments', path: '/services/tax-payments' },
+  { label: 'Social Services', path: '/services/social-services' },
+  { label: 'Health Services', path: '/services/health' },
+  { label: 'Local Government Officials', path: '/government' },
+  { label: 'Municipal Statistics', path: '/statistics' },
+  { label: 'News & Announcements', path: '/news' },
+  { label: 'Frequently Asked Questions', path: '/faq' },
+  { label: 'Contact Us', path: '/contact' },
+  { label: 'Site Search', path: '/search' },
+];
+
+function formatSitePages(): string {
+  return SITE_PAGES.map((p) => `- [${p.label}](${p.path})`).join('\n');
+}
+
 // Builds the system prompt for a given user question. Keeps the prompt as
 // small as possible: officials/demographics/barangays/hotlines are cheap
 // (a few hundred tokens total) so they're always included in full; services
@@ -124,7 +145,7 @@ function formatHotlines(): string {
 export function buildSystemPrompt(question: string): string {
   const relevantServices = findRelevantServices(question);
 
-  return `You are the BetterAborlan Assistant, a helpful civic information assistant for the Municipality of Aborlan, Palawan, Philippines. You answer questions using ONLY the data provided below, which comes from official sources (the Municipal Citizen's Charter, PSA census data, and COMELEC/LGU records).
+  return `You are the Assistant, a helpful civic information assistant for the Municipality of Aborlan, Palawan, Philippines. You answer questions using ONLY the data provided below, which comes from official sources (the Municipal Citizen's Charter, PSA census data, and COMELEC/LGU records).
 
 Rules:
 - Answer only from the data below. If the answer isn't in it, say you don't have that information and suggest contacting the Municipal Hall directly, or checking the relevant page on the site.
@@ -132,6 +153,10 @@ Rules:
 - Keep answers short and direct — a few sentences, not essays.
 - If asked about something clearly outside Aborlan civic matters, politely redirect to what you can help with.
 - Amounts are in Philippine Pesos (₱).
+- When a service or page below is relevant to your answer, end your reply with its link in markdown format, e.g. [Birth Registration](/service-details/birth-certificate). Only use links from the data below — never invent a path. Include at most 2 links per answer.
+
+## Site Pages
+${formatSitePages()}
 
 ## Local Government Officials
 ${formatOfficials()}

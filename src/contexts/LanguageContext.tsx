@@ -338,8 +338,8 @@ const translations: Record<string, Record<string, string>> = {
     'accessibility-body-4': 'so it can be fixed.',
 
     // Chat widget
-    'chat-widget-label': 'Chat with BetterAborlan Assistant',
-    'chat-widget-title': 'BetterAborlan Assistant',
+    'chat-widget-label': 'Chat with Assistant',
+    'chat-widget-title': 'Assistant',
     'chat-widget-close': 'Close chat',
     'chat-widget-placeholder': 'Ask about a service, official, or barangay…',
     'chat-widget-send': 'Send',
@@ -679,8 +679,8 @@ const translations: Record<string, Record<string, string>> = {
     'accessibility-body-4': 'para maayos ito.',
 
     // Chat widget
-    'chat-widget-label': 'Makipag-chat sa BetterAborlan Assistant',
-    'chat-widget-title': 'BetterAborlan Assistant',
+    'chat-widget-label': 'Makipag-chat sa Assistant',
+    'chat-widget-title': 'Assistant',
     'chat-widget-close': 'Isara ang chat',
     'chat-widget-placeholder': 'Magtanong tungkol sa serbisyo, opisyal, o barangay…',
     'chat-widget-send': 'Ipadala',
