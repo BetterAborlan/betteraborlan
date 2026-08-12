@@ -1,6 +1,7 @@
 import { groq } from '@ai-sdk/groq';
 import { convertToModelMessages, streamText, type UIMessage } from 'ai';
 import { buildSystemPrompt } from '@/lib/chat-context';
+import { RATE_LIMIT_MESSAGE } from '@/lib/chat-shared';
 
 export const maxDuration = 30;
 
@@ -38,7 +39,7 @@ function lastUserText(messages: UIMessage[]): string {
 export async function POST(req: Request) {
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
   if (isRateLimited(ip)) {
-    return new Response('Too many requests. Please wait a moment and try again.', { status: 429 });
+    return new Response(RATE_LIMIT_MESSAGE, { status: 429 });
   }
 
   const { messages }: { messages: UIMessage[] } = await req.json();
@@ -60,5 +61,10 @@ export async function POST(req: Request) {
     messages: await convertToModelMessages(trimmedMessages),
   });
 
-  return result.toUIMessageStreamResponse();
+  return result.toUIMessageStreamResponse({
+    // Stamps the assistant reply with a server-side timestamp (sent on the
+    // 'start' event) so the client can show "when" without trusting local
+    // clocks alone for one side of the conversation.
+    messageMetadata: ({ part }) => (part.type === 'start' ? { createdAt: Date.now() } : undefined),
+  });
 }
