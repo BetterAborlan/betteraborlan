@@ -2,6 +2,15 @@
 
 Thanks for wanting to help. This is a volunteer-built civic transparency portal for the Municipality of Aborlan, Palawan — contributions from developers, designers, translators, and residents who just know the town well are all welcome.
 
+## Stack
+
+- **Next.js 16** (App Router, TypeScript), deployed on **Vercel**
+- **Tailwind v4** + **`@bettergov/kapwa`** (CC0 design system/component library)
+- **`data/*.json`** for officials, services, news, ordinances/resolutions — no database; matches how BetterGov.ph and other BetterLGU sites store data
+- Custom CSS (`public/assets/css`) for everything Kapwa doesn't componentize, layered alongside Tailwind — not a full Tailwind rewrite
+- GitHub Actions → Vercel CLI for CI/CD (`.github/workflows/ci.yml`, `deploy.yml`, `release.yml`)
+- Conventional Commits + semantic-release for versioning (see below)
+
 ## Branching model
 
 Trunk-based — one long-lived branch:
@@ -17,6 +26,8 @@ Workflow:
 3. Merging runs [semantic-release](https://semantic-release.gitbook.io/): bumps the version, writes `CHANGELOG.md`, tags a GitHub Release, and deploys to production (see `.github/workflows/release.yml`).
 
 No manual version bumping — versions derive entirely from commit messages (see below). `main` is a protected branch (PR required, status check must pass, enforced even for admins) — a PR is the only way in, there's no direct-push shortcut.
+
+**Never hand-edit `package.json`'s version or push a tag directly to `main`.** If a version needs to jump outside normal bumping, do it as a real commit with a `BREAKING CHANGE:` footer through a normal PR instead, so semantic-release computes it.
 
 ## Getting started
 
