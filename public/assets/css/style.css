@@ -32,12 +32,17 @@
   padding: 0;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-main);
   color: var(--color-text);
   background-color: var(--color-bg);
   line-height: var(--line-height-body);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a {
@@ -773,17 +778,18 @@ body.mobile-menu-open {
 
 .skip-link {
   position: absolute;
-  top: -40px;
+  top: 0;
   left: 0;
   background: #ff0000;
   color: white;
   padding: 8px;
   z-index: 1001;
-  transition: top 0.2s;
+  transform: translateY(-100%);
+  transition: transform 0.2s;
 }
 
 .skip-link:focus {
-  top: 0;
+  transform: translateY(0);
 }
 
 /* SW Update Banner */
@@ -8121,6 +8127,7 @@ a.a11y-contact-item:hover i {
   font-weight: 700;
   color: var(--color-kapwa-text-brand-bold);
   line-height: 1.2;
+  overflow-wrap: break-word;
 }
 
 .home-stat-card-label {
@@ -8144,6 +8151,10 @@ a.a11y-contact-item:hover i {
     flex-direction: column;
     gap: var(--spacing-sm);
     text-align: center;
+  }
+
+  .home-stats-v2-grid {
+    grid-template-columns: 1fr;
   }
 }
 

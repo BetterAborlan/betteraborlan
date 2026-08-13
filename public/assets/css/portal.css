@@ -1477,6 +1477,15 @@
   .realtime-card--hotlines {
     grid-area: auto;
   }
+  /* Hotlines are the one thing people actually reach for on a phone —
+     put them first. The map is the least actionable card here, push it
+     to the end instead of making people scroll past it to reach hotlines. */
+  .realtime-card--hotlines {
+    order: -1;
+  }
+  .realtime-card--map {
+    order: 1;
+  }
   .realtime-forecast-grid {
     grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   }
@@ -1564,8 +1573,31 @@
   .header-inner-v2 {
     gap: 8px;
   }
+  /* Compact icon+title tiles instead of full bullet-list cards — the search
+     bar already covers finding a specific service, these are just for
+     browsing, and 11 full essay-cards stacked is most of the mobile scroll. */
   .service-cat-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .service-cat-card {
+    padding: 14px;
+  }
+  .service-cat-card ul {
+    display: none;
+  }
+  .service-cat-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  .service-cat-card h3 {
+    font-size: 0.9375rem;
+    margin-bottom: 6px;
+  }
+  .service-cat-card > a {
+    font-size: 0.8125rem;
   }
   .member-grid,
   .barangay-grid {
@@ -1580,8 +1612,29 @@
   .realtime-hotlines li:last-child {
     border-bottom: none;
   }
+  /* 2-col instead of a single stacked column — brand block spans full
+     width, the 3 link columns pair up so the footer doesn't add another
+     screenful of scroll on top of everything else. */
   .footer-v2-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 16px;
+    padding-bottom: 20px;
+  }
+  .footer-v2-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+  .footer-v2 h4 {
+    font-size: 0.875rem;
+    margin-bottom: 8px;
+  }
+  .footer-v2 ul li {
+    margin-bottom: 6px;
+    font-size: 0.8125rem;
+  }
+  .footer-v2-bottom {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
   }
   .portal-hero-text h1 {
     font-size: 1.875rem;
