@@ -17,6 +17,10 @@ It's built by residents and volunteers, for residents — the goal is to make it
 
 The site is a living project — services, data, and features get added and improved over time as more volunteers and verified information come in.
 
+## Origins
+
+This project was initially forked from [BetterSolano](https://github.com/BetterSolano/bettersolano), with inspiration also drawn from other portals in the [BetterLGU](https://lgu.bettergov.ph/) directory — part of the [BetterGov.ph](https://bettergov.ph) movement. If you're looking to build a civic transparency site for your own LGU, consider starting from a BetterLGU template like BetterSolano's — it saves you from building the whole stack from scratch, and you can browse existing/planned portals at the [BetterLGU directory](https://lgu.bettergov.ph/).
+
 ## Contributing
 
 Want to help? See [CONTRIBUTING.md](CONTRIBUTING.md) for the tech stack, how to run the project locally, branching/commit conventions, and how to submit a PR. Also see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and, if you find a security issue, [SECURITY.md](SECURITY.md) for how to report it responsibly.
