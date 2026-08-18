@@ -392,7 +392,7 @@
 .portal-hero {
   background: linear-gradient(160deg, var(--color-kapwa-brand-900), var(--color-kapwa-brand-950));
   color: var(--color-kapwa-neutral-50);
-  padding: 56px 0 72px;
+  padding: 64px 0;
 }
 .portal-hero-grid {
   display: grid;
@@ -400,8 +400,35 @@
   gap: 48px;
   align-items: start;
 }
-.portal-hero-grid--solo {
-  grid-template-columns: 1fr;
+/* Stretches to the row's full height, which is set by the text column
+   next to it (align-items: start on the grid) — confined to the
+   reserved 440px column so it structurally can't overlap the text.
+   The img itself is absolutely positioned inside so its own intrinsic
+   size never feeds back into the row's height, then sized to
+   130% of that height (bigger than the welcome text, still scaling
+   with it). The bottom offset cancels the hero's own bottom
+   padding (see .portal-hero) so the graphic sits flush with the hero
+   section's true visible bottom edge, not just its padded content
+   edge — bottom stays anchored there regardless of height. */
+.portal-hero-visual {
+  position: relative;
+  align-self: stretch;
+}
+.portal-hero-visual img {
+  position: absolute;
+  left: 50%;
+  bottom: -64px;
+  transform: translateX(-50%);
+  display: block;
+  height: 130%;
+  width: auto;
+  max-width: 100%;
+  opacity: 0.92;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.portal-hero-visual img:hover {
+  transform: translateX(-50%) scale(1.05) translateY(-6px);
+  opacity: 1;
 }
 .portal-hero-text h1 {
   font-size: 2.5rem;
@@ -1461,6 +1488,23 @@
   .portal-hero-grid {
     grid-template-columns: 1fr;
   }
+  .portal-hero-visual {
+    align-self: auto;
+    display: flex;
+    justify-content: center;
+    order: -1;
+    margin-bottom: 8px;
+  }
+  .portal-hero-visual img {
+    position: static;
+    transform: none;
+    height: auto;
+    width: 100%;
+    max-width: 320px;
+  }
+  .portal-hero-visual img:hover {
+    transform: scale(1.05) translateY(-6px);
+  }
   .service-cat-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1566,6 +1610,9 @@
   .container {
     padding-left: 16px;
     padding-right: 16px;
+  }
+  .portal-hero-visual img {
+    max-width: 200px;
   }
   .brand-v2-tagline {
     display: none;
@@ -2019,6 +2066,9 @@
 @media (prefers-reduced-motion: reduce) {
   .chat-widget-typing span {
     animation: none;
+  }
+  .portal-hero-visual img {
+    transition: none;
   }
 }
 
