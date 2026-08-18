@@ -12,6 +12,7 @@ const roles = [
   { icon: 'bi-palette', label: 'Graphic Design' },
   { icon: 'bi-pencil-square', label: 'Content Creation' },
   { icon: 'bi-megaphone', label: 'Digital Marketing' },
+  { icon: 'bi-translate', label: 'Cuyunon Translator' },
 ];
 
 export default function VolunteerPopup() {
