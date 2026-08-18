@@ -17,13 +17,21 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="portal-hero">
-        <div className="container portal-hero-grid portal-hero-grid--solo">
+        <div className="container portal-hero-grid">
           <div className="portal-hero-text">
             <h1>{t('hero-welcome')}</h1>
             <p>{t('hero-subtitle')}</p>
             <div className="portal-hero-search">
               <SearchAutocomplete placeholder={t('hero-search-placeholder')} />
             </div>
+          </div>
+          <div className="portal-hero-visual" aria-hidden="true">
+            <img
+              src="/assets/images/logo/better-aborlan-logo-white.svg"
+              alt=""
+              width={384}
+              height={299}
+            />
           </div>
         </div>
       </section>
