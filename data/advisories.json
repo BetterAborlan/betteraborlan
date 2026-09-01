@@ -1,0 +1,16 @@
+[
+  {
+    "id": "haze-2026-08-kalimantan",
+    "type": "haze",
+    "severity": "warning",
+    "title_en": "Haze Advisory: Reduced Air Quality Over Palawan",
+    "title_fil": "Haze Advisory: Naapektuhan ang Kalidad ng Hangin sa Palawan",
+    "description_en": "Smoke haze from wildfires in Kalimantan, Indonesia is being carried into parts of Palawan, including Aborlan, by the southwest monsoon (habagat). Air quality may be temporarily reduced.\n\nHealth guidance:\n- Limit outdoor physical activity, especially strenuous exercise.\n- Wear an N95 mask when outdoors, particularly during periods of visible haze.\n- Watch for symptoms such as coughing, itchy or irritated eyes, and difficulty breathing.\n- Individuals with asthma or other respiratory conditions should take extra precaution and keep rescue medication on hand.\n- Keep windows closed when haze is heavy, if possible.",
+    "description_fil": "May haze mula sa mga sunog sa gubat sa Kalimantan, Indonesia na dinadala hanggang sa bahagi ng Palawan, kasama ang Aborlan, dahil sa habagat. Maaaring pansamantalang bumaba ang kalidad ng hangin.\n\nGabay sa kalusugan:\n- Limitahan ang mabibigat na aktibidad sa labas ng bahay.\n- Magsuot ng N95 mask kapag lumabas, lalo na kung mataas ang haze.\n- Bantayan ang mga sintomas tulad ng pag-ubo, pangangati ng mata, at hirap sa paghinga.\n- Ang mga may hika o iba pang problema sa paghinga ay dapat mag-ingat nang higit pa at laging may dalang gamot.\n- Isara ang mga bintana kung mabigat ang haze, kung maaari.",
+    "source": "PDRRMO Palawan / DENR-EMB",
+    "source_url": "https://www.pdrrmo.palawan.gov.ph",
+    "published_at": "2026-08-28T00:00:00+08:00",
+    "updated_at": "2026-08-28T00:00:00+08:00",
+    "active": true
+  }
+]

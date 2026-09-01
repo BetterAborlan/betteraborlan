@@ -136,6 +136,126 @@
   font-size: 1rem;
 }
 
+/* Advisory banner (Bantay Aborlan) */
+.advisory-banner {
+  font-size: 0.875rem;
+}
+.advisory-banner-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+}
+.advisory-banner-icon {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+.advisory-banner-body {
+  flex: 1;
+  min-width: 0;
+}
+.advisory-banner-headline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  row-gap: 4px;
+}
+.advisory-banner-severity-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+.advisory-banner-title {
+  font-weight: 600;
+}
+.advisory-banner-toggle,
+.advisory-banner-dismiss {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+.advisory-banner-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  margin-right: var(--spacing-sm);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 2px 0;
+}
+.advisory-banner-toggle:hover {
+  opacity: 0.85;
+}
+.advisory-banner-detail {
+  margin-top: var(--spacing-xs);
+  padding-top: var(--spacing-xs);
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+.advisory-banner-detail-para {
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.6;
+}
+.advisory-banner-detail-meta {
+  font-size: 0.8125rem;
+  opacity: 0.9;
+  margin-bottom: var(--spacing-xs);
+}
+.advisory-banner-detail-meta a {
+  color: inherit;
+  text-decoration: underline;
+}
+.advisory-banner-others {
+  list-style: none;
+  margin-top: var(--spacing-xs);
+  padding-top: var(--spacing-xs);
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.advisory-banner-other-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.8125rem;
+}
+.advisory-banner-other-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  align-self: center;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+.advisory-banner-other-title {
+  font-weight: 600;
+}
+.advisory-banner-other-source {
+  opacity: 0.8;
+}
+.advisory-banner-dismiss {
+  flex-shrink: 0;
+  padding: 2px 4px;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+.advisory-banner-dismiss:hover {
+  opacity: 0.8;
+}
+
 /* Top utility bar */
 .topbar {
   background: var(--color-kapwa-neutral-50);

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import AdvisoryBanner from '@/components/AdvisoryBanner';
 import TopBar from '@/components/layout/TopBar';
 import Header from '@/components/layout/Header';
 import InfoBar from '@/components/layout/InfoBar';
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href="#main-content" className="skip-link">
               Skip to main content
             </a>
+            <AdvisoryBanner />
             <TopBar />
             <Header />
             <InfoBar />
