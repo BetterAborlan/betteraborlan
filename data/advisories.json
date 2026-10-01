@@ -2,15 +2,15 @@
   {
     "id": "haze-2026-08-kalimantan",
     "type": "haze",
-    "severity": "warning",
-    "title_en": "Haze Advisory: Reduced Air Quality Over Palawan",
-    "title_fil": "Haze Advisory: Naapektuhan ang Kalidad ng Hangin sa Palawan",
-    "description_en": "Smoke haze from wildfires in Kalimantan, Indonesia is being carried into parts of Palawan, including Aborlan, by the southwest monsoon (habagat). Air quality may be temporarily reduced.\n\nHealth guidance:\n- Limit outdoor physical activity, especially strenuous exercise.\n- Wear an N95 mask when outdoors, particularly during periods of visible haze.\n- Watch for symptoms such as coughing, itchy or irritated eyes, and difficulty breathing.\n- Individuals with asthma or other respiratory conditions should take extra precaution and keep rescue medication on hand.\n- Keep windows closed when haze is heavy, if possible.",
-    "description_fil": "May haze mula sa mga sunog sa gubat sa Kalimantan, Indonesia na dinadala hanggang sa bahagi ng Palawan, kasama ang Aborlan, dahil sa habagat. Maaaring pansamantalang bumaba ang kalidad ng hangin.\n\nGabay sa kalusugan:\n- Limitahan ang mabibigat na aktibidad sa labas ng bahay.\n- Magsuot ng N95 mask kapag lumabas, lalo na kung mataas ang haze.\n- Bantayan ang mga sintomas tulad ng pag-ubo, pangangati ng mata, at hirap sa paghinga.\n- Ang mga may hika o iba pang problema sa paghinga ay dapat mag-ingat nang higit pa at laging may dalang gamot.\n- Isara ang mga bintana kung mabigat ang haze, kung maaari.",
-    "source": "PDRRMO Palawan / DENR-EMB",
+    "severity": "resolved",
+    "title_en": "Haze Advisory Lifted: Air Quality Has Improved Over Aborlan",
+    "title_fil": "Tapos na ang Haze Advisory: Bumuti na ang Kalidad ng Hangin sa Aborlan",
+    "description_en": "The haze from forest and land fires in Kalimantan, Indonesia has cleared over Aborlan, and air quality has improved.\n\nPalawan was among the areas affected since late August, carried in by the southwest monsoon (habagat). Air quality in MIMAROPA reached \"very unhealthy\" levels on September 10, with elevated PM2.5 recorded at the Puerto Princesa monitoring station (Palawan State University).\n\nIf haze returns:\n- Limit prolonged outdoor activity, especially strenuous exercise.\n- Wear a well-fitting N95 or equivalent mask when outdoors.\n- Children, older adults, pregnant women, and people with heart or lung conditions should take extra precaution.\n- Seek medical care if you have difficulty breathing or symptoms that do not go away.",
+    "description_fil": "Nawala na ang haze mula sa mga sunog sa gubat at lupa sa Kalimantan, Indonesia sa Aborlan, at bumuti na ang kalidad ng hangin.\n\nKabilang ang Palawan sa mga apektadong lugar mula pa noong huling bahagi ng Agosto, dala ng habagat. Umabot sa \"very unhealthy\" ang kalidad ng hangin sa MIMAROPA noong Setyembre 10, at mataas ang PM2.5 sa monitoring station sa Puerto Princesa (Palawan State University).\n\nKung bumalik ang haze:\n- Limitahan ang matagal na aktibidad sa labas, lalo na ang mabibigat na ehersisyo.\n- Magsuot ng maayos na N95 o katumbas na mask kapag nasa labas.\n- Ang mga bata, nakatatanda, buntis, at may sakit sa puso o baga ay dapat mag-ingat nang higit pa.\n- Magpatingin sa doktor kung nahihirapang huminga o hindi nawawala ang mga sintomas.",
+    "source": "DENR-EMB / PDRRMO Palawan",
     "source_url": "https://www.pdrrmo.palawan.gov.ph",
     "published_at": "2026-08-28T00:00:00+08:00",
-    "updated_at": "2026-08-28T00:00:00+08:00",
+    "updated_at": "2026-10-01T00:00:00+08:00",
     "active": true
   }
 ]
