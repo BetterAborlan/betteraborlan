@@ -1,3 +1,5 @@
+## [1.8.1](https://github.com/BetterAborlan/betteraborlan/compare/v1.8.0...v1.8.1) (2026-10-01)
+
 ## [1.8.0](https://github.com/BetterAborlan/betteraborlan/compare/v1.7.0...v1.8.0) (2026-09-01)
 
 ## [1.7.0](https://github.com/BetterAborlan/betteraborlan/compare/v1.6.0...v1.7.0) (2026-08-18)
