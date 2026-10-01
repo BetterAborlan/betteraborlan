@@ -6,7 +6,7 @@ import { Card } from '@bettergov/kapwa/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { hotlines } from '@/data/hotlines';
 
-// Leaflet touches `window` at import time, so it can only ever run client-side.
+// MapLibre needs `window` and WebGL, so the map only ever renders client-side.
 const AborlanMap = dynamic(() => import('@/components/AborlanMap'), {
   ssr: false,
   loading: () => <div className="realtime-map-loading">Loading map…</div>,
