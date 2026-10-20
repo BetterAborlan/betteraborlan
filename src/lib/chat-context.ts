@@ -10,7 +10,7 @@ interface Service {
   category: string;
   categoryId: string;
   description: string;
-  fee: string;
+  fee: string | null;
   processingTime: string;
   office: string;
 }
@@ -72,7 +72,7 @@ function formatServices(list: Service[]): string {
   return list
     .map(
       (s) =>
-        `- ${s.title} (${s.category}): ₱fee ${s.fee}, ${s.processingTime}, at ${s.office}. ${s.description} Page link: [${s.title}](/service-details/${s.id})`,
+        `- ${s.title} (${s.category}): fee ${s.fee ?? 'none'}, ${s.processingTime}, at ${s.office}. ${s.description} Page link: [${s.title}](/service-details/${s.id})`,
     )
     .join('\n');
 }

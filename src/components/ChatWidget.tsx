@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState, type FormEvent, type ReactNod
 import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport, type UIMessage } from 'ai';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { findQuickAnswer } from '@/data/chat-quick-answers';
+import { findQuickAnswer, type QuickAnswerData } from '@/data/chat-quick-answers';
 import { RATE_LIMIT_COOLDOWN_MS, RATE_LIMIT_MESSAGE } from '@/lib/chat-shared';
 
 const EXIT_DURATION_MS = 220; // must be >= the .chat-widget-panel-out CSS animation duration
@@ -80,7 +80,7 @@ function renderMessageContent(text: string) {
   return nodes;
 }
 
-export default function ChatWidget() {
+export default function ChatWidget({ quickAnswerData }: { quickAnswerData: QuickAnswerData }) {
   const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -185,11 +185,11 @@ export default function ChatWidget() {
       if (!text || busy) return;
       clearError();
 
-      // Common questions get answered straight from the client-bundled
-      // dataset -- appended as a normal turn via setMessages, with no
+      // Common questions get answered straight from the server-provided
+      // quick-answer dataset -- appended as a normal turn via setMessages, with no
       // network/LLM call at all. Anything else falls through to the
       // streaming API via sendMessage.
-      const quickAnswer = findQuickAnswer(text);
+      const quickAnswer = findQuickAnswer(text, quickAnswerData);
       if (quickAnswer) {
         const now = Date.now();
         setMessages((curr) => [
@@ -210,7 +210,7 @@ export default function ChatWidget() {
       if (coolingDown) return;
       sendMessage({ text, metadata: { createdAt: Date.now() } });
     },
-    [busy, coolingDown, sendMessage, setMessages, clearError],
+    [busy, coolingDown, sendMessage, setMessages, clearError, quickAnswerData],
   );
 
   const handleSubmit = useCallback(

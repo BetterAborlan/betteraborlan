@@ -10,6 +10,7 @@ import VolunteerPopup from '@/components/VolunteerPopup';
 import ChatWidget from '@/components/ChatWidget';
 import ComingSoon from '@/components/ComingSoon';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { buildQuickAnswerData } from '@/lib/chat-quick-data';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://betteraborlan.org';
 
@@ -87,7 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
             <PWAManager />
             <VolunteerPopup />
-            <ChatWidget />
+            <ChatWidget quickAnswerData={buildQuickAnswerData()} />
           </LanguageProvider>
         )}
       </body>
