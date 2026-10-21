@@ -5,7 +5,10 @@ import { RATE_LIMIT_MESSAGE } from '@/lib/chat-shared';
 
 export const maxDuration = 30;
 
-const MODEL = 'llama-3.1-8b-instant';
+// Smallest general-purpose chat model on Groq (llama-3.1-8b-instant was
+// retired). It's a reasoning model: effort is kept low for latency/tokens,
+// and the reasoning itself is never streamed to the resident.
+const MODEL = 'openai/gpt-oss-20b';
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_LENGTH = 1000;
 
@@ -57,11 +60,13 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model: groq(MODEL),
+    providerOptions: { groq: { reasoningEffort: 'low' } },
     system: buildSystemPrompt(question),
     messages: await convertToModelMessages(trimmedMessages),
   });
 
   return result.toUIMessageStreamResponse({
+    sendReasoning: false,
     // Stamps the assistant reply with a server-side timestamp (sent on the
     // 'start' event) so the client can show "when" without trusting local
     // clocks alone for one side of the conversation.
