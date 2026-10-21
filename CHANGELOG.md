@@ -1,3 +1,5 @@
+## [1.11.0](https://github.com/BetterAborlan/betteraborlan/compare/v1.10.2...v1.11.0) (2026-10-21)
+
 ## [1.10.2](https://github.com/BetterAborlan/betteraborlan/compare/v1.10.1...v1.10.2) (2026-10-21)
 
 ## [1.10.1](https://github.com/BetterAborlan/betteraborlan/compare/v1.10.0...v1.10.1) (2026-10-20)
