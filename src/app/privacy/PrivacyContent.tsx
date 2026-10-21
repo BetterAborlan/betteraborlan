@@ -19,6 +19,11 @@ export default function PrivacyContent() {
           <h3>{t('privacy-third-party-heading')}</h3>
           <p>{t('privacy-third-party-body')}</p>
 
+          <h3 id="chat-research-log">{t('privacy-chat-heading')}</h3>
+          <p>{t('privacy-chat-body-1')}</p>
+          <p>{t('privacy-chat-body-2')}</p>
+          <p>{t('privacy-chat-body-3')}</p>
+
           <h3>{t('privacy-hosting-heading')}</h3>
           <p>{t('privacy-hosting-body')}</p>
 
