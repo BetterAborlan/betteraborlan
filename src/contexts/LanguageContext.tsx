@@ -320,6 +320,13 @@ const translations: Record<string, Record<string, string>> = {
     'privacy-third-party-heading': 'Third-party data on this site',
     'privacy-third-party-body':
       "Some widgets (weather, currency exchange rates, map tiles) call public third-party APIs directly from your browser to display live data. No personal information is sent to them beyond what any standard web request includes (e.g., your IP address, handled by those providers under their own policies).",
+    'privacy-chat-heading': 'Chatbot and the optional research log',
+    'privacy-chat-body-1':
+      'Questions you type into the BetterAborlan Chatbot are sent to Groq, an AI provider, to generate an answer. Common questions are answered directly in your browser without being sent anywhere. Please do not type personal details such as your full name, address, or ID numbers into the chatbot.',
+    'privacy-chat-body-2':
+      'Below the chat box is an optional "share my questions" checkbox. It is off unless you turn it on. When it is on, we store your question, the chatbot\'s answer, any thumbs up/down you give, the site language, and the time. We do not store your IP address, browser details, name, or anything that identifies you or links your questions together across visits.',
+    'privacy-chat-body-3':
+      'This log is used only to check how accurate the chatbot is, to improve it, and for research on civic chatbots. Questions may be quoted in research publications, with any personal details removed. Entries are kept for up to two years and then deleted. You can stop sharing at any time by unchecking the box. Because nothing in the log identifies you, we cannot find and delete a specific person\'s entries after they are saved.',
     'privacy-hosting-heading': 'Hosting',
     'privacy-hosting-body':
       'This site is hosted on Vercel, which may log standard web request data (IP address, user agent) for operational and security purposes.',
@@ -344,7 +351,7 @@ const translations: Record<string, Record<string, string>> = {
     'chat-widget-close': 'Close chat',
     'chat-widget-placeholder': 'Ask about a service, official, or barangay…',
     'chat-widget-send': 'Send',
-    'chat-widget-disclaimer': "You're chatting with an AI assistant, not municipal staff — answers may not always be complete or accurate. This conversation stays in this tab and clears when you close it. For official transactions, confirm with the municipal office directly.",
+    'chat-widget-disclaimer': "You're chatting with an AI assistant, not municipal staff — answers may not always be complete or accurate. This conversation stays in this tab and clears when you close it, unless you choose to share your questions below. For official transactions, confirm with the municipal office directly.",
     'chat-widget-loading': 'Thinking…',
     'chat-widget-error': 'Something went wrong.',
     'chat-widget-retry': 'Retry',
@@ -354,6 +361,8 @@ const translations: Record<string, Record<string, string>> = {
     'chat-widget-copied': 'Copied!',
     'chat-widget-feedback-up': 'Good answer',
     'chat-widget-feedback-down': 'Bad answer',
+    'chat-widget-log-consent': 'Share my questions and ratings anonymously to help improve this chatbot.',
+    'chat-widget-log-consent-link': 'Learn more',
     'chat-widget-empty-state': 'Ask me about local services, officials, barangays, or emergency hotlines.',
     'chat-widget-greeting': "Hi, I'm BetterAborlan Chatbot 👋 Ask me about local services, officials, barangays, or emergency hotlines — or tap a question below to start.",
     'chat-widget-suggestion-hotlines': 'Emergency hotlines',
@@ -692,6 +701,13 @@ const translations: Record<string, Record<string, string>> = {
     'privacy-third-party-heading': 'Third-party na data sa site na ito',
     'privacy-third-party-body':
       'Ang ilang widget (panahon, palitan ng pera, mapa) ay direktang tumatawag sa mga pampublikong third-party API mula sa iyong browser para magpakita ng live data. Walang personal na impormasyon ang ipinapadala sa kanila maliban sa karaniwang kasama sa isang standard web request (hal., ang iyong IP address, na hinahawakan ng mga provider na iyon sa ilalim ng kanilang sariling patakaran).',
+    'privacy-chat-heading': 'Chatbot at ang opsyonal na research log',
+    'privacy-chat-body-1':
+      'Ang mga tanong na tina-type mo sa BetterAborlan Chatbot ay ipinapadala sa Groq, isang AI provider, para makabuo ng sagot. Ang mga karaniwang tanong ay sinasagot nang direkta sa iyong browser nang hindi ipinapadala kahit saan. Huwag mag-type ng personal na detalye tulad ng buong pangalan, address, o ID number sa chatbot.',
+    'privacy-chat-body-2':
+      'Sa ilalim ng chat box ay may opsyonal na checkbox na "ibahagi ang aking mga tanong." Naka-off ito maliban kung i-on mo. Kapag naka-on, itinatabi namin ang iyong tanong, ang sagot ng chatbot, anumang thumbs up/down na ibibigay mo, ang wika ng site, at ang oras. Hindi namin itinatabi ang iyong IP address, detalye ng browser, pangalan, o anumang makakakilala sa iyo o mag-uugnay sa iyong mga tanong sa iba\'t ibang pagbisita.',
+    'privacy-chat-body-3':
+      'Ginagamit lamang ang log na ito para suriin kung gaano katumpak ang chatbot, para mapabuti ito, at para sa pananaliksik tungkol sa mga civic chatbot. Maaaring banggitin ang mga tanong sa mga research publication, nang tinanggal ang anumang personal na detalye. Itinatabi ang mga entry nang hanggang dalawang taon at pagkatapos ay binubura. Maaari kang huminto sa pagbabahagi anumang oras sa pamamagitan ng pag-uncheck sa checkbox. Dahil walang anumang nasa log na makakakilala sa iyo, hindi namin mahahanap at mabubura ang mga entry ng isang partikular na tao kapag naitabi na ang mga ito.',
     'privacy-hosting-heading': 'Hosting',
     'privacy-hosting-body':
       'Naka-host ang site na ito sa Vercel, na maaaring mag-log ng standard web request data (IP address, user agent) para sa operational at security na layunin.',
@@ -716,7 +732,7 @@ const translations: Record<string, Record<string, string>> = {
     'chat-widget-close': 'Isara ang chat',
     'chat-widget-placeholder': 'Magtanong tungkol sa serbisyo, opisyal, o barangay…',
     'chat-widget-send': 'Ipadala',
-    'chat-widget-disclaimer': 'Nakikipag-usap ka sa isang AI assistant, hindi sa staff ng munisipyo — maaaring hindi laging kumpleto o tumpak ang mga sagot. Nananatili ang usapang ito sa tab na ito at nawawala kapag isinara mo ito. Para sa opisyal na transaksyon, kumpirmahin nang direkta sa tanggapan ng munisipyo.',
+    'chat-widget-disclaimer': 'Nakikipag-usap ka sa isang AI assistant, hindi sa staff ng munisipyo — maaaring hindi laging kumpleto o tumpak ang mga sagot. Nananatili ang usapang ito sa tab na ito at nawawala kapag isinara mo ito, maliban kung piliin mong ibahagi ang iyong mga tanong sa ibaba. Para sa opisyal na transaksyon, kumpirmahin nang direkta sa tanggapan ng munisipyo.',
     'chat-widget-loading': 'Nag-iisip…',
     'chat-widget-error': 'May naganap na error.',
     'chat-widget-retry': 'Subukang muli',
@@ -726,6 +742,8 @@ const translations: Record<string, Record<string, string>> = {
     'chat-widget-copied': 'Nakopya!',
     'chat-widget-feedback-up': 'Magandang sagot',
     'chat-widget-feedback-down': 'Hindi magandang sagot',
+    'chat-widget-log-consent': 'Ibahagi nang anonymous ang aking mga tanong at rating para mapabuti ang chatbot na ito.',
+    'chat-widget-log-consent-link': 'Alamin pa',
     'chat-widget-empty-state': 'Magtanong tungkol sa mga lokal na serbisyo, opisyal, barangay, o emergency hotlines.',
     'chat-widget-greeting': "Kumusta, ako ang BetterAborlan Chatbot 👋 Magtanong tungkol sa mga lokal na serbisyo, opisyal, barangay, o emergency hotlines — o pumili ng tanong sa ibaba para magsimula.",
     'chat-widget-suggestion-hotlines': 'Emergency hotlines',

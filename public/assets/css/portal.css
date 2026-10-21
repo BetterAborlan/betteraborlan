@@ -2247,6 +2247,27 @@
   cursor: not-allowed;
 }
 
+.chat-widget-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 0 16px 6px;
+  font-size: 0.6875rem;
+  color: var(--color-kapwa-text-support);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.chat-widget-consent input {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.chat-widget-consent a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .chat-widget-disclaimer {
   padding: 0 16px 12px;
   font-size: 0.6875rem;

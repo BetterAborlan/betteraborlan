@@ -4,11 +4,12 @@ import { useCallback, useEffect, useRef, useState, type FormEvent, type ReactNod
 import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport, type UIMessage } from 'ai';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { findQuickAnswer } from '@/data/chat-quick-answers';
+import { findQuickAnswer, type QuickAnswerData } from '@/data/chat-quick-answers';
 import { RATE_LIMIT_COOLDOWN_MS, RATE_LIMIT_MESSAGE } from '@/lib/chat-shared';
 
 const EXIT_DURATION_MS = 220; // must be >= the .chat-widget-panel-out CSS animation duration
 const STORAGE_KEY = 'chat-widget-messages';
+const LOG_CONSENT_KEY = 'chat-widget-log-consent';
 
 // The only metadata we attach to messages -- when they were created. Set
 // client-side for user turns (incl. quick-answers) and server-side (on the
@@ -35,6 +36,29 @@ function loadStoredMessages(): ChatUIMessage[] {
   } catch {
     return [];
   }
+}
+
+// The resident's opt-in to the chat research log. Defaults to off and is
+// remembered per browser; if storage is unavailable it just stays off.
+function loadLogConsent(): boolean {
+  if (typeof window === 'undefined') return false;
+  try {
+    return window.localStorage.getItem(LOG_CONSENT_KEY) === 'true';
+  } catch {
+    return false;
+  }
+}
+
+// Fire-and-forget: a failed log write must never affect the chat itself.
+function postChatLog(payload: Record<string, unknown>) {
+  fetch('/api/chat/log', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    keepalive: true,
+  }).catch(() => {
+    // offline or blocked -- the event just isn't logged
+  });
 }
 
 function makeId(): string {
@@ -80,8 +104,8 @@ function renderMessageContent(text: string) {
   return nodes;
 }
 
-export default function ChatWidget() {
-  const { t } = useLanguage();
+export default function ChatWidget({ quickAnswerData }: { quickAnswerData: QuickAnswerData }) {
+  const { t, language } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [closing, setClosing] = useState(false);
@@ -93,6 +117,17 @@ export default function ChatWidget() {
   const panelRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const previousFocus = useRef<HTMLElement | null>(null);
+
+  const [logConsent, setLogConsent] = useState(loadLogConsent);
+
+  const toggleLogConsent = useCallback((next: boolean) => {
+    setLogConsent(next);
+    try {
+      window.localStorage.setItem(LOG_CONSENT_KEY, String(next));
+    } catch {
+      // storage unavailable -- the choice lasts until the page reloads
+    }
+  }, []);
 
   const { messages, sendMessage, setMessages, status, error, clearError, regenerate } =
     useChat<ChatUIMessage>({
@@ -185,32 +220,56 @@ export default function ChatWidget() {
       if (!text || busy) return;
       clearError();
 
-      // Common questions get answered straight from the client-bundled
-      // dataset -- appended as a normal turn via setMessages, with no
+      // Common questions get answered straight from the server-provided
+      // quick-answer dataset -- appended as a normal turn via setMessages, with no
       // network/LLM call at all. Anything else falls through to the
       // streaming API via sendMessage.
-      const quickAnswer = findQuickAnswer(text);
+      const quickAnswer = findQuickAnswer(text, quickAnswerData);
       if (quickAnswer) {
         const now = Date.now();
+        const answerId = makeId();
         setMessages((curr) => [
           ...curr,
           { id: makeId(), role: 'user', parts: [{ type: 'text', text }], metadata: { createdAt: now } },
           {
-            id: makeId(),
+            id: answerId,
             role: 'assistant',
             parts: [{ type: 'text', text: quickAnswer }],
             metadata: { createdAt: now },
           },
         ]);
+        if (logConsent) {
+          postChatLog({
+            kind: 'instant',
+            messageId: answerId,
+            question: text,
+            uiLanguage: language,
+            turn: messages.filter((m) => m.role === 'user').length + 1,
+          });
+        }
         return;
       }
 
       // Quick-answers never touch Groq, so they're exempt from the cooldown;
       // only the actual LLM call needs to wait one out.
       if (coolingDown) return;
-      sendMessage({ text, metadata: { createdAt: Date.now() } });
+      // The route only logs the reply when logConsent is true.
+      sendMessage(
+        { text, metadata: { createdAt: Date.now() } },
+        { body: { logConsent, uiLanguage: language } },
+      );
     },
-    [busy, coolingDown, sendMessage, setMessages, clearError],
+    [
+      busy,
+      coolingDown,
+      sendMessage,
+      setMessages,
+      clearError,
+      quickAnswerData,
+      logConsent,
+      language,
+      messages,
+    ],
   );
 
   const handleSubmit = useCallback(
@@ -224,9 +283,9 @@ export default function ChatWidget() {
     [input, busy, submitText],
   );
 
-  // Copy-to-clipboard feedback and 👍/👎 reactions are UI-only -- neither
-  // is sent anywhere or persisted; a page refresh (or the copy flag timing
-  // out) resets them.
+  // Copy-to-clipboard feedback is UI-only. 👍/👎 reactions live in
+  // state and, only if the resident opted in to the research log, are also
+  // sent to /api/chat/log; a page refresh resets the on-screen state.
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<Record<string, 'up' | 'down'>>({});
 
@@ -242,17 +301,24 @@ export default function ChatWidget() {
       });
   }, []);
 
-  const rateMessage = useCallback((id: string, rating: 'up' | 'down') => {
-    setFeedback((curr) => {
-      const next = { ...curr };
-      if (next[id] === rating) {
-        delete next[id]; // tapping the active choice again clears it
-      } else {
-        next[id] = rating;
+  const rateMessage = useCallback(
+    (id: string, rating: 'up' | 'down') => {
+      const cleared = feedback[id] === rating; // tapping the active choice again clears it
+      setFeedback((curr) => {
+        const next = { ...curr };
+        if (cleared) {
+          delete next[id];
+        } else {
+          next[id] = rating;
+        }
+        return next;
+      });
+      if (logConsent) {
+        postChatLog({ kind: 'rating', messageId: id, rating: cleared ? null : rating === 'up' ? 1 : -1 });
       }
-      return next;
-    });
-  }, []);
+    },
+    [feedback, logConsent],
+  );
 
   // Shown only before the first turn -- a real assistant-style greeting plus
   // a few tappable prompts so residents aren't staring at a blank box.
@@ -398,7 +464,7 @@ export default function ChatWidget() {
           {error && !isRateLimited && (
             <div className="chat-widget-message chat-widget-message--error">
               <p>{t('chat-widget-error')}</p>
-              <button type="button" className="chat-widget-retry" onClick={() => regenerate()}>
+              <button type="button" className="chat-widget-retry" onClick={() => regenerate({ body: { logConsent, uiLanguage: language } })}>
                 <i className="bi bi-arrow-clockwise" aria-hidden="true"></i> {t('chat-widget-retry')}
               </button>
             </div>
@@ -432,6 +498,17 @@ export default function ChatWidget() {
             <i className="bi bi-send-fill" aria-hidden="true"></i>
           </button>
         </form>
+        <label className="chat-widget-consent">
+          <input
+            type="checkbox"
+            checked={logConsent}
+            onChange={(e) => toggleLogConsent(e.target.checked)}
+          />
+          <span>
+            {t('chat-widget-log-consent')}{' '}
+            <a href="/privacy#chat-research-log">{t('chat-widget-log-consent-link')}</a>
+          </span>
+        </label>
         <p className="chat-widget-disclaimer">{t('chat-widget-disclaimer')}</p>
       </div>
     </>

@@ -10,7 +10,7 @@ interface Service {
   category: string;
   categoryId: string;
   description: string;
-  fee: string;
+  fee: string | null;
   processingTime: string;
   office: string;
 }
@@ -72,7 +72,7 @@ function formatServices(list: Service[]): string {
   return list
     .map(
       (s) =>
-        `- ${s.title} (${s.category}): ₱fee ${s.fee}, ${s.processingTime}, at ${s.office}. ${s.description} Page link: [${s.title}](/service-details/${s.id})`,
+        `- ${s.title} (${s.category}): fee ${s.fee ?? 'none'}, ${s.processingTime}, at ${s.office}. ${s.description} Page link: [${s.title}](/service-details/${s.id})`,
     )
     .join('\n');
 }
@@ -136,16 +136,17 @@ function formatSitePages(): string {
   return SITE_PAGES.map((p) => `- [${p.label}](${p.path})`).join('\n');
 }
 
-// Builds the system prompt for a given user question. Keeps the prompt as
-// small as possible: officials/demographics/barangays/hotlines are cheap
+// Builds the system prompt for a given user question, and reports which
+// services retrieval put in it (for the opt-in chat research log). Keeps
+// the prompt as small as possible: officials/demographics/barangays/hotlines are cheap
 // (a few hundred tokens total) so they're always included in full; services
 // are the expensive part (80 entries, ~9K tokens if inlined whole) so only
 // the ones relevant to the question are included, capped at
 // MAX_SERVICES_IN_CONTEXT.
-export function buildSystemPrompt(question: string): string {
+export function buildSystemPrompt(question: string): { system: string; serviceIds: string[] } {
   const relevantServices = findRelevantServices(question);
 
-  return `You are BetterAborlan Chatbot, a helpful civic information assistant for the Municipality of Aborlan, Palawan, Philippines. You answer questions using ONLY the data provided below, which comes from official sources (the Municipal Citizen's Charter, PSA census data, and COMELEC/LGU records).
+  const system = `You are BetterAborlan Chatbot, a helpful civic information assistant for the Municipality of Aborlan, Palawan, Philippines. You answer questions using ONLY the data provided below, which comes from official sources (the Municipal Citizen's Charter, PSA census data, and COMELEC/LGU records).
 
 Rules:
 - Answer only from the data below. If the answer isn't in it, say you don't have that information and suggest contacting the Municipal Hall directly, or checking the relevant page on the site.
@@ -174,4 +175,6 @@ ${formatHotlines()}
 ## Relevant Citizen Services
 ${formatServices(relevantServices)}
 `;
+
+  return { system, serviceIds: relevantServices.map((s) => s.id) };
 }
