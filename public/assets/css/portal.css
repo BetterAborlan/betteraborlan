@@ -5,6 +5,65 @@
  * and a multi-column footer. Uses the Kapwa tokens from kapwa-tokens.css.
  */
 
+/* Aborlan theme. Palette sampled from the municipal seal/flag: the
+   indigo of the Victoria range, the golden-yellow field, the green of
+   the rice paddies, and the deep forest green of the tree. Kapwa's
+   brand scale is re-pointed at the indigo so every component that
+   already reads --color-kapwa-brand-* follows along; gold and paddy
+   green are extra --ab-* tokens for accents. `:root:root` outranks
+   kapwa.css's own `:root` block regardless of stylesheet load order. */
+:root:root {
+  --color-kapwa-brand-50: #eef0fb;
+  --color-kapwa-brand-100: #dde1f7;
+  --color-kapwa-brand-200: #bfc5ef;
+  --color-kapwa-brand-300: #949de3;
+  --color-kapwa-brand-400: #6670d3;
+  --color-kapwa-brand-500: #4148c2;
+  --color-kapwa-brand-600: #2f33ae;
+  --color-kapwa-brand-700: #272a92;
+  --color-kapwa-brand-800: #222476;
+  --color-kapwa-brand-900: #1d1f5e;
+  --color-kapwa-brand-950: #12133a;
+
+  --ab-gold-50: #fffbe6;
+  --ab-gold-100: #fff3b8;
+  --ab-gold-300: #ffe066;
+  --ab-gold-400: #ffd300;
+  --ab-gold-500: #e6b800;
+  --ab-gold-700: #7a5a00;
+  --ab-paddy-50: #f2fbe3;
+  --ab-paddy-100: #e2f5c2;
+  --ab-paddy-400: #8cd504;
+  --ab-paddy-600: #4f8a00;
+  --ab-paddy-700: #3c6a05;
+  --ab-forest-900: #0c250f;
+  --ab-river-300: #8fc8f8;
+
+  /* Three-colour band (gold / indigo / paddy) used as a civic signature
+     on the top bar, section headings and footer. */
+  --ab-band: linear-gradient(
+    90deg,
+    var(--ab-gold-400) 0 33.33%,
+    var(--color-kapwa-brand-600) 33.33% 66.66%,
+    var(--ab-paddy-400) 66.66% 100%
+  );
+  --ab-font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
+
+  /* Legacy style.css tokens, kept in step with the new palette */
+  --color-primary: #272a92;
+  --color-primary-dark: #1d1f5e;
+  --color-secondary: #4148c2;
+}
+
+h1,
+h2,
+h3,
+.brand-v2-title,
+.footer-v2-brand-title {
+  font-family: var(--ab-font-display);
+  letter-spacing: -0.015em;
+}
+
 /* Coming-soon page. Tailwind's px/py utilities live in a lower-priority
    @layer, so the global unlayered `* { padding: 0 }` reset in style.css
    beats them regardless of specificity — same bug class as the old CTA
@@ -262,6 +321,12 @@
   border-bottom: 1px solid var(--color-kapwa-border-weak);
   font-size: 0.8125rem;
 }
+.topbar::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: var(--ab-band);
+}
 .topbar-inner {
   display: flex;
   justify-content: flex-end;
@@ -357,6 +422,7 @@
   position: relative;
 }
 .main-nav-v2 > ul > li > a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -364,10 +430,27 @@
   color: var(--color-kapwa-gray-800);
   padding: 8px 0;
 }
+.main-nav-v2 > ul > li > a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--ab-gold-400);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-kapwa-200) var(--ease-kapwa-out);
+}
 .main-nav-v2 > ul > li > a:hover,
 .main-nav-v2 > ul > li > a.active {
   color: var(--color-kapwa-brand-700);
   text-decoration: none;
+}
+.main-nav-v2 > ul > li > a:hover::after,
+.main-nav-v2 > ul > li > a.active::after {
+  transform: scaleX(1);
 }
 .main-nav-v2 .chevron {
   font-size: 0.7em;
@@ -415,7 +498,8 @@
   font-size: 0.9rem;
 }
 .main-nav-v2 .dropdown-menu li a:hover {
-  background: var(--color-kapwa-bg-surface-raised);
+  background: var(--color-kapwa-brand-50);
+  color: var(--color-kapwa-brand-700);
   text-decoration: none;
 }
 .header-search-btn {
@@ -486,7 +570,7 @@
   white-space: nowrap;
 }
 .info-strip-v2-item i {
-  opacity: 0.85;
+  color: var(--ab-gold-400);
 }
 .info-strip-sep {
   opacity: 0.3;
@@ -508,11 +592,53 @@
   white-space: nowrap;
 }
 
-/* Hero */
+/* Hero: dusk over the Victoria range. Indigo sky with a gold sun
+   glow, layered mountain ridges and a strip of rice paddies along the
+   bottom edge (the .portal-hero-landscape SVG in page.tsx). */
 .portal-hero {
-  background: linear-gradient(160deg, var(--color-kapwa-brand-900), var(--color-kapwa-brand-950));
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      ellipse 520px 360px at 82% 78%,
+      rgba(255, 211, 0, 0.28),
+      rgba(255, 211, 0, 0) 70%
+    ),
+    linear-gradient(170deg, var(--color-kapwa-brand-950) 10%, var(--color-kapwa-brand-800) 100%);
   color: var(--color-kapwa-neutral-50);
-  padding: 64px 0;
+  padding: 72px 0 128px;
+}
+.portal-hero > .container {
+  position: relative;
+  z-index: 1;
+}
+.portal-hero-landscape {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 160px;
+  z-index: 0;
+  pointer-events: none;
+}
+.portal-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 211, 0, 0.12);
+  border: 1px solid rgba(255, 211, 0, 0.35);
+  color: var(--ab-gold-300);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.portal-hero-eyebrow i {
+  color: var(--ab-gold-400);
 }
 .portal-hero-grid {
   display: grid;
@@ -537,13 +663,14 @@
 .portal-hero-visual img {
   position: absolute;
   left: 50%;
-  bottom: -64px;
+  bottom: -128px;
   transform: translateX(-50%);
   display: block;
-  height: 130%;
+  height: 115%;
   width: auto;
   max-width: 100%;
-  opacity: 0.92;
+  opacity: 0.95;
+  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.35));
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 .portal-hero-visual img:hover {
@@ -551,15 +678,16 @@
   opacity: 1;
 }
 .portal-hero-text h1 {
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   font-weight: 800;
   margin: 0 0 16px;
-  line-height: 1.15;
+  line-height: 1.1;
   color: var(--color-kapwa-neutral-50);
+  text-wrap: balance;
 }
 .portal-hero-text p {
   font-size: 1.0625rem;
-  color: var(--color-kapwa-blue-100);
+  color: var(--color-kapwa-brand-100);
   max-width: 560px;
   margin: 0 0 28px;
 }
@@ -578,8 +706,21 @@
   height: 56px;
   padding: 0 64px 0 22px;
   border-radius: 999px;
-  border: none;
+  border: 3px solid transparent;
   font-size: 1.0625rem;
+  box-shadow: 0 10px 30px rgba(8, 9, 40, 0.35);
+  transition: border-color var(--duration-kapwa-200) var(--ease-kapwa-out);
+}
+.portal-hero-search input:focus {
+  outline: none;
+  border-color: var(--ab-gold-400);
+}
+.portal-hero-search .search-submit-btn {
+  background: var(--ab-gold-400);
+  color: var(--color-kapwa-brand-950);
+}
+.portal-hero-search .search-submit-btn:hover {
+  background: var(--ab-gold-300);
 }
 .search-submit-btn {
   position: absolute;
@@ -633,7 +774,7 @@
   padding: 64px 0;
 }
 .portal-section--alt {
-  background: var(--color-kapwa-bg-surface-raised);
+  background: linear-gradient(180deg, var(--ab-paddy-50), var(--color-kapwa-neutral-50) 85%);
 }
 .portal-section-header {
   max-width: 640px;
@@ -643,8 +784,17 @@
 .portal-section-header h2 {
   font-size: 1.875rem;
   font-weight: 800;
-  color: var(--color-kapwa-text-strong);
+  color: var(--color-kapwa-brand-950);
   margin: 0 0 10px;
+}
+.portal-section-header h2::after {
+  content: '';
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin: 14px auto 0;
+  border-radius: 4px;
+  background: var(--ab-band);
 }
 .portal-section-header p {
   color: var(--color-kapwa-text-support);
@@ -661,14 +811,16 @@
 .glance-header h2 {
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--color-kapwa-text-strong);
+  color: var(--color-kapwa-brand-950);
   margin: 0;
+  padding-left: 14px;
+  border-left: 4px solid var(--ab-paddy-600);
 }
 .glance-view-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--color-kapwa-text-link);
+  color: var(--color-kapwa-brand-700);
   font-weight: 600;
   white-space: nowrap;
 }
@@ -693,11 +845,15 @@
   color: inherit;
 }
 .news-card-source {
-  font-size: 0.75rem;
+  align-self: flex-start;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--ab-paddy-100);
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: var(--color-kapwa-brand-700);
+  letter-spacing: 0.04em;
+  color: var(--ab-paddy-700);
 }
 .news-card-title {
   font-size: 1rem;
@@ -726,6 +882,7 @@
 }
 .service-cat-card {
   /* border/radius/background come from Kapwa's <Card> wrapper now */
+  position: relative;
   padding: 22px;
   transition:
     box-shadow var(--duration-kapwa-200) var(--ease-kapwa-out),
@@ -733,9 +890,28 @@
   display: flex;
   flex-direction: column;
 }
+.service-cat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--ab-gold-400);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-kapwa-200) var(--ease-kapwa-out);
+}
 .service-cat-card:hover {
   box-shadow: var(--shadow-md);
-  border-color: var(--color-kapwa-brand-600);
+  border-color: var(--color-kapwa-brand-300);
+}
+.service-cat-card:hover::before {
+  transform: scaleX(1);
+}
+.service-cat-card:hover .service-cat-icon {
+  background: var(--color-kapwa-brand-700);
+  color: var(--ab-gold-400);
 }
 .service-cat-empty {
   max-width: 480px;
@@ -759,8 +935,11 @@
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  background: var(--color-kapwa-blue-100);
-  color: var(--color-kapwa-blue-700);
+  background: var(--color-kapwa-brand-50);
+  color: var(--color-kapwa-brand-700);
+  transition:
+    background var(--duration-kapwa-200) var(--ease-kapwa-out),
+    color var(--duration-kapwa-200) var(--ease-kapwa-out);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -793,7 +972,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--color-kapwa-gray-400);
+  background: var(--ab-paddy-600);
 }
 .service-cat-card > a {
   font-weight: 600;
@@ -1353,8 +1532,8 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: var(--color-kapwa-blue-50);
-  color: var(--color-kapwa-blue-700);
+  background: var(--ab-gold-100);
+  color: var(--color-kapwa-brand-800);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1394,8 +1573,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--color-kapwa-blue-50);
-  color: var(--color-kapwa-blue-700);
+  background: var(--color-kapwa-brand-50);
+  color: var(--color-kapwa-brand-700);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1428,7 +1607,7 @@
   font-weight: 500;
 }
 .barangay-chip i {
-  color: var(--color-kapwa-orange-600);
+  color: var(--ab-paddy-600);
   font-size: 1rem;
 }
 .barangay-chip-pop {
@@ -1440,11 +1619,11 @@
 }
 
 /* Directory banner */
+/* Gold field of the municipal flag */
 .directory-banner {
-  background: var(--color-kapwa-bg-surface-raised);
-  border-top: 1px solid var(--color-kapwa-border-weak);
-  border-bottom: 1px solid var(--color-kapwa-border-weak);
-  padding: 24px 0;
+  background: var(--ab-gold-400);
+  color: var(--color-kapwa-brand-950);
+  padding: 32px 0;
 }
 .directory-banner-inner {
   display: flex;
@@ -1455,15 +1634,16 @@
 }
 .directory-banner-inner h2 {
   margin: 0 0 4px;
-  font-size: 1.25rem;
+  font-size: 1.375rem;
+  color: var(--color-kapwa-brand-950);
 }
 .directory-banner-inner p {
   margin: 0;
-  color: var(--color-kapwa-text-support);
+  color: var(--color-kapwa-brand-900);
   font-size: 0.9375rem;
 }
 .directory-banner-btn {
-  background: var(--color-kapwa-brand-600);
+  background: var(--color-kapwa-brand-800);
   color: var(--color-kapwa-neutral-50);
   font-weight: 700;
   padding: 12px 22px;
@@ -1471,15 +1651,30 @@
   white-space: nowrap;
 }
 .directory-banner-btn:hover {
-  background: var(--color-kapwa-brand-700);
+  background: var(--color-kapwa-brand-950);
   text-decoration: none;
 }
 
 /* Footer v2 */
 .footer-v2 {
-  background: var(--color-kapwa-gray-950);
-  color: var(--color-kapwa-gray-300);
-  padding: 36px 0 0;
+  position: relative;
+  background: var(--color-kapwa-brand-950);
+  color: var(--color-kapwa-brand-200);
+  padding: 44px 0 0;
+}
+.footer-v2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--ab-band);
+}
+/* The gold directory banner already sits right above on the homepage;
+   the band's gold third would just merge into it. */
+main:has(> .directory-banner:last-child) + .footer-v2::before {
+  display: none;
 }
 .footer-v2-grid {
   display: grid;
@@ -1511,7 +1706,7 @@
 }
 .footer-v2-brand-tagline {
   font-size: 0.8125rem;
-  color: var(--color-kapwa-gray-400);
+  color: var(--color-kapwa-brand-300);
 }
 .footer-social-new {
   display: flex;
@@ -1531,8 +1726,8 @@
   transition: all 0.2s ease;
 }
 .footer-social-btn:hover {
-  background: var(--color-kapwa-brand-600);
-  color: var(--color-kapwa-neutral-50);
+  background: var(--ab-gold-400);
+  color: var(--color-kapwa-brand-950);
   transform: translateY(-2px);
   text-decoration: none;
 }
@@ -1550,18 +1745,18 @@
   transition: all 0.2s ease;
 }
 .footer-changelog-btn:hover {
-  border-color: var(--color-kapwa-brand-600);
+  border-color: var(--ab-gold-400);
   color: var(--color-kapwa-neutral-50);
   text-decoration: none;
 }
 .footer-v2-tagline {
   font-size: 0.875rem;
   line-height: 1.6;
-  color: var(--color-kapwa-gray-400);
+  color: var(--color-kapwa-brand-300);
   max-width: 320px;
 }
 .footer-v2 h4 {
-  color: var(--color-kapwa-neutral-50);
+  color: var(--ab-gold-400);
   font-size: 0.9375rem;
   margin: 0 0 10px;
 }
@@ -1575,21 +1770,21 @@
   font-size: 0.875rem;
 }
 .footer-v2 a {
-  color: var(--color-kapwa-gray-300);
+  color: var(--color-kapwa-brand-200);
 }
 .footer-v2 a:hover {
   color: var(--color-kapwa-neutral-50);
   text-decoration: none;
 }
 .footer-v2-bottom {
-  border-top: 1px solid var(--color-kapwa-gray-800);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 14px 0;
   display: flex;
   flex-wrap: wrap;
   gap: 8px 20px;
   justify-content: space-between;
   font-size: 0.8125rem;
-  color: var(--color-kapwa-gray-500);
+  color: var(--color-kapwa-brand-300);
 }
 
 /* Responsive */
@@ -1737,6 +1932,46 @@
   .header-inner-v2 {
     gap: 8px;
   }
+  /* Logo + title + search + EN/FIL + menu toggle overflowed ~390px
+     phones; tighten the language buttons (still 44px tall) and let the
+     brand title truncate rather than push the toggle off-screen. */
+  .brand-v2,
+  .brand-v2-text {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .brand-v2-title {
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .lang-btn-v2 {
+    min-width: 40px;
+    padding: 0 8px;
+  }
+  .brand-v2 {
+    gap: 4px;
+  }
+  .header-inner-v2 {
+    gap: 4px;
+  }
+  .header-search-btn,
+  .header-mobile-toggle {
+    min-width: 40px;
+  }
+}
+@media (max-width: 400px) {
+  .brand-v2-title {
+    font-size: 0.9375rem;
+  }
+}
+@media (max-width: 389px) {
+  /* Too narrow for the wordmark next to the controls; the logo alone
+     still links home. */
+  .brand-v2-text {
+    display: none;
+  }
   /* Compact icon+title tiles instead of full bullet-list cards — the search
      bar already covers finding a specific service, these are just for
      browsing, and 11 full essay-cards stacked is most of the mobile scroll. */
@@ -1802,6 +2037,12 @@
   }
   .portal-hero-text h1 {
     font-size: 1.875rem;
+  }
+  .portal-hero {
+    padding: 48px 0 96px;
+  }
+  .portal-hero-landscape {
+    height: 96px;
   }
   .barangay-stats-table th,
   .barangay-stats-table td {

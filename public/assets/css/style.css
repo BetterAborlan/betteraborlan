@@ -8079,7 +8079,7 @@ a.a11y-contact-item:hover i {
   left: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg, var(--color-kapwa-brand-700) 0%, var(--color-kapwa-brand-600) 100%);
+  background: linear-gradient(180deg, var(--ab-gold-400) 0%, var(--ab-paddy-400) 100%);
   opacity: 0;
   transition: opacity var(--duration-kapwa-200) var(--ease-kapwa-out);
 }
@@ -8101,7 +8101,7 @@ a.a11y-contact-item:hover i {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-kapwa-bg-surface-raised);
+  background: var(--color-kapwa-brand-50);
   border-radius: 10px;
   color: var(--color-kapwa-brand-700);
   font-size: 1.25rem;
@@ -8112,8 +8112,8 @@ a.a11y-contact-item:hover i {
 }
 
 .home-stat-card:hover .home-stat-card-icon {
-  background: linear-gradient(135deg, var(--color-kapwa-brand-700) 0%, var(--color-kapwa-brand-600) 100%);
-  color: var(--color-kapwa-neutral-50);
+  background: var(--color-kapwa-brand-700);
+  color: var(--ab-gold-400);
 }
 
 .home-stat-card-content {
