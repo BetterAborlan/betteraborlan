@@ -7,7 +7,7 @@
   "display": "standalone",
   "orientation": "any",
   "background_color": "#ffffff",
-  "theme_color": "#0032A0",
+  "theme_color": "#1d1f5e",
   "lang": "en",
   "dir": "ltr",
   "categories": ["government", "utilities"],

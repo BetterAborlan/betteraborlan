@@ -17,7 +17,7 @@ export default function ComingSoon() {
       >
         Coming Soon
       </h1>
-      <p className="mb-10 max-w-md text-lg text-kapwa-blue-100">
+      <p className="mb-10 max-w-md text-lg text-kapwa-brand-100">
         A community-run transparency portal for Aborlan, Palawan — government services,
         officials, and public data, all in one place. Launching soon.
       </p>

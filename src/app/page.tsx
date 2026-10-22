@@ -19,6 +19,10 @@ export default function HomePage() {
       <section className="portal-hero">
         <div className="container portal-hero-grid">
           <div className="portal-hero-text">
+            <span className="portal-hero-eyebrow">
+              <i className="bi bi-geo-alt-fill" aria-hidden="true"></i>
+              Aborlan, Palawan
+            </span>
             <h1>{t('hero-welcome')}</h1>
             <p>{t('hero-subtitle')}</p>
             <div className="portal-hero-search">
@@ -34,6 +38,37 @@ export default function HomePage() {
             />
           </div>
         </div>
+        {/* Victoria range, rice paddies and river, after the municipal seal */}
+        <svg
+          className="portal-hero-landscape"
+          viewBox="0 0 1440 160"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            d="M0 96 L140 58 L250 84 L420 30 L560 78 L700 46 L860 88 L1010 22 L1150 70 L1290 44 L1440 80 L1440 160 L0 160 Z"
+            fill="var(--color-kapwa-brand-500)"
+            opacity="0.45"
+          />
+          <path
+            d="M0 118 L180 76 L330 108 L520 62 L690 104 L880 70 L1060 110 L1240 74 L1440 104 L1440 160 L0 160 Z"
+            fill="var(--color-kapwa-brand-700)"
+          />
+          <path d="M0 128 Q360 112 720 126 T1440 122 L1440 160 L0 160 Z" fill="var(--ab-paddy-600)" />
+          <path
+            d="M0 136 Q360 122 720 134 T1440 130 L1440 160 L0 160 Z"
+            fill="var(--ab-paddy-400)"
+          />
+          <path
+            d="M0 146 Q300 138 640 146 T1440 142"
+            fill="none"
+            stroke="var(--ab-river-300)"
+            strokeWidth="4"
+            vectorEffect="non-scaling-stroke"
+          />
+          <path d="M0 152 Q360 148 720 152 T1440 150 L1440 160 L0 160 Z" fill="var(--ab-paddy-600)" />
+        </svg>
       </section>
 
       {/* Government Services */}
